@@ -1,1 +1,9 @@
- gs
+
+* org mode
+
+** table
+
+*** How to move to end of cell
+In org-mode, table cells are called *fields*. C-h a org field outputs a list of commands related to org tables fields.
+The function org-forward-sentence is bound to M-e. When inside a table, it will jump to the end of the current field.
+http://emacs.stackexchange.com/questions/18362/how-to-move-to-the-end-of-current-cell
