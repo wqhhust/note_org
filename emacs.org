@@ -34,13 +34,18 @@ see http://plantuml.sourceforge.net/ for a variety of example usages, the follow
   Alice ->> Bob: asynchronous call
 #+end_src
 #+results:file:tryout.png
+** to-do
+
 ** Table
 
 *** How to move to end of cell
 In org-mode, table cells are called *fields*. C-h a org field outputs a list of commands related to org tables fields.
 The function org-forward-sentence is bound to M-e. When inside a table, it will jump to the end of the current field.
 http://emacs.stackexchange.com/questions/18362/how-to-move-to-the-end-of-current-cell
-* Magit
+* magit
+** git command
+*** get the commit history for a sepecific developer
+git log --author=daniel
 ** key biddings
 Having decided that Magit is the bee’s knees you’ll probably want to know the keyboard shortcuts.  Here are the most common ones:
 C-c g Start magit (M-x magit-status)
@@ -291,3 +296,27 @@ How to Suspend
 CTRL-Z	Suspend Vim, like ":stop". Works in Normal and in Visual mode. In Insert and Command-line mode, the CTRL-Z is inserted as a normal character.
 :sus[pend][!] or
 :st[op][!]	Suspend Vim. If the '!' is not given and 'autowrite' is set, every buffer with changes and a file name is written out. If the '!' is given or 'autowrite' is not set, changed buffers are not written, don't forget to bring Vim back to the foreground later!
+* misc
+** download youtube
+http://en.savefrom.net/?rmode=false
+* linux
+** monitor
+*** check system log
+many logs are under the directory of /var/log/
+and we could get the system log from /var/log/messages.
+** performance
+*** get process status
+http://unix.stackexchange.com/questions/245827/spstack-ptrace-stopped-a-process
++ ps aux
++ grep State: /proc/the-pid/status. Is it State: T (stopped) or State:	t (tracing stop) ?
+*** perf
+perf record -g -e cpu-clock -p PID
+https://perf.wiki.kernel.org/index.php/Main_Page
+https://fritshoogland.wordpress.com/2013/11/24/when-the-oracle-wait-interface-isnt-enough/
+*** ptrace/pstack
+https://idea.popcount.org/2012-12-11-linux-process-states/
+*** cgroup
+https://en.wikipedia.org/wiki/Cgroups
+* work
+** TODO cr to read
+FUS-12048 --- *important*
