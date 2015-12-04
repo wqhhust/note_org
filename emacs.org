@@ -75,6 +75,10 @@ z s   Creates a snapshot (the stash gets created but the working tree is not del
 w   Show how other branches related to the current one
 m m   Start merging. In the event of conflicts resolve changes using e then stage with s.
 R   Starts a rebase R c will continue a rebase. Stage resolved conflicts before continuing.
+** show log history for a specific dev in magit
+in the magit buffer, press "L", then it will show lots of options, and then press "=a" to input the dev name, press enter again to show all the logs for that author
+** show change in a commit in the log history
+in the log history, use "d"+"d" to see the history for a commit under the cursor. 
 * vi
 ** key bidding
 Vim Commands Cheat Sheet
