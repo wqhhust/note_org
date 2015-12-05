@@ -320,3 +320,7 @@ https://en.wikipedia.org/wiki/Cgroups
 * work
 ** TODO cr to read
 FUS-12048 --- *important*
+* python
+** database
+*** postgresql
+**** install python driver for postgresql
