@@ -330,6 +330,27 @@ http://deathbycaptcha.com/user/faq
 Loads cookies from your browser into a cookiejar object so can download with urllib and other libraries the same content you see in the web browser.
 https://pypi.python.org/pypi/browsercookie
 https://bitbucket.org/richardpenman/browsercookie
+*** How to crawl websites without being blocked
+
+Speed
+If you download 1 webpage a day then you will not be blocked but your crawl would take too long to be useful. If you instead used threading to crawl multiple URLs asynchronously then they might mistake you for a DOS attack and blacklist your IP. So what is the happy medium? The wikipedia article on web crawlers currently states Anecdotal evidence from access logs shows that access intervals from known crawlers vary between 20 seconds and 34 minutes. This is a little slow and I have found 1 download every 5 seconds is usually fine. If you don't need the data quickly then use a longer delay to reduce your risk and be kinder to their server.
+
+Identity
+Websites do not want to block genuine users so you should try to look like one. Set your user-agent to a common web browser instead of using the library default (such as wget/version or urllib/version). You could even pretend to be the Google Bot (only for the brave): Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+If you have access to multiple IP addresses (for example via proxies) then distribute your requests among them so that it appears your downloading comes from multiple users.
+
+Consistency
+Avoid accessing webpages sequentially: /product/1, /product/2, etc. And don't download a new webpage exactly every N seconds. Both of these mistakes can attract attention to your downloading because a real user browses more randomly. So make sure to crawl webpages in an unordered manner and add a random offset to the delay between downloads.
+
+Following these recommendations will allow you to crawl most websites without being detected.
+*** Python Scrapy tutorial KeyError: 'Spider not found:
+http://stackoverflow.com/questions/26359598/python-scrapy-tutorial-keyerror-spider-not-found
+*** How to teach yourself web scraping
+
+
+
+https://webscraping.com/blog/How-to-teach-yourself-web-scraping/
+
 ** database
 *** postgresql
 **** install python driver for postgresql
