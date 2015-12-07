@@ -47,6 +47,7 @@ http://emacs.stackexchange.com/questions/18362/how-to-move-to-the-end-of-current
 *** get the commit history for a sepecific developer
 git log --author=daniel
 ** key biddings
+good link http://magit.vc/manual/magit-refcard.pdf
 Having decided that Magit is the bee’s knees you’ll probably want to know the keyboard shortcuts.  Here are the most common ones:
 C-c g Start magit (M-x magit-status)
 s   Stage file
