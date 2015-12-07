@@ -44,6 +44,13 @@ The function org-forward-sentence is bound to M-e. When inside a table, it will 
 http://emacs.stackexchange.com/questions/18362/how-to-move-to-the-end-of-current-cell
 * magit
 ** git command
+*** revert to a specific file from a specific commit
+this command will show all the commit history on a file
+git log relative/path/to/a/file
+
+then check out the file from that commit
+git checkout 188ce04ddc3b5bd2e25ae1faa1e826d3bca05c92  relative/path/to/a/file
+
 *** get the commit history for a sepecific developer
 git log --author=daniel
 ** key biddings
