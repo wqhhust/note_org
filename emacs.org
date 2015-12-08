@@ -43,6 +43,23 @@ In org-mode, table cells are called *fields*. C-h a org field outputs a list of 
 The function org-forward-sentence is bound to M-e. When inside a table, it will jump to the end of the current field.
 http://emacs.stackexchange.com/questions/18362/how-to-move-to-the-end-of-current-cell
 * magit
+** git concept
+http://marklodato.github.io/visual-git-guide/index-en.html
+http://eagain.net/articles/git-for-computer-scientists/
+*** different between reset and checkout
+http://stackoverflow.com/questions/3639342/whats-the-difference-between-git-reset-and-git-checkout
+HEAD is not the latest revision, it's the current revision. Usually, it's the latest revision of the current branch, but it doesn't have to be.
+HEAD really just means "what is my repo currently pointing at". Thanks svick for the heads up on this one (no pun intended) 
+In the event that the commit HEAD refers to is not the tip of any branch, this is called a "detached head".
+HEAD is actually a special type of reference that points to another reference. It may point to master or it may not (it will point to whichever branch is currently checked out). If you know you want to be committing to the master branch then push to this.
+A head is simply a reference to a commit object. Each head has a name (branch name or tag name, etc). By default, there is a head in every repository called master. A repository can contain any number of heads. At any given time, one head is selected as the “current head.” This head is aliased to HEAD, always in capitals".
+
+Note this difference: a “head” (lowercase) refers to any one of the named heads in the repository; “HEAD” (uppercase) refers exclusively to the currently active head. This distinction is used frequently in Git documentation.
+
+master is a name commonly given to the main branch, but it could be called anything else (or there could be no main branch).
+master is a reference to the end of a branch. By convention (and by default) this is usually the main integration branch, but it doesn't have to be.
+
+origin is a name commonly given to the main remote. remote is another repository that you can pull from and push to. Usually it's on some server, like github.
 ** git command
 *** revert to a specific file from a specific commit
 this command will show all the commit history on a file
