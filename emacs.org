@@ -403,3 +403,5 @@ http://baike.baidu.com/item/%E9%B2%8D%E5%BA%B7%E5%AE%81
 ** university
 Harvard
 http://baike.baidu.com/link?url=wzeERbHGRb7MzQUmLQwpnB7nFHihA1c9c6pbfZ_TIWiDqzWVAxjOLbcuInWMNocCWrcIWKcjkWNz72l0opEQ-q
+Yale
+http://baike.baidu.com/link?url=AvcoZKLnN8mIR6zfDrQOKO-IPifyZq-K3cr6cqC_80_FchVaa9NIBIXs9NpLxY-QIR_ZD8z1ii-huqr2mUihPa
