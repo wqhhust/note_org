@@ -385,3 +385,13 @@ https://webscraping.com/blog/How-to-teach-yourself-web-scraping/
 ** database
 *** postgresql
 **** install python driver for postgresql
+* clojure
+** stacktrace
+https://github.com/mmcgrana/clj-stacktrace
+If you use Leiningen, you can install clj-stacktrace on a user-wide basis. Just add the following to ~/.lein/profiles.clj:
+{:user {:dependencies [[clj-stacktrace "0.2.8"]]
+        :injections [(let [orig (ns-resolve (doto 'clojure.stacktrace require)
+                                            'print-cause-trace)
+                           new (ns-resolve (doto 'clj-stacktrace.repl require)
+                                           'pst)]
+                       (alter-var-root orig (constantly (deref new))))]}}
