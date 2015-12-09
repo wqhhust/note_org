@@ -395,3 +395,8 @@ If you use Leiningen, you can install clj-stacktrace on a user-wide basis. Just 
                            new (ns-resolve (doto 'clj-stacktrace.repl require)
                                            'pst)]
                        (alter-var-root orig (constantly (deref new))))]}}
+* bible
+** translation
+http://baike.baidu.com/view/1485644.htm
+http://baike.baidu.com/view/2775860.htm
+http://baike.baidu.com/item/%E9%B2%8D%E5%BA%B7%E5%AE%81
