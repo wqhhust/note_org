@@ -328,6 +328,16 @@ CTRL-Z	Suspend Vim, like ":stop". Works in Normal and in Visual mode. In Insert 
 * misc
 ** download youtube
 http://en.savefrom.net/?rmode=false
+* vertica
+** admin
+*** force startup
+try to start the node with force option from below command, it will remove corrupted blocks(data) from the node and will recover from its buddy node
+
+To Start Node with force option:
+----------------------------------------------
+
+$ admintools -t restart_node -s <node1 ip> -d <dbname> -F
+
 * linux
 ** monitor
 *** check system log
