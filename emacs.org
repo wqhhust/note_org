@@ -328,6 +328,8 @@ CTRL-Z	Suspend Vim, like ":stop". Works in Normal and in Visual mode. In Insert 
 * misc
 ** download youtube
 http://en.savefrom.net/?rmode=false
+* postgresql
+http://bluetreble.com/2015/12/mongodbs-bi-connector-postgres/
 * vertica
 ** admin
 *** force startup
