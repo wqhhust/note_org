@@ -370,7 +370,7 @@ https://en.wikipedia.org/wiki/Cgroups
 FUS-12048 --- *important*
 * youyou
 13 - 5 = 8: 2015/12/6
-11 days: 2015/12/10
+10 days: 2015/12/10
 * python
 ** scrapy
 *** orc                                                               :orc:
@@ -415,6 +415,12 @@ If you use Leiningen, you can install clj-stacktrace on a user-wide basis. Just 
                            new (ns-resolve (doto 'clj-stacktrace.repl require)
                                            'pst)]
                        (alter-var-root orig (constantly (deref new))))]}}
+** IO
+read: slurp,  write: spit
+user=> (spit "blubber.txt" "test")
+nil
+user=> (slurp "blubber.txt")
+"test"
 * bible
 ** translation
 http://baike.baidu.com/view/1485644.htm
