@@ -332,6 +332,10 @@ CTRL-Z	Suspend Vim, like ":stop". Works in Normal and in Visual mode. In Insert 
 :sus[pend][!] or
 :st[op][!]	Suspend Vim. If the '!' is not given and 'autowrite' is set, every buffer with changes and a file name is written out. If the '!' is given or 'autowrite' is not set, changed buffers are not written, don't forget to bring Vim back to the foreground later!
 * misc
+** google in China without block                            :google:goagent:
+like goagent but better than it
+https://github.com/XX-net/XX-Net
+https://github.com/XX-net/XX-Net/wiki/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95
 ** download youtube
 http://en.savefrom.net/?rmode=false
 * postgresql
@@ -405,6 +409,11 @@ https://webscraping.com/blog/How-to-teach-yourself-web-scraping/
 ** database
 *** postgresql
 **** install python driver for postgresql
+
+** functional
+*** TODO transducer
+http://sixty-north.com/blog/deriving-transducers-from-first-principles
+
 * clojure
 ** stacktrace
 https://github.com/mmcgrana/clj-stacktrace
