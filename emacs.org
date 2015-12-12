@@ -447,6 +447,20 @@ http://blog.brunobonacci.com/2014/11/16/clojure-complete-guide-to-destructuring/
 *** map destruct                                                 :destruct:
 (defn find-team-member[ {:keys [min max]} ] 
 	(println min max))
+** tranduce
+http://stackoverflow.com/questions/34238843/transduce-why-this-transduce-doesnt-print-anything
+Composition of the transformer runs right-to-left but builds a transformation stack that is applied left-to-right (filtering happens before mapping in this example).
+the following code return empty, since it first run take-while and then run map
+
+#+BEGIN_SRC 
+(transduce (comp (take-while true?)
+                     (map (fn[x] (println x) true))
+                     )
+               conj
+               []
+               (map inc (range 4)))
+#+END_SRC
+ 
 ** good tips
 *** how to convert [1 2 3 [4 5]] to [1 2 3 4 5]
 #+BEGIN_SRC clojure
