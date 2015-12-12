@@ -1,6 +1,9 @@
 
 * org mode
 
+
+
+
 ** Export
 
 *** html setting
@@ -430,6 +433,27 @@ user=> (spit "blubber.txt" "test")
 nil
 user=> (slurp "blubber.txt")
 "test"
+** java object
+*** how to get a field from a java object
+for example: the following is an Element whole webelement field is nil, then how to check whether an object whose name id td hsa webelement as nil?
+#clj_webdriver.element.Element{:webelement nil}
+use the following: just use the keyword to get the field of that object.
+(nil? (:webelement td))
+** parse int, float
+Float/parseFloat
+Integer/parseInt
+** destruct
+http://blog.brunobonacci.com/2014/11/16/clojure-complete-guide-to-destructuring/
+*** map destruct                                                 :destruct:
+(defn find-team-member[ {:keys [min max]} ] 
+	(println min max))
+** good tips
+*** how to convert [1 2 3 [4 5]] to [1 2 3 4 5]
+#+BEGIN_SRC clojure
+  (apply list* [1 2 3 [4 5]])
+#+END_SRC
+*** select an element from a class
+{:xpath "//table[@class='someclass']"}
 * bible
 ** translation
 http://baike.baidu.com/view/1485644.htm
@@ -440,3 +464,8 @@ Harvard
 http://baike.baidu.com/link?url=wzeERbHGRb7MzQUmLQwpnB7nFHihA1c9c6pbfZ_TIWiDqzWVAxjOLbcuInWMNocCWrcIWKcjkWNz72l0opEQ-q
 Yale
 http://baike.baidu.com/link?url=AvcoZKLnN8mIR6zfDrQOKO-IPifyZq-K3cr6cqC_80_FchVaa9NIBIXs9NpLxY-QIR_ZD8z1ii-huqr2mUihPa
+* emacs
+** erc/irc
+*** how to post multiple line
+past the code in below link, and then past the url in irc
+http://paste.lisp.org/new
