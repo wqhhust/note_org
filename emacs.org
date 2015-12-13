@@ -463,8 +463,10 @@ the following code return empty, since it first run take-while and then run map
  
 ** good tips
 *** how to convert [1 2 3 [4 5]] to [1 2 3 4 5]
+2 solutions, and flatten could be use for a vector anywhere in the list, instead of only in the end of the list.
 #+BEGIN_SRC clojure
   (apply list* [1 2 3 [4 5]])
+  (flatten [1 2 3 [4 5]])
 #+END_SRC
 *** select an element from a class
 {:xpath "//table[@class='someclass']"}
