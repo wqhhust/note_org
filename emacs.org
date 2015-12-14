@@ -122,7 +122,7 @@ the following code return empty, since it first run take-while and then run map
 #+END_SRC
 **** select an element from a class
 {:xpath "//table[@class='someclass']"}
-**** select an element based on the child parent
+**** select an element based on the child element
 (find-element {:xpath "//i[@class='xueli']/parent::*"})
 * emacs
 ** org mode
