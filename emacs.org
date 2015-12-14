@@ -133,7 +133,9 @@ if the index of the subvec is continous,  then just use the function of subvec
   (mapv a b))
 #+END_SRC
 
-
+*** threading first/last                                          :threading:
+**** good artical
+http://ianrumford.github.io/blog/2014/10/24/some-syntactic-sugar-for-clojure-threading-macros/
 * emacs
 ** org mode
 
