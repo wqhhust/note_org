@@ -479,6 +479,13 @@ How to Suspend
 CTRL-Z	Suspend Vim, like ":stop". Works in Normal and in Visual mode. In Insert and Command-line mode, the CTRL-Z is inserted as a normal character.
 :sus[pend][!] or
 :st[op][!]	Suspend Vim. If the '!' is not given and 'autowrite' is set, every buffer with changes and a file name is written out. If the '!' is given or 'autowrite' is not set, changed buffers are not written, don't forget to bring Vim back to the foreground later!
+** profile
+*** key biddings                                          :key:map:bidding:
+in spacemacs, it will also pop some menu for pick up when there are mulitple choice for the same starting key.
+;; Example of single key sequence
+(global-set-key (kbd "<f7>") nil) ; good idea to put nil to the starting key
+(global-set-key (kbd "<f7> <f7>") 'hs-toggle-hiding)
+
 * misc
 ** google in China without block                            :google:goagent:
 like goagent but better than it
