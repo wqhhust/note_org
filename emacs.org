@@ -136,6 +136,10 @@ if the index of the subvec is continous,  then just use the function of subvec
 *** threading first/last                                          :threading:
 **** good artical
 http://ianrumford.github.io/blog/2014/10/24/some-syntactic-sugar-for-clojure-threading-macros/
+http://blog.jayfields.com/2012/09/clojure-refactoring-from-thread-last-to.html
+http://www.spacjer.com/blog/2015/11/09/lesser-known-clojure-variants-of-threading-macro/
+*** good blogs
+http://ianrumford.github.io/
 * emacs
 ** org mode
 
