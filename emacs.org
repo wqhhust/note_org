@@ -120,10 +120,20 @@ the following code return empty, since it first run take-while and then run map
   (apply list* [1 2 3 [4 5]])
   (flatten [1 2 3 [4 5]])
 #+END_SRC
+or flatten
 **** select an element from a class
 {:xpath "//table[@class='someclass']"}
 **** select an element based on the child element
 (find-element {:xpath "//i[@class='xueli']/parent::*"})
+**** get sub vector from a vector
+if the index of the subvec is continous,  then just use the function of subvec
+#+BEGIN_SRC clojure
+(let [a [11 22 33 44]
+      b [1 3]]
+  (mapv a b))
+#+END_SRC
+
+
 * emacs
 ** org mode
 
