@@ -270,6 +270,8 @@ to remove the most recent commit
 git reset --hard HEAD~1
 http://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git
 
+*** get the commit history commits for the current file
+in spacemacs, SPC + g + L will show the commit for the current file in the buffer, and then in the commit historical window, press Enter to get the information for each commit, then in the detailed window for that commit, press TAB to get the change details for the modified files
 *** run git command inside magit
 in the magit window, press "!"
 ** erc/irc
