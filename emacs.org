@@ -59,6 +59,24 @@ To Start Node with force option:
 ----------------------------------------------
 
 $ admintools -t restart_node -s <node1 ip> -d <dbname> -F
+*** locks
+**** temp table use less or no global catalog locks
+#+BEGIN_SRC SQL
+drop table if exists aaa;
+select object_name,mode,count(*) from dc_lock_attempts where session_id=CURRENT_SESSION()  group by object_name,mode;
+create local temp table aaa  ON COMMIT PRESERVE ROWS as select * from locks where 0=1;
+select object_name,mode,count(*) from dc_lock_attempts where session_id=CURRENT_SESSION()  group by object_name,mode;
+insert into aaa select * from locks;
+select object_name,mode,count(*) from dc_lock_attempts where session_id=CURRENT_SESSION()  group by object_name,mode;
+
+select object_name,mode,count(*) from dc_lock_attempts where session_id=CURRENT_SESSION()  group by object_name,mode;
+drop table if exists aaa;
+create table aaa   as select * from locks where 0=1;
+select object_name,mode,count(*) from dc_lock_attempts where session_id=CURRENT_SESSION()  group by object_name,mode;
+insert into aaa select * from locks;
+select object_name,mode,count(*) from dc_lock_attempts where session_id=CURRENT_SESSION()  group by object_name,mode;
+
+#+END_SRC
 ** postgresql
 http://bluetreble.com/2015/12/mongodbs-bi-connector-postgres/
 http://theplateisbad.blogspot.com/2015/12/the-mongodb-bi-analytics-connector.html
