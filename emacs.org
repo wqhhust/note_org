@@ -176,6 +176,8 @@ the following code return empty, since it first run take-while and then run map
   (flatten [1 2 3 [4 5]])
 #+END_SRC
 or flatten
+**** how to call (j/execute! db ["sql" a-vector]
+(j/execute! db (concat ["sql"] a-vector))
 **** select an element from a class
 {:xpath "//table[@class='someclass']"}
 **** select an element contains some text
