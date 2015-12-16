@@ -613,3 +613,14 @@ Harvard
 http://baike.baidu.com/link?url=wzeERbHGRb7MzQUmLQwpnB7nFHihA1c9c6pbfZ_TIWiDqzWVAxjOLbcuInWMNocCWrcIWKcjkWNz72l0opEQ-q
 Yale
 http://baike.baidu.com/link?url=AvcoZKLnN8mIR6zfDrQOKO-IPifyZq-K3cr6cqC_80_FchVaa9NIBIXs9NpLxY-QIR_ZD8z1ii-huqr2mUihPa
+* firefox
+firebug plugin addon
+** profile
+cd .mozilla/firefox 
+ rm -Rf 56018125
+ cp -R mwad0hks.default 56018125
+
+ rm -Rf 65013716
+ cp -R mwad0hks.default 65013716
+
+
