@@ -178,6 +178,12 @@ the following code return empty, since it first run take-while and then run map
 or flatten
 **** select an element from a class
 {:xpath "//table[@class='someclass']"}
+**** select an element contains some text
+//*[contains(text(),'ABC')]
+http://stackoverflow.com/questions/3655549/xpath-containstext-some-string-doesnt-work-when-used-with-node-with-more
+**** select an element after an elemnt containing some text
+the last p means select the p node after the p node containing 历史统计
+//p[contains(text(),'历史统计')]/following-sibling::p
 **** select an element based on the child element
 (find-element {:xpath "//i[@class='xueli']/parent::*"})
 **** get sub vector from a vector
@@ -214,7 +220,6 @@ http://martinfowler.com/articles/is-tdd-dead/
 http://pythontesting..net/agile/is-tdd-dead/
 http://www.pitheringabout.com/?p=1069
 
- 
 * emacs
 ** org mode
 
