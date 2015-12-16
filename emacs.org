@@ -271,6 +271,13 @@ git remote show origin
 If referential integrity has been broken:
 
 git config --get remote.origin.url
+*** stash                                      :stash:
+| z   | Create new stash                    | Stashes are listed in the status buffer.                 |
+| Z   | Create new stash and maintain state | Leaves current changes in working tree and staging area. |
+| RET | View stash                          |                                                          |
+| a   | Apply stash                         |                                                          |
+| A   | Pop stash                           |                                                          |
+| k   | Drop stash                          |                                                          |
 *** git concept
 http://marklodato.github.io/visual-git-guide/index-en.html
 http://eagain.net/articles/git-for-computer-scientists/
