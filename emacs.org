@@ -594,6 +594,7 @@ in spacemacs, it will also pop some menu for pick up when there are mulitple cho
 ;; Example of single key sequence
 (global-set-key (kbd "<f7>") nil) ; good idea to put nil to the starting key
 (global-set-key (kbd "<f7> <f7>") 'hs-toggle-hiding)
+(global-set-key (kbd "<f8>") 'spacemacs/new-empty-buffer)
 
 ** good tips
 *** emacs-smeargle
