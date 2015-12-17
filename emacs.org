@@ -222,6 +222,9 @@ http://www.laliluna.com/articles/2014/04/28/clojure-async-kindergarden-party.htm
 http://martintrojer.github.io/tags.html#core.async-ref
 *** good blogs
 http://ianrumford.github.io/
+*** some function
+**** constantly
+https://medium.com/@davidrupp/clojure-alter-var-root-and-constantly-d8c5b48fda02#.6ne8b6stx
 ** TDD
 http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf
 http://martinfowler.com/articles/is-tdd-dead/
