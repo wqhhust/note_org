@@ -154,6 +154,10 @@ http://blog.brunobonacci.com/2014/11/16/clojure-complete-guide-to-destructuring/
 **** map destruct                                               :destruct:
 (defn find-team-member[ {:keys [min max]} ] 
 	(println min max))
+*** dynamic scoping
+http://clojure.org/vars
+https://blog.rjmetrics.com/2012/01/11/lexical-vs-dynamic-scope-in-clojure/
+http://blog.josephwilk.net/clojure/isolating-external-dependencies-in-clojure.html
 *** tranduce
 http://stackoverflow.com/questions/34238843/transduce-why-this-transduce-doesnt-print-anything
 Composition of the transformer runs right-to-left but builds a transformation stack that is applied left-to-right (filtering happens before mapping in this example).
