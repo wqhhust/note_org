@@ -595,6 +595,17 @@ in spacemacs, it will also pop some menu for pick up when there are mulitple cho
 (global-set-key (kbd "<f7>") nil) ; good idea to put nil to the starting key
 (global-set-key (kbd "<f7> <f7>") 'hs-toggle-hiding)
 
+** good tips
+*** emacs-smeargle
+SPC + g + h + h
+M-x smeargle
+
+Highlight regions by last updated time.
+
+M-x smeargle-commits
+
+Highlight regions by age of changes.
+
 * misc
 ** google in China without block                            :google:goagent:
 like goagent but better than it
@@ -605,6 +616,8 @@ http://en.savefrom.net/?rmode=false
 * work
 ** TODO cr to read
 FUS-12048 --- *important*
+** deploy
+ant -DsiloID= A_AHOLD_ALERT_DANIEL create-retailer-schema -Dremote.cp.db.host=ENGP3QA3 
 * youyou
 13 - 5 = 8: 2015/12/6
 10 days: 2015/12/10
