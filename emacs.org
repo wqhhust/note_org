@@ -158,6 +158,8 @@ http://blog.brunobonacci.com/2014/11/16/clojure-complete-guide-to-destructuring/
 http://clojure.org/vars
 https://blog.rjmetrics.com/2012/01/11/lexical-vs-dynamic-scope-in-clojure/
 http://blog.josephwilk.net/clojure/isolating-external-dependencies-in-clojure.html
+**** def 
+ http://stackoverflow.com/questions/16447621/difference-between-using-def-to-update-a-var-and-alter-var-root
 *** tranduce
 http://stackoverflow.com/questions/34238843/transduce-why-this-transduce-doesnt-print-anything
 Composition of the transformer runs right-to-left but builds a transformation stack that is applied left-to-right (filtering happens before mapping in this example).
