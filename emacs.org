@@ -222,6 +222,27 @@ http://www.laliluna.com/articles/2014/04/28/clojure-async-kindergarden-party.htm
 http://martintrojer.github.io/tags.html#core.async-ref
 *** good blogs
 http://ianrumford.github.io/
+*** my questions
+**** def
+*question*:
+ I defined a var like (def firefox_brower some_specificiation_for_firefox)
+ and used core.aysnc, and then I found the code of (def firef...) run twice,
+ since I saw two firefox stared up since core.async could kick off multiple threads, so will (def ...)
+         run for each thread?
+ If I run lein repl, then I only saw one firefox.
+ but if run lein run, it will startup 2 firefox. But the main function
+         doesn't call any code to startup firefox, only some code for
+         core.async
+*answer*
+<justin_smith>  generally you shouldn't ever have side effects at the
+               top level - for example that def would start up firefox while
+               building an uberjar or running your tests (probably not things
+               you want)  [01:49]
+<justin_smith>  a common way to deal with this are to use an atom or
+               delay or promise that will hold the firefox-browser value, then
+               an init function (called in your -main) that actually starts up
+               firefox and connects your handle to the container  [01:52]
+*** pdpi (~pdpi@89.197.31.78) has joined channel #clojure
 *** some function
 **** constantly
 https://medium.com/@davidrupp/clojure-alter-var-root-and-constantly-d8c5b48fda02#.6ne8b6stx
