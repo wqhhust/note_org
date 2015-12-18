@@ -158,6 +158,9 @@ http://blog.brunobonacci.com/2014/11/16/clojure-complete-guide-to-destructuring/
 http://clojure.org/vars
 https://blog.rjmetrics.com/2012/01/11/lexical-vs-dynamic-scope-in-clojure/
 http://blog.josephwilk.net/clojure/isolating-external-dependencies-in-clojure.html
+http://squirrel.pl/blog/2012/09/13/careful-with-def-in-clojure/
+https://www.reddit.com/r/Clojure/comments/zty5f/careful_with_def_in_clojure/c67uovl
+http://stackoverflow.com/questions/940712/redefining-a-letd-variable-in-clojure-loop
 **** def 
  http://stackoverflow.com/questions/16447621/difference-between-using-def-to-update-a-var-and-alter-var-root
 *** tranduce
@@ -244,10 +247,11 @@ http://ianrumford.github.io/
                firefox and connects your handle to the container  [01:52]
 **** get current thread information
 (get-thread-bindings)
-*** pdpi (~pdpi@89.197.31.78) has joined channel #clojure
 *** some function
 **** constantly
 https://medium.com/@davidrupp/clojure-alter-var-root-and-constantly-d8c5b48fda02#.6ne8b6stx
+*** promo
+http://fn-code.blogspot.com/2015/10/my-concern-with-concerns.html
 ** TDD
 http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf
 http://martinfowler.com/articles/is-tdd-dead/
