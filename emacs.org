@@ -637,6 +637,19 @@ M-x smeargle-commits
 
 Highlight regions by age of changes.
 
+** email
+
+*** yahoo
+Incoming Mail (IMAP) Server
+Server - imap.mail.yahoo.com
+Port - 993
+Requires SSL - Yes
+Outgoing Mail (SMTP) Server
+
+Server - smtp.mail.yahoo.com
+Port - 465 or 587
+Requires SSL - Yes
+Requires authentication - Yes
 * misc
 ** google in China without block                            :google:goagent:
 like goagent but better than it
