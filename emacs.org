@@ -242,6 +242,8 @@ http://ianrumford.github.io/
                delay or promise that will hold the firefox-browser value, then
                an init function (called in your -main) that actually starts up
                firefox and connects your handle to the container  [01:52]
+**** get current thread information
+(get-thread-bindings)
 *** pdpi (~pdpi@89.197.31.78) has joined channel #clojure
 *** some function
 **** constantly
