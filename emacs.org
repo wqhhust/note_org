@@ -688,6 +688,9 @@ Yale
 http://baike.baidu.com/link?url=AvcoZKLnN8mIR6zfDrQOKO-IPifyZq-K3cr6cqC_80_FchVaa9NIBIXs9NpLxY-QIR_ZD8z1ii-huqr2mUihPa
 * firefox
 firebug plugin addon
+** cookie                                                  :cookie:expired:
+https://www.raymond.cc/blog/how-to-extend-firefox-and-internet-explorer-cookie-expiration-date/
+or use firebug to modify
 ** profile
 cd .mozilla/firefox 
  rm -Rf 56018125
@@ -695,5 +698,10 @@ cd .mozilla/firefox
 
  rm -Rf 65013716
  cp -R mwad0hks.default 65013716
-
+** 
+** 
+** 
+** 
+** 
+** 
 
