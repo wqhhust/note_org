@@ -192,6 +192,10 @@ or flatten
 **** select an element contains some text
 //*[contains(text(),'ABC')]
 http://stackoverflow.com/questions/3655549/xpath-containstext-some-string-doesnt-work-when-used-with-node-with-more
+**** select an element for a class and with certain text
+//span[contains(@class, 'myclass') and text() = 'qwerty']
+//span[contains(@class, 'myclass') and normalize-space(text()) = 'qwerty']
+http://stackoverflow.com/questions/16466083/html-xpath-searching-by-class-and-text
 **** select an element after an elemnt containing some text
 the last p means select the p node after the p node containing 历史统计
 //p[contains(text(),'历史统计')]/following-sibling::p
