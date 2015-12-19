@@ -307,7 +307,7 @@ The function org-forward-sentence is bound to M-e. When inside a table, it will 
 http://emacs.stackexchange.com/questions/18362/how-to-move-to-the-end-of-current-cell
 ** cider
 *** kill a process inside emacs cider
-If you run C-c C-c, emacs will eventually cancel the top level repl command that is looping. This will take a while if it is a tight loop, and even longer if it is producing large amounts of output. But it will eventually stop the code without having to kill emacs
+If you run C-c C-c inside *REPL* window (not _editor_ window), emacs will eventually cancel the top level repl command that is looping. This will take a while if it is a tight loop, and even longer if it is producing large amounts of output. But it will eventually stop the code without having to kill emacs
 ** magit
 *** how to get the remote url
 If referential integrity is intact:
