@@ -201,7 +201,14 @@ the last p means select the p node after the p node containing 历史统计
 //p[contains(text(),'历史统计')]/following-sibling::p
 **** select an element based on the child element
 (find-element {:xpath "//i[@class='xueli']/parent::*"})
+**** how to update an element in a vector
+(update-in [1 2 3] [1] inc)
+(assoc [1 2 3] 1 5)
+http://stackoverflow.com/questions/12628286/simple-way-to-replace-nth-element-in-a-vector-in-clojure
 **** get sub vector from a vector
+
+
+
 if the index of the subvec is continous,  then just use the function of subvec
 #+BEGIN_SRC clojure
 (let [a [11 22 33 44]
