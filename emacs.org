@@ -680,6 +680,17 @@ http://en.savefrom.net/?rmode=false
 * work
 ** TODO cr to read
 FUS-12048 --- *important*
+** alert extraction
+
+measures
+spStrDD: sp.SPCurrDD, sum
+spOnHand: sp.SPCurrRetailOnHand,sum
+spvalid: sp.SPCurrValidStoreItemComb,max
+sptraited:sp.SPCurrTraitedStoreItemComb,max
+
+
+conditions:
+spstrdd >0 and spOnHand and spvalid=1 and sptraited=1
 ** deploy
 ant -DsiloID= A_AHOLD_ALERT_DANIEL create-retailer-schema -Dremote.cp.db.host=ENGP3QA3 
 * youyou
