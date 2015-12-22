@@ -77,6 +77,10 @@ insert into aaa select * from locks;
 select object_name,mode,count(*) from dc_lock_attempts where session_id=CURRENT_SESSION()  group by object_name,mode;
 
 #+END_SRC
+*** good document
+**** from twitter
+https://github.com/jackghm/Vertica/wiki/HP-Vertica-Tips,-Tricks,-and-Best-Practices
+https://github.com/jackghm/Vertica/wiki/Optimize-Tables-Not-Queries
 ** postgresql
 http://bluetreble.com/2015/12/mongodbs-bi-connector-postgres/
 http://theplateisbad.blogspot.com/2015/12/the-mongodb-bi-analytics-connector.html
@@ -669,7 +673,7 @@ Outgoing Mail (SMTP) Server
 Server - smtp.mail.yahoo.com
 Port - 465 or 587
 Requires SSL - Yes
-Requires authentication - Yes
+Requires authentication - Yes<2015-12-21 Mon>
 * misc
 ** google in China without block                            :google:goagent:
 like goagent but better than it
@@ -687,10 +691,25 @@ spStrDD: sp.SPCurrDD, sum
 spOnHand: sp.SPCurrRetailOnHand,sum
 spvalid: sp.SPCurrValidStoreItemComb,max
 sptraited:sp.SPCurrTraitedStoreItemComb,max
-
-
+--spWeeksOnHand: (case when spStrDD =0 then 0 else floor(spOnHand/spStrDD) end), max
+posMaxTotalAdjQty: fn_max_over_time, totaladjqty,100, max *time rage is based on SP table instead of POS table, also need to add function of fn_max*
+posDistinctOnHand: fn_distinct_count, HistOnHandQty, 28
+fourWeeksSalesRate: fun_sum_over_time, posqty, 28, *need to exclude store id for temp_site_store_tdlinx*
+salesRate: fourWeeksSalesRate/4
+<2015-12-21 Mon 00:17>
 conditions:
-spstrdd >0 and spOnHand and spvalid=1 and sptraited=1
+spstrdd >0 and spOnHand and spvalid=1 and sptraited=1 and posMaxTotalAdjQty>=15 and posDistinctOnHand <=2 and fourWeeksSalesRate =0
+-- and spWeeksOnHand>10
+and (case when spStrDD =0 then 0 else floor(spOnHand/spStrDD) end) > 10
+and salesRate = 0
+and groupings_index = 1
+*** issues
+**** period range: not based on the current table, but instead based on another table (SP)
+solution: add another configuration about which table the period_key is based on<2015-12-20 Sun>.
+**** for ntil on salesrate at item_group/store_type level, need to use a query id, but need to support time range.
+**** need to filter based on RSI_TEMP_ASMID_STOREID (#temp_site_store_tdlinx)
+solution: use store exclusive list?
+
 ** deploy
 ant -DsiloID= A_AHOLD_ALERT_DANIEL create-retailer-schema -Dremote.cp.db.host=ENGP3QA3 
 * youyou
