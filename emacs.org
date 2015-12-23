@@ -278,10 +278,6 @@ http://www.pitheringabout.com/?p=1069
 
 * emacs
 ** org mode
-
-
-
-
 *** Export
 
 **** html setting
@@ -334,6 +330,8 @@ see http://plantuml.sourceforge.net/ for a variety of example usages, the follow
 #+results:file:tryout.png
 *** to-do
 
+*** edit source code
+ C-c ' 
 *** Table
 
 **** How to move to end of cell
