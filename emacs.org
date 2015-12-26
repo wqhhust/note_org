@@ -751,18 +751,13 @@ firebug plugin addon
 https://www.raymond.cc/blog/how-to-extend-firefox-and-internet-explorer-cookie-expiration-date/
 or use firebug to modify
 ** profile
+create profile, run the following command
+firefox -P
+
 cd .mozilla/firefox 
  rm -Rf 56018125
  cp -R mwad0hks.default 56018125
 
  rm -Rf 65013716
  cp -R mwad0hks.default 65013716
-** 
-** 
-** 
-** 
-** 
-** 
-* 
-file+emacs:./work.org
 
