@@ -750,6 +750,8 @@ firebug plugin addon
 ** cookie                                                  :cookie:expired:
 https://www.raymond.cc/blog/how-to-extend-firefox-and-internet-explorer-cookie-expiration-date/
 or use firebug to modify
+http://blog.petersondave.com/cookies/Session-Cookies-in-Chrome-Firefox-and-Sitecore/
+*** TODO why firefox could extend the cookie after expire but firefox won't 
 ** profile
 create profile, run the following command
 firefox -P
