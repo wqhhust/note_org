@@ -146,6 +146,40 @@ user=> (spit "blubber.txt" "test")
 nil
 user=> (slurp "blubber.txt")
 "test"
+
+*** jdbc
+**** insert/update timestamp
+http://stackoverflow.com/questions/9305541/clojure-jdbc-postgresql-i-am-trying-to-update-a-timestamp-value-in-postgresql-f
+
+Use [clj-time "0.3.6"] as the dependency specifier in your project.clj if you decide to use clj-time.
+#+BEGIN_SRC clojure
+(require '(clj-time [format :as timef] [coerce :as timec])
+
+(->> "Thu Feb 09 10:38:01 +0000 2012"
+     (timef/parse (timef/formatter "EEE MMM dd HH:mm:ss Z yyyy"))
+     timec/to-timestamp)
+#+END_SRC
+or
+#+BEGIN_SRC clojure
+(java.sql.Timestamp/valueOf "2004-10-19 10:23:54")
+#+END_SRC
+
+You'll need to pass in a java.sql.Timestamp instance. To parse your string into one using clj-time, a Joda-Time-wrapping library for Clojure, you'd do something along the following lines:
+
+(require '(clj-time [format :as timef] [coerce :as timec])
+
+(->> "Thu Feb 09 10:38:01 +0000 2012"
+     (timef/parse (timef/formatter "EEE MMM dd HH:mm:ss Z yyyy"))
+     timec/to-timestamp)
+The returned value can then be passed to PostgreSQL via JDBC.
+
+In case you're obtaining the date in some other string format and converting it to this one, you could skip the conversion and provide an appropriate formatter for the original representation. There are quite a few available by default in the clj-time.format/formatters map, say (clj-time.format/show-formatters) at the REPL to see a list with examples. Also, clj-time.coerce/from-string tries all default formatters in sequence returning the value of the first succeeding parse (nil if there is none). If you're obtaining the date as a java.util.Date or a long, see from-date and from-long in the same namespace.
+
+
+Alternatively, you could use some other way of parsing your timestamp string into a java.sql.Timestamp; Timestamp itself can parse a different string representation:
+
+(java.sql.Timestamp/valueOf "2004-10-19 10:23:54")
+clj-time is the most sane way of dealing with date and time in Clojure, though, so it's likely to be worth your while.
 *** java object
 **** how to get a field from a java object
 for example: the following is an Element whole webelement field is nil, then how to check whether an object whose name id td hsa webelement as nil?
