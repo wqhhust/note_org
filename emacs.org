@@ -153,7 +153,7 @@ http://stackoverflow.com/questions/9305541/clojure-jdbc-postgresql-i-am-trying-t
 
 Use [clj-time "0.3.6"] as the dependency specifier in your project.clj if you decide to use clj-time.
 #+BEGIN_SRC clojure
-(require '(clj-time [format :as timef] [coerce :as timec])
+(require '[clj-time [format :as timef] [coerce :as timec]])
 
 (->> "Thu Feb 09 10:38:01 +0000 2012"
      (timef/parse (timef/formatter "EEE MMM dd HH:mm:ss Z yyyy"))
@@ -166,8 +166,7 @@ or
 
 You'll need to pass in a java.sql.Timestamp instance. To parse your string into one using clj-time, a Joda-Time-wrapping library for Clojure, you'd do something along the following lines:
 
-(require '(clj-time [format :as timef] [coerce :as timec])
-
+(require '[clj-time [format :as timef] [coerce :as timec]])
 (->> "Thu Feb 09 10:38:01 +0000 2012"
      (timef/parse (timef/formatter "EEE MMM dd HH:mm:ss Z yyyy"))
      timec/to-timestamp)
