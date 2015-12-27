@@ -735,6 +735,7 @@ ant -DsiloID= A_AHOLD_ALERT_DANIEL create-retailer-schema -Dremote.cp.db.host=EN
 10 days: 2015/12/10
 
 10 + 4 -5 =9: 2015/12/14
+9 + 13 - 6  =16 : 2015/12/27 
 * bible
 ** translation
 http://baike.baidu.com/view/1485644.htm
@@ -762,4 +763,5 @@ cd .mozilla/firefox
 
  rm -Rf 65013716
  cp -R mwad0hks.default 65013716
-
+** selenium
+https://github.com/SeleniumHQ/selenium/blob/master/java/CHANGELOG
