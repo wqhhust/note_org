@@ -303,6 +303,11 @@ https://medium.com/@davidrupp/clojure-alter-var-root-and-constantly-d8c5b48fda02
 *** promo
 https://www.booleanknot.com/blog/2015/12/21/encapsulation-and-clojure-part-1.html
 http://fn-code.blogspot.com/2015/10/my-concern-with-concerns.html
+*** web scraping                                          :scrape;scraping:
+http://stackoverflow.com/questions/22168883/whats-the-best-way-of-scraping-data-from-a-website/22180602#22180602
+**** good examples/projects 
+https://github.com/dfuenzalida/lazada-scrape
+https://github.com/davidsantiago/hickory
 ** TDD
 http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf
 http://martinfowler.com/articles/is-tdd-dead/
