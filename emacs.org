@@ -803,3 +803,5 @@ cd .mozilla/firefox
  cp -R mwad0hks.default 65013716
 ** selenium
 https://github.com/SeleniumHQ/selenium/blob/master/java/CHANGELOG
+** tor
+http://stackoverflow.com/questions/22978074/using-selenium-webdriver-with-tor
