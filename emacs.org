@@ -832,3 +832,47 @@ cd .mozilla/firefox
 https://github.com/SeleniumHQ/selenium/blob/master/java/CHANGELOG
 ** tor
 http://stackoverflow.com/questions/22978074/using-selenium-webdriver-with-tor
+*** installation
+on ubuntu just run the command apt-get to install
+*** configuration
+**** torrc location
+run the tor
+and then run 
+ps -ef|grep tor|grep -v java 
+that command will show the parameters used by tor
+
+The following is to search some folder, but might not be used by the tor
+just search torrc under the unpacked folder, like the following
+/data/tor-browser_en-US/Browser/TorBrowser/Data/Tor/torrc
+**** enable control port
+sudo apt-get install python-stem
+
+https://stem.torproject.org/faq.html
+https://www.thesprawl.org/research/tor-control-protocol/
+https://tor.stackexchange.com/questions/2178/why-does-tor-browser-include-multiple-torrc-files
+/data/tor-browser_en-US/Browser/TorBrowser/Tor $ ./tor --hash-password "my_password"
+16:F18DE06B7432D86C601947B54468934EE8E3BD2141DEE0F2B917D00C88
+
+/data/tor-browser_en-US/Browser/TorBrowser/Tor $  ./tor --hash-password "test1234"
+16:ADDE4F3882DBF5D66063A012894358FEA222E5020EACE5CBEBC4F72DF1
+
+
+
+HashedControlPassword 16:F18DE06B7432D86C601947B54468934EE8E3BD2141DEE0F2B917D00C88
+
+
+Enabling Control Port
+
+First enable control port, which is disabled by default. There are several ways we can enable it:
+
+    Edit torrc configuration file (normally located in /etc/tor/torrc on unix systems). Uncomment ControlPort line as follows:
+
+    ## The port on which Tor will listen for local connections from Tor
+    ## controller applications, as documented in control-spec.txt.
+    ControlPort 9051
+
+    Enable control port using --controlport flag:
+
+    tor --controlport 9051
+
+
