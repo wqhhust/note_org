@@ -380,7 +380,8 @@ http://emacs.stackexchange.com/questions/18362/how-to-move-to-the-end-of-current
 *** kill a process inside emacs cider
 If you run C-c C-c inside *REPL* window (not _editor_ window), emacs will eventually cancel the top level repl command that is looping. This will take a while if it is a tight loop, and even longer if it is producing large amounts of output. But it will eventually stop the code without having to kill emacs
 ** magit
-*** how to get the remote url
+*** git
+**** how to get the remote url
 If referential integrity is intact:
 
 git remote show origin
@@ -388,17 +389,17 @@ git remote show origin
 If referential integrity has been broken:
 
 git config --get remote.origin.url
-*** stash                                      :stash:
+**** stash                                                         :stash:
 | z   | Create new stash                    | Stashes are listed in the status buffer.                 |
 | Z   | Create new stash and maintain state | Leaves current changes in working tree and staging area. |
 | RET | View stash                          |                                                          |
 | a   | Apply stash                         |                                                          |
 | A   | Pop stash                           |                                                          |
 | k   | Drop stash                          |                                                          |
-*** git concept
+**** git concept
 http://marklodato.github.io/visual-git-guide/index-en.html
 http://eagain.net/articles/git-for-computer-scientists/
-**** different between reset and checkout
+***** different between reset and checkout
 http://stackoverflow.com/questions/3639342/whats-the-difference-between-git-reset-and-git-checkout
 HEAD is not the latest revision, it's the current revision. Usually, it's the latest revision of the current branch, but it doesn't have to be.
 HEAD really just means "what is my repo currently pointing at". Thanks svick for the heads up on this one (no pun intended) 
@@ -412,16 +413,42 @@ master is a name commonly given to the main branch, but it could be called anyth
 master is a reference to the end of a branch. By convention (and by default) this is usually the main integration branch, but it doesn't have to be.
 
 origin is a name commonly given to the main remote. remote is another repository that you can pull from and push to. Usually it's on some server, like github.
-*** git command
-**** revert to a specific file from a specific commit
+**** git command
+***** revert to a specific file from a specific commit
 this command will show all the commit history on a file
 git log relative/path/to/a/file
 
 then check out the file from that commit
 git checkout 188ce04ddc3b5bd2e25ae1faa1e826d3bca05c92  relative/path/to/a/file
 
-**** get the commit history for a sepecific developer
+***** get the commit history for a sepecific developer
 git log --author=daniel
+**** about push
+#+BEGIN_SRC shell
+git config --global push.default simple
+#+END_SRC
+
+the default push action is based on the variable of push.default in configuration file
+push.default
+Defines the action git push should take if no refspec is explicitly given. Different values are well-suited for specific workflows; for instance, in a purely central workflow (i.e. the fetch source is equal to the push destination), upstream is probably what you want. Possible values are:
+
+nothing - do not push anything (error out) unless a refspec is explicitly given. This is primarily meant for people who want to avoid mistakes by always being explicit.
+
+current - push the current branch to update a branch with the same name on the receiving end. Works in both central and non-central workflows.
+
+upstream - push the current branch back to the branch whose changes are usually integrated into the current branch (which is called @{upstream}). This mode only makes sense if you are pushing to the same repository you would normally pull from (i.e. central workflow).
+
+simple - in centralized workflow, work like upstream with an added safety to refuse to push if the upstream branch’s name is different from the local one.
+
+When pushing to a remote that is different from the remote you normally pull from, work as current. This is the safest option and is suited for beginners.
+
+This mode has become the default in Git 2.0.
+
+matching - push all branches having the same name on both ends. This makes the repository you are pushing to remember the set of branches that will be pushed out (e.g. if you always push maint and master there and no other branches, the repository you push to will have these two branches, and your local maint and master will be pushed there).
+
+To use this mode effectively, you have to make sure all the branches you would push out are ready to be pushed out before running git push, as the whole point of this mode is to allow you to push all of the branches in one go. If you usually finish work on only one branch and push out the result, while other branches are unfinished, this mode is not for you. Also this mode is not suitable for pushing into a shared central repository, as other people may add new branches there, or update the tip of existing branches outside your control.
+
+This used to be the default, but not since Git 2.0 (simple is the new default).
 *** key biddings
 good link http://magit.vc/manual/magit-refcard.pdf
 Having decided that Magit is the bee’s knees you’ll probably want to know the keyboard shortcuts.  Here are the most common ones:
