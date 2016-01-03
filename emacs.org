@@ -775,6 +775,13 @@ Requires authentication - Yes<2015-12-21 Mon>
 like goagent but better than it
 https://github.com/XX-net/XX-Net
 https://github.com/XX-net/XX-Net/wiki/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95
+** proxy
+*** turn socks proxy into http proxy                          :proxy:socks:
+http://www.privoxy.org/
+ Go to http://privoxy.org/ and install the latest version, and at the end of the configuration file (found at /etc/privoxy/config on most Linux systems), add the following:
+
+forward-socks5 / proxy_host:proxy_port .
+Replacing proxy_host with your SOCKS proxy's hostname or IP, and proxy_port with your SOCKS proxy's port. Don't forget the period at the end! Then, follow the directions above for HTTP proxies.
 ** download youtube
 http://en.savefrom.net/?rmode=false
 * work
@@ -824,6 +831,12 @@ Harvard
 http://baike.baidu.com/link?url=wzeERbHGRb7MzQUmLQwpnB7nFHihA1c9c6pbfZ_TIWiDqzWVAxjOLbcuInWMNocCWrcIWKcjkWNz72l0opEQ-q
 Yale
 http://baike.baidu.com/link?url=AvcoZKLnN8mIR6zfDrQOKO-IPifyZq-K3cr6cqC_80_FchVaa9NIBIXs9NpLxY-QIR_ZD8z1ii-huqr2mUihPa
+** 威斯敏斯特教堂
+http://baike.baidu.com/link?url=OIJKHAzVv3fj2tNcAp2vc6ezQd7P3yjGr4jl2Jl9LNMyXviMaMWuegDg6ysRh50yjV8yVatcqgdPMdqmShezJa
+在物理与化学领域均做出杰出
+威斯敏斯特教堂
+威斯敏斯特教堂 (7 张)
+ 贡献的法拉第在去世后本来也有机会在威斯敏斯特教堂下葬，但因他信仰的教派不属当时统领英格兰的国教圣公会，威斯敏斯特教堂正是圣公会的御用教堂，因此拒不接受他在教堂内受飨。
 * firefox
 firebug plugin addon
 ** cookie                                                  :cookie:expired:
@@ -887,5 +900,6 @@ First enable control port, which is disabled by default. There are several ways 
     Enable control port using --controlport flag:
 
     tor --controlport 9051
+**** steps to control
 
 
