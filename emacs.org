@@ -59,6 +59,27 @@ To Start Node with force option:
 ----------------------------------------------
 
 $ admintools -t restart_node -s <node1 ip> -d <dbname> -F
+*** partitions
+**** partition switch
+#+BEGIN_SRC sql 
+drop table  if exists t1_daniel;
+create table t1_daniel (a int not null) UNSEGMENTED all nodes  partition by (a) ;
+insert/*+ direct */ into t1_daniel values (1);
+insert/*+ direct */ into t1_daniel values (1);
+insert/*+ direct */ into t1_daniel values (1);
+insert /*+ direct */into t1_daniel values (2);
+insert/*+ direct */ into t1_daniel values (3);
+drop table  if exists t2_daniel;
+create table t2_daniel (a int not null) UNSEGMENTED all nodes  partition by (a) ;
+insert/*+ direct */  into t2_daniel select * from t1_daniel;
+
+select * from storage_containers where projection_name like '%daniel%' and node_name='v_fusion_node0001' order by projection_name
+
+SELECT SWAP_PARTITIONS_BETWEEN_TABLES ( 't2_daniel', 1, 2, 't1_daniel');
+
+SELECT MERGE_PARTITIONS('t2_daniel', 1, 1);
+
+#+END_SRC
 *** locks
 **** temp table use less or no global catalog locks
 #+BEGIN_SRC sql 
