@@ -925,4 +925,4 @@ First enable control port, which is disabled by default. There are several ways 
 **** steps to control
 ** Lantern
 after install it, it will open a proxy at http 127.0.0.1 port:8787
-
+https://gochrome.info/
