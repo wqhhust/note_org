@@ -334,7 +334,9 @@ http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf
 http://martinfowler.com/articles/is-tdd-dead/
 http://pythontesting..net/agile/is-tdd-dead/
 http://www.pitheringabout.com/?p=1069
-
+** chat
+https://gitter.im/home/explore
+https://www.codefellows.org/blog/10-reasons-why-i-like-slack-and-think-you-should-try-it
 * emacs
 ** org mode
 *** Export
