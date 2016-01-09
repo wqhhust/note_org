@@ -338,6 +338,10 @@ http://www.pitheringabout.com/?p=1069
 https://gitter.im/home/explore
 https://www.codefellows.org/blog/10-reasons-why-i-like-slack-and-think-you-should-try-it
 * emacs
+** paredit
+http://overtone.github.io/emacs-live/doc-clojure-paredit.html
+http://pub.gajendra.net/src/paredit-refcard.pdf
+http://danmidwood.com/content/2014/11/21/animated-paredit.html
 ** org mode
 *** Export
 
