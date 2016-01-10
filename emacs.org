@@ -105,6 +105,16 @@ https://github.com/jackghm/Vertica/wiki/Optimize-Tables-Not-Queries
 ** postgresql
 http://bluetreble.com/2015/12/mongodbs-bi-connector-postgres/
 http://theplateisbad.blogspot.com/2015/12/the-mongodb-bi-analytics-connector.html
+*** de-duplication, remove duplicated row 
+#+BEGIN_SRC sql
+delete
+FROM bidding_history
+WHERE ctid IN ((SELECT ctid
+                FROM (SELECT ROW_NUMBER() OVER (PARTITION BY bidding_id) idx,
+                             ctid
+                      FROM bidding_history) x
+                WHERE idx > 1))
+#+END_SRC
 * lang
 ** python
 *** scrapy
