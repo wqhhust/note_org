@@ -877,6 +877,28 @@ http://baike.baidu.com/link?url=OIJKHAzVv3fj2tNcAp2vc6ezQd7P3yjGr4jl2Jl9LNMyXviM
 雪莱和拜伦这两位举世闻名的大诗人也因为惊世骇俗的言行被教堂拒之门外
 * firefox
 firebug plugin addon
+** headless
+http://stackoverflow.com/questions/5370762/how-to-hide-firefox-window-firefox-webdriver
+I used xvfb to solve the problem like this.
+
+First, install Xvfb:
+
+# apt-get install xvfb
+on Debian/Ubuntu; or
+
+# yum install xorg-x11-Xvfb
+on Fedora/RedHat. Then, choose a display number that is unlikely to ever clash (even if you add a real display later) – something high like 99 should do. Run Xvfb on this display, with access control off:
+
+# Xvfb :99 -ac
+Now you need to ensure that your display is set to 99 before running the Selenium server (which itself launches the browser). The easiest way to do this is to export DISPLAY=:99 into the environment for Selenium. First, make sure things are working from the command line like so:
+
+$ export DISPLAY=:99
+$ firefox
+or just
+
+$ DISPLAY=:99 firefox
+Below there is a link that helped me
+http://www.alittlemadness.com/2008/03/05/running-selenium-headless/
 ** cookie                                                  :cookie:expired:
 https://www.raymond.cc/blog/how-to-extend-firefox-and-internet-explorer-cookie-expiration-date/
 or use firebug to modify
