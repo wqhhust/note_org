@@ -846,7 +846,8 @@ insert into good_universities values ('南京艺术学院',120,800);
 insert into good_universities values ('广西艺术学院',120,800);
 insert into good_universities values ('山东艺术学院',120,800);
 #+END_SRC
-
+** 家电评测
+https://www.aham.org/
 * work
 ** TODO cr to read
 FUS-12048 --- *important*
