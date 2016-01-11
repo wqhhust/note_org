@@ -879,6 +879,7 @@ solution: use store exclusive list?
 **** period_key, the period_key of the alert is based on the max initial day of OSM table.
 ** deploy
 ant -DsiloID= A_AHOLD_ALERT_DANIEL create-retailer-schema -Dremote.cp.db.host=ENGP3QA3 
+ant -DsiloID= A_HUB_DANIEL deploy-silo -Dremote.cp.db.host=ENGP3QA3 
 * youyou
 13 - 5 = 8: 2015/12/6
 10 days: 2015/12/10
