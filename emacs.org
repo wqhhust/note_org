@@ -550,6 +550,9 @@ http://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git
 in spacemacs, SPC + g + L will show the commit for the current file in the buffer, and then in the commit historical window, press Enter to get the information for each commit, then in the detailed window for that commit, press TAB to get the change details for the modified files
 *** run git command inside magit
 in the magit window, press "!"
+*** copy commit hash value
+C-w	Copy sha1 of current commit into kill ring
+ 
 ** erc/irc
 *** how to post multiple line
 past the code in below link, and then past the url in irc
@@ -885,7 +888,11 @@ ant -DsiloID= A_HUB_DANIEL deploy-silo -Dremote.cp.db.host=ENGP3QA3
 10 days: 2015/12/10
 
 10 + 4 -5 =9: 2015/12/14
-9 + 13 - 6  =16 : 2015/12/27 
+9 + 13 - 6  =16 : 2015/12/27
+** good books
+时代广场的蟋蟀
+帅狗杜明尼克
+蓝鲸的眼睛
 * bible
 ** translation
 http://baike.baidu.com/view/1485644.htm
