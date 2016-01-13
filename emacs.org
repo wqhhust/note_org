@@ -820,6 +820,9 @@ Server - smtp.mail.yahoo.com
 Port - 465 or 587
 Requires SSL - Yes
 Requires authentication - Yes<2015-12-21 Mon>
+** dired
+sort files in dired mode: ‘s’ to toggle between alphabetical and date order and with prefix argument, edit listing switches
+
 * misc
 ** google in China without block                            :google:goagent:
 like goagent but better than it
