@@ -554,7 +554,10 @@ in spacemacs, SPC + g + L will show the commit for the current file in the buffe
 in the magit window, press "!"
 *** copy commit hash value
 C-w	Copy sha1 of current commit into kill ring
- 
+*** view the commit history for the file in the current buffer
+the following command could see all the detailed commit information including author.
+C-X v l
+or just use git timemachine to view different commit
 ** erc/irc
 *** how to post multiple line
 past the code in below link, and then past the url in irc
