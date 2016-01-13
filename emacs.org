@@ -171,6 +171,56 @@ If you use Leiningen, you can install clj-stacktrace on a user-wide basis. Just 
                        (alter-var-root orig (constantly (deref new))))]}}
 #+END_SRC
 
+*** nREPL
+**** use nREPL inside legacy java
+http://dev.theladders.com/2013/04/getting-some-clojure-nrepl-in-a-spring-app/
+http://blog.avisi.nl/2015/05/18/how-to-inspect-a-legacy-java-application-with-the-clojure-repl/
+#+BEGIN_SRC java
+package nl.avisi.jira;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+import com.atlassian.jira.component.ComponentAccessor;
+
+import clojure.java.api.Clojure;
+import clojure.lang.IFn;
+
+public class MyBean implements InitializingBean, DisposableBean {
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+      IFn plus = Clojure.var("clojure.core", "+");
+      Object object = plus.invoke(1, 2);
+      LOGGER.debug("plus invoked, result was: " + object);
+
+      IFn require = Clojure.var("clojure.core", "require");
+      require.invoke(Clojure.read("clojure.tools.nrepl.server"));
+      
+      IFn server = Clojure.var("clojure.tools.nrepl.server", "start-server");
+      server.invoke();
+    }
+
+}
+#+END_SRC
+Our code does not specify a port, so you need to find out what port the repl is using (use netstat -a | grep LISTEN or the likes). When you know the port, connect to the repl with leiningen:
+
+○ → LEIN_REPL_PORT=33475 lein repl :connect                                                                                                                                                                                             
+Connecting to nREPL at 127.0.0.1:33475
+REPL-y 0.3.5, nREPL 0.2.10
+Clojure 1.6.0
+Java HotSpot(TM) 64-Bit Server VM 1.7.0_60-b19
+    Docs: (doc function-name-here)
+          (find-doc "part-of-name-here")
+  Source: (source function-name-here)
+ Javadoc: (javadoc java-object-or-class-here)
+    Exit: Control+D or (exit) or (quit)
+ Results: Stored in vars *1, *2, *3, an exception in *e
+
+user=>
+**** use nREPL inside clojure app
 *** IO
 read: slurp,  write: spit
 user=> (spit "blubber.txt" "test")
