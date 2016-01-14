@@ -61,6 +61,37 @@ To Start Node with force option:
 $ admintools -t restart_node -s <node1 ip> -d <dbname> -F
 **** check recover status/progress
 select * from recovery_status where is_running
+**** Clears the HP Vertica internal cache files.
+https://my.vertica.com/docs/7.1.x/HTML/Content/Authoring/SQLReferenceManual/Functions/VerticaFunctions/CLEAR_CACHES.htm
+=> SELECT CLEAR_CACHES();
+ CLEAR_CACHES
+--------------
+ Cleared
+(1 row)
+**** flush/clear data collector
+https://my.vertica.com/docs/7.1.x/HTML/Content/Authoring/SQLReferenceManual/Functions/VerticaFunctions/DataCollection/FLUSH_DATA_COLLECTOR.htm
+=> SELECT flush_data_collector('ResourceAcquisitions');
+ flush_data_collector
+----------------------
+ FLUSH
+(1 row)
+https://my.vertica.com/docs/7.1.x/HTML/Content/Attic/Troubleshooting/WorkingWithDataCollectionLogs.htm
+=> SELECT clear_data_collector('ResourceAcquisitions');
+ clear_data_collector
+----------------------
+ CLEAR
+(1 row)
+**** list/enable services
+select list_services('TM')
+select list_services('SYSTEM')
+
+function of enable_service()
+*** monitoring
+**** some sqls
+#+BEGIN_SRC sql
+select * from query_profiles where is_executing;
+select * from resource_acquisitions  where is_executing;
+#+END_SRC
 *** partitions
 **** partition switch
 #+BEGIN_SRC sql 
