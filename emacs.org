@@ -59,6 +59,8 @@ To Start Node with force option:
 ----------------------------------------------
 
 $ admintools -t restart_node -s <node1 ip> -d <dbname> -F
+**** check recover status/progress
+select * from recovery_status where is_running
 *** partitions
 **** partition switch
 #+BEGIN_SRC sql 
