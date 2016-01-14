@@ -850,7 +850,9 @@ in spacemacs, it will also pop some menu for pick up when there are mulitple cho
 (global-set-key (kbd "<f8>") 'spacemacs/new-empty-buffer)
 *** inside function of dotspacemacs/user-config
 **** enable line number
+#+BEGIN_SRC elisp
 (global-linum-mode)
+#+END_SRC
 ** good tips
 *** emacs-smeargle
 SPC + g + h + h
