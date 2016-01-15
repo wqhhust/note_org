@@ -440,6 +440,9 @@ http://stackoverflow.com/questions/22168883/whats-the-best-way-of-scraping-data-
 **** good examples/projects 
 https://github.com/dfuenzalida/lazada-scrape
 https://github.com/davidsantiago/hickory
+**** set page loading time out for webdriver
+http://stackoverflow.com/questions/34790720/setting-of-pageload-timeout-for-clojure-webdriver
+    (.. (:webdriver driver) manage timeouts (pageLoadTimeout 25 TimeUnit/SECONDS))
 ** TDD
 http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf
 http://martinfowler.com/articles/is-tdd-dead/
