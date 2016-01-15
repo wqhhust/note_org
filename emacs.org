@@ -131,6 +131,24 @@ insert into aaa select * from locks;
 select object_name,mode,count(*) from dc_lock_attempts where session_id=CURRENT_SESSION()  group by object_name,mode;
 
 #+END_SRC
+**** lock checking
+#+BEGIN_SRC sql
+
+SELECT TIME,
+       a.transaction_id,
+       a.node_name,
+       extract(seconds from  (time- grant_time)) AS duration,
+       a.object_name,
+       a.mode,
+       b.description,
+       b.user_name,
+       b.*,
+       a.*
+FROM dc_lock_releases a inner join transactions b on a.transaction_id = b.transaction_id
+WHERE object_name ilike '%Catalog'
+ORDER BY  duration DESC limit 500;
+
+#+END_SRC
 *** good document
 **** from twitter
 https://github.com/jackghm/Vertica/wiki/HP-Vertica-Tips,-Tricks,-and-Best-Practices
