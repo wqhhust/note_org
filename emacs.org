@@ -446,6 +446,12 @@ https://github.com/davidsantiago/hickory
 **** set page loading time out for webdriver
 http://stackoverflow.com/questions/34790720/setting-of-pageload-timeout-for-clojure-webdriver
     (.. (:webdriver driver) manage timeouts (pageLoadTimeout 25 TimeUnit/SECONDS))
+**** force not use proxy in firefox
+#+BEGIN_SRC clojure
+(doto (ff/new-profile (str "/home/oracle/.mozilla/firefox/" directory))
+                  (ff/set-preferences {:network.proxy.type 0})
+                  )
+#+END_SRC
 ** TDD
 http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf
 http://martinfowler.com/articles/is-tdd-dead/
