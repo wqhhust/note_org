@@ -386,7 +386,10 @@ if the index of the subvec is continous,  then just use the function of subvec
       b [1 3]]
   (mapv a b))
 #+END_SRC
-
+**** how to split vector bases on index:  [1 2 3 5 6 7] into [1 3 6] [2 5 7]
+#+BEGIN_SRC clojure
+(apply map list (partition-all 2 [1 2 3 5 6 7]))
+#+END_SRC
 *** threading first/last                                          :threading:
 **** good artical
 http://ianrumford.github.io/blog/2014/10/24/some-syntactic-sugar-for-clojure-threading-macros/
