@@ -358,6 +358,13 @@ the following code return empty, since it first run take-while and then run map
 or flatten
 **** how to call (j/execute! db ["sql" a-vector]
 (j/execute! db (concat ["sql"] a-vector))
+**** get YYYYMMDD for a period
+#+BEGIN_SRC clojure
+(:require [clj-time.core :as time]
+          [clj-time.format :as f])
+(f/unparse (f/formatter "yyyyMMdd") (time/now))
+(f/unparse (f/formatter "yyyyMMdd") (time/plus (time/now) (time/days 1)))
+#+END_SRC
 **** select an element from a class
 {:xpath "//table[@class='someclass']"}
 **** select an element contains some text
