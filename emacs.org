@@ -472,6 +472,7 @@ https://www.codefellows.org/blog/10-reasons-why-i-like-slack-and-think-you-shoul
 ** TODO to read
 https://engineering.fundingcircle.com/blog/2016/01/11/tdd-in-clojure/
 ** TODO oneline course
+http://www.slideshare.net/
 http://bigdatauniversity.com/
 * emacs
 ** paredit
