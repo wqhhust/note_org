@@ -471,6 +471,8 @@ https://gitter.im/home/explore
 https://www.codefellows.org/blog/10-reasons-why-i-like-slack-and-think-you-should-try-it
 ** TODO to read
 https://engineering.fundingcircle.com/blog/2016/01/11/tdd-in-clojure/
+** TODO oneline course
+http://bigdatauniversity.com/
 * emacs
 ** paredit
 http://overtone.github.io/emacs-live/doc-clojure-paredit.html
@@ -936,6 +938,9 @@ M-x smeargle-commits
 
 Highlight regions by age of changes.
 
+** elisp
+*** show message in mini buff
+(message "the message")
 ** email
 
 *** yahoo
