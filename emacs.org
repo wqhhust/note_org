@@ -415,6 +415,29 @@ http://stuartsierra.com/2013/12/08/parallel-processing-with-core-async
 http://www.laliluna.com/articles/2014/04/28/clojure-async-kindergarden-party.html
 **** good site
 http://martintrojer.github.io/tags.html#core.async-ref
+**** deep understanding
+***** how to understand alt!                                        :alt:
+http://stackoverflow.com/questions/34856230/how-to-understand-alt-in-clojure-core-async
+#+BEGIN_SRC clojure
+(require '[clojure.core.async :as a :refer [>! go chan alt!]])
+
+(let [c1 (chan)
+      c2 (chan)]
+  (go
+    (alt!
+      [c1 c2] ([val ch] (println "Read" val "from" ch))))
+  (go (>! c2 "that"))
+
+  (go (>! c1 "this"))
+  (go
+    (alt!
+      [c1 c2] ([val ch] (println "Read" val "from" ch)))))
+#+END_SRC
+result is
+;; repl output
+;; #<ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@2db05690>
+;; Read that from #<ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@7523ce7e>
+;; Read this from #<ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@6a81559c>
 *** good blogs
 http://ianrumford.github.io/
 *** my questions
