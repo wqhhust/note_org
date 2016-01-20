@@ -679,6 +679,9 @@ z s   Creates a snapshot (the stash gets created but the working tree is not del
 w   Show how other branches related to the current one
 m m   Start merging. In the event of conflicts resolve changes using e then stage with s.
 R   Starts a rebase R c will continue a rebase. Stage resolved conflicts before continuing.
+*** evil-magit
+https://github.com/justbur/evil-magit
+or press "?" in the magit buffer, it will show all help, such as "x" means discard a change
 *** good magit command
 
 
