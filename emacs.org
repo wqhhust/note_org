@@ -985,6 +985,9 @@ Server - smtp.mail.yahoo.com
 Port - 465 or 587
 Requires SSL - Yes
 Requires authentication - Yes<2015-12-21 Mon>
+** search/grep
+*** how to search recusively
+http://emacs.stackexchange.com/questions/7964/helm-projectile-ag-how-can-i-refine-the-grep-results-further
 ** dired
 sort files in dired mode: ‘s’ to toggle between alphabetical and date order and with prefix argument, edit listing switches
 
