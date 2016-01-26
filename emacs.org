@@ -353,6 +353,10 @@ the following code return empty, since it first run take-while and then run map
 #+END_SRC
  
 *** good tips
+**** how to get multiple value out for a map
+#+BEGIN_SRC clojure
+(map {:a 1 :b 2 :c 3} [:a :c])
+#+END_SRC
 **** how to convert [1 2 3 [4 5]] to [1 2 3 4 5]
 2 solutions, and flatten could be use for a vector anywhere in the list, instead of only in the end of the list.
 #+BEGIN_SRC clojure
