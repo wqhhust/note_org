@@ -184,7 +184,7 @@ If you download 1 webpage a day then you will not be blocked but your crawl woul
 
 Identity
 Websites do not want to block genuine users so you should try to look like one. Set your user-agent to a common web browser instead of using the library default (such as wget/version or urllib/version). You could even pretend to be the Google Bot (only for the brave): Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
-If you have access to multiple IP addresses (for example via proxies) then distribute your requests among them so that it appears your downloading comes from multiple users.
+If you have access to multiple IP addresses (for example via proxies, proxy) then distribute your requests among them so that it appears your downloading comes from multiple users.
 
 Consistency
 Avoid accessing webpages sequentially: /product/1, /product/2, etc. And don't download a new webpage exactly every N seconds. Both of these mistakes can attract attention to your downloading because a real user browses more randomly. So make sure to crawl webpages in an unordered manner and add a random offset to the delay between downloads.
