@@ -489,7 +489,7 @@ http://stackoverflow.com/questions/34790720/setting-of-pageload-timeout-for-cloj
                   )
 #+END_SRC
 **** proxy list 
-http://proxylist.hidemyass.com/5#listable
+http://proxylist.hidemyass.com/search-1309936#listable
 ** TDD
 http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf
 http://martinfowler.com/articles/is-tdd-dead/
