@@ -488,6 +488,8 @@ http://stackoverflow.com/questions/34790720/setting-of-pageload-timeout-for-cloj
                   (ff/set-preferences {:network.proxy.type 0})
                   )
 #+END_SRC
+**** proxy list 
+http://proxylist.hidemyass.com/5#listable
 ** TDD
 http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf
 http://martinfowler.com/articles/is-tdd-dead/
