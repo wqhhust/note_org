@@ -166,6 +166,9 @@ WHERE ctid IN ((SELECT ctid
                       FROM bidding_history) x
                 WHERE idx > 1))
 #+END_SRC
+*** backup & recover
+**** backup
+ pg_dump --host localhost --port 5432 --username test >db.sql
 * lang
 ** python
 *** scrapy
