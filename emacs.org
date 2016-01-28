@@ -169,6 +169,8 @@ WHERE ctid IN ((SELECT ctid
 *** backup & recover
 **** backup
  pg_dump --host localhost --port 5432 --username test >db.sql
+**** restore
+psql --host localhost --port 5434 --username test -f db.sql test
 * lang
 ** python
 *** scrapy
@@ -1076,6 +1078,7 @@ ant -DsiloID= A_HUB_DANIEL deploy-silo -Dremote.cp.db.host=ENGP3QA3
 10 + 4 -5 =9: 2015/12/14
 9 + 13 - 6  =16 : 2015/12/27
 ** good books
+图说民间儿童游戏
 时代广场的蟋蟀
 帅狗杜明尼克
 蓝鲸的眼睛
