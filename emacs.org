@@ -1046,6 +1046,20 @@ insert into pp_user (user_name,pwd,id) values( 'tangshang1234@163.com','pwd1234'
 insert into pp_user (user_name,pwd,id) values( 'staywithpin@gmail.com','gmailabc123',2);
 insert into pp_user (user_name,pwd,id) values( 'zhangjiang1236a@sina.com','zhngjiang1',3);
 insert into pp_user (user_name,pwd,id) values( 'ebayguyabc@sina.com','ebay123',4);
+
+UPDATE pp_user
+   SET proxy_ip = a.ip,
+       proxy_port = a.port::int,
+       proxy_type = a.proxy_type
+FROM (SELECT ip,
+             port,
+             proxy_type,
+             success,
+             ROW_NUMBER() OVER (ORDER BY success DESC) idx
+      FROM proxies
+      WHERE country = 'China'
+      AND   proxy_type = 'HTTP') a
+WHERE a.idx = pp_user.id
 ** 家电评测
 https://www.aham.org/
 ** family network (上网)
