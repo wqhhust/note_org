@@ -507,6 +507,9 @@ https://www.bestvpn.com/blog/8363/use-i2p-idiots-starting-guide/
 https://www.reddit.com/r/i2p/comments/3du46g/what_is_i2p/ct8spjv
 https://hidester.com/proxylist/
 http://freeproxylists.net/
+** shell
+*** fish
+*** mosh
 ** TDD
 http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf
 http://martinfowler.com/articles/is-tdd-dead/
@@ -1105,7 +1108,7 @@ ant -DsiloID= A_HUB_DANIEL deploy-silo -Dremote.cp.db.host=ENGP3QA3
 10 + 4 -5 =9: 2015/12/14
 9 + 13 - 6  =16 : 2015/12/27
 ** good books
-i图说民间儿童游戏
+i 图说民间儿童游戏
 时代广场的蟋蟀
 帅狗杜明尼克
 蓝鲸的眼睛
