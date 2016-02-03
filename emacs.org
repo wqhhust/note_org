@@ -171,6 +171,9 @@ WHERE ctid IN ((SELECT ctid
  pg_dump --host localhost --port 5432 --username test >db.sql
 **** restore
 psql --host localhost --port 5434 --username test -f db.sql test
+*** client using emacs
+http://stackoverflow.com/questions/26677909/emacs-sql-mode-postgresql-and-inputing-password
+https://wiki.postgresql.org/wiki/Pgpass
 * lang
 ** python
 *** scrapy
@@ -501,11 +504,11 @@ http://stackoverflow.com/questions/34790720/setting-of-pageload-timeout-for-cloj
 http://proxylist.hidemyass.com/search-1309936#listable
 https://www.us-proxy.org/
 http://free-proxy-list..net/
-https://incloak.com/proxy-list/
+https://incloak.com/proxy-list/?maxtime=2100&anon=234
 http://www.ultraproxies.com/
 https://www.bestvpn.com/blog/8363/use-i2p-idiots-starting-guide/
 https://www.reddit.com/r/i2p/comments/3du46g/what_is_i2p/ct8spjv
-https://hidester.com/proxylist/
+https://hidester.com/proxylist/    *very good, could export all proxies as excel*
 http://freeproxylists.net/
 
 http://freeproxylists.net/?c=&pt=&pr=&a%5B%5D=1&a%5B%5D=2&u=90
