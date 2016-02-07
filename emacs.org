@@ -1070,7 +1070,7 @@ FROM (SELECT ip,
 WHERE a.idx = pp_user.id
 ** 家电评测
 https://www.aham.org/
-** wifi at WuLongQuan, Wuhan (林业局) s87962341
+** wifi at 乌龙泉, Wuhan (林业局) s87962341
 ** family network (上网)
 heqihua1/123123
 https://github.com/nkovacne/freedns-samples
@@ -1163,7 +1163,32 @@ http://www.alittlemadness.com/2008/03/05/running-selenium-headless/
 https://www.raymond.cc/blog/how-to-extend-firefox-and-internet-explorer-cookie-expiration-date/
 or use firebug to modify
 http://blog.petersondave.com/cookies/Session-Cookies-in-Chrome-Firefox-and-Sitecore/
-*** TODO why firefox could extend the cookie after expire but firefox won't 
+*** TODO why firefox could extend the cookie after expire but firefox won't
+** export cookie
+https://addons.mozilla.org/en-US/firefox/addon/export-cookies/
+Exports all cookies to standard cookies.txt file, that is in the same format as IE cookie export makes.
+Very useful for WGET --load-cookies option.
+This extension is written in repalce of old allcookies extension (http://addons.mozilla.org/ru/firefox/addon/2208) that seems not to work with FireFox 3.
+Also added a feature: now you can choose where to save the result file.
+
+------------ Description --------------------------
+The mandatory companion tool for downloading sites with WGET
+A very minimum extension : no psychedelic design. Just the needed feature.
+
+Why you need it : Many web sites are protected by either
+- authentification forms
+- vicious access rules like "you must first see some introductory or advertisement pages"
+
+Such sites can't be downloaded with the well known WGET tool
+
+Export Cookies is the answer to this kind of restrictions.
+
+-------- How it works ------------------
+A typicall scenario to download a web site with WGET becomes:
+ using Firefox, connect to the web sites, go through all the authentification forms or preliminary pages that are required
+ execute Export Cookies (just a simple item added in Firefox Tools menu ) to make cookies.txt file
+ launch wget
+wget --load-cookies=cookies.txt http://foo.com
 ** profile
 create profile, run the following command
 firefox -P
