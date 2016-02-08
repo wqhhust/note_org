@@ -1251,6 +1251,7 @@ after install it, it will open a proxy at http 127.0.0.1 port:8787
 https://gochrome.info/
 * dropbox
 ** set system proxy for dropbox in mint
+http://www.ictsteps.com/2013/10/how-to-use-proxy-setting-with-linux-mint.html
 inside of .bashrc
 export http_proxy=http://127.0.0.1:8787/
 ** download 
@@ -1267,3 +1268,6 @@ Next, run the Dropbox daemon from the newly created .dropbox-dist folder.
 
 ~/.dropbox-dist/dropboxd
 If you're running Dropbox on your server for the first time, you'll be asked to copy and paste a link in a working browser to create a new account or add your server to an existing account. Once you do, your Dropbox folder will be created in your home directory. Download this Python script to control Dropbox from the command line. For easy access, put a symlink to the script anywhere in your PATH.
+** start dropbox
+cd /data/.dropbox-dist/
+oracle@SomeHost /data/.dropbox-dist $ ./dropboxd
