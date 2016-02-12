@@ -21,6 +21,8 @@ https://en.wikipedia.org/wiki/Cgroups
 http://raboof.github.io/nethogs/
 on cenots/redhat
 yum install nethogs
+
+command after installation:  nethogs network-card-name, such as nethogs eth1
 * database
 ** SQL Server
 *** performance
