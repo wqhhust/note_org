@@ -19,6 +19,8 @@ https://en.wikipedia.org/wiki/Cgroups
 *** network traffic
 **** monitor tranfic by application
 http://raboof.github.io/nethogs/
+on cenots/redhat
+yum install nethogs
 * database
 ** SQL Server
 *** performance
