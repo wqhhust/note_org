@@ -16,6 +16,9 @@ https://fritshoogland.wordpress.com/2013/11/24/when-the-oracle-wait-interface-is
 https://idea.popcount.org/2012-12-11-linux-process-states/
 *** cgroup
 https://en.wikipedia.org/wiki/Cgroups
+*** network traffic
+**** monitor tranfic by application
+http://raboof.github.io/nethogs/
 * database
 ** SQL Server
 *** performance
