@@ -540,6 +540,14 @@ http://bigdatauniversity.com/
 http://overtone.github.io/emacs-live/doc-clojure-paredit.html
 http://pub.gajendra.net/src/paredit-refcard.pdf
 http://danmidwood.com/content/2014/11/21/animated-paredit.html
+** backup
+http://emacs.stackexchange.com/questions/20318/how-to-backup-bookmark-for-spacemacs
+
+Spacemacs saves the bookmarks in ~/.emacs.d/.cache/bookmarks, and the recent files lise in ~/.emacs.d/.cache/recentf. You can copy these two files somewhere outside of ~/.emacs.d, and copy them back in after re-installing.
+
+In fact, there might be more files in ~/.emacs.d/.cache that you'd like to save. I suggest backing up the entire ~/.emacs.d/.cache and restoring what you miss after re-installation.
+
+For completeness, I'll mention that the locations of these two files are controlled by the variables bookmark-default-file and recentf-save-file.
 ** org mode
 *** Export
 
