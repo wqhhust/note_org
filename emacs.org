@@ -29,7 +29,6 @@ command after installation:  nethogs network-card-name, such as nethogs eth1
 **** get the running SQL
 #+BEGIN_SRC sql
   SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
- 
   SELECT  er.wait_time/1000/60.0 wait_time_in_minutes,er.statement_end_offset, [Individual Query] = SUBSTRING(qt.text, er.statement_start_offset / 2,
                                          ( CASE WHEN er.statement_end_offset = -1
                                                 THEN LEN(CONVERT(NVARCHAR(MAX), qt.text))
@@ -53,9 +52,8 @@ command after installation:  nethogs network-card-name, such as nethogs eth1
           CROSS APPLY sys.dm_exec_query_plan(er.plan_handle) AS pl
   WHERE   session_Id > 50              -- Ignore system spids.
           AND session_Id NOT IN ( @@SPID )     -- Ignore this current statement.
-              --and db_name(database_id)='some database'
+              --and db_name(database_id)='KRAFT_GROCERY_WINN_DIXIE'
   ORDER BY 1 , 2
- 
 #+END_SRC
 ** vertica
 *** admin
@@ -556,6 +554,14 @@ http://bigdatauniversity.com/
 http://overtone.github.io/emacs-live/doc-clojure-paredit.html
 http://pub.gajendra.net/src/paredit-refcard.pdf
 http://danmidwood.com/content/2014/11/21/animated-paredit.html
+** backup
+http://emacs.stackexchange.com/questions/20318/how-to-backup-bookmark-for-spacemacs
+
+Spacemacs saves the bookmarks in ~/.emacs.d/.cache/bookmarks, and the recent files lise in ~/.emacs.d/.cache/recentf. You can copy these two files somewhere outside of ~/.emacs.d, and copy them back in after re-installing.
+
+In fact, there might be more files in ~/.emacs.d/.cache that you'd like to save. I suggest backing up the entire ~/.emacs.d/.cache and restoring what you miss after re-installation.
+
+For completeness, I'll mention that the locations of these two files are controlled by the variables bookmark-default-file and recentf-save-file.
 ** org mode
 *** Export
 
@@ -1140,6 +1146,7 @@ ant -DsiloID= A_HUB_DANIEL deploy-silo -Dremote.cp.db.host=ENGP3QA3
 i 图说民间儿童游戏
 时代广场的蟋蟀
 帅狗杜明尼克
+不老泉文库(套装共 10 册) 
 蓝鲸的眼睛
 炫动科技-疯狂实验室
 影响世界的名人童年故事
