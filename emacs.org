@@ -393,6 +393,22 @@ or flatten
 **** select an element contains some text
 //*[contains(text(),'ABC')]
 http://stackoverflow.com/questions/3655549/xpath-containstext-some-string-doesnt-work-when-used-with-node-with-more
+**** how to pick up one element from an element map
+http://stackoverflow.com/questions/35774358/clojure-how-to-pick-up-one-item-with-the-most-high-value-from-a-map
+#+BEGIN_SRC clojure
+
+(defn pickup-account [accounts ppdai-e-level?]
+  (let [valid-accounts (into {} (filter (fn[x] (if ppdai-e-level? (-> x val :E-level-enabled?) true)) accounts))]
+    (if (seq valid-accounts)
+      (into {} [(apply max-key (comp :amount val) valid-accounts)])
+      nil)))
+
+
+(pickup-account {:user1 {:amount 1000 :E-level-enabled? false} :user2 {:amount 50 :E-level-enabled? true} :user3 {:amount 500 :E-level-enabled? true}} true)
+(pickup-account {:user1 {:amount 1000 :E-level-enabled? false} :user2 {:amount 50 :E-level-enabled? true} :user3 {:amount 500 :E-level-enabled? true}} false)
+
+
+#+END_SRC
 **** select an element for a class and with certain text
 //span[contains(@class, 'myclass') and text() = 'qwerty']
 //span[contains(@class, 'myclass') and normalize-space(text()) = 'qwerty']
