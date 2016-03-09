@@ -538,6 +538,9 @@ https://hidester.com/proxylist/    *very good, could export all proxies as excel
 http://freeproxylists.net/
 
 http://freeproxylists.net/?c=&pt=&pr=&a%5B%5D=1&a%5B%5D=2&u=90
+** misc
+*** 图片识别 验证码
+http://www.chaojiying.com/
 ** shell
 *** fish
 *** mosh
