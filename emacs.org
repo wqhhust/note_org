@@ -781,6 +781,9 @@ in spacemacs, SPC + g + L will show the commit for the current file in the buffe
 in the magit window, press "!"
 *** copy commit hash value
 C-w	Copy sha1 of current commit into kill ring
+*** good package
+peep-dired
+https://github.com/asok/peep-dired
 *** view the commit history for the file in the current buffer
 the following command could see all the detailed commit information including author.
 C-X v l
