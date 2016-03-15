@@ -636,6 +636,14 @@ http://emacs.stackexchange.com/questions/18362/how-to-move-to-the-end-of-current
 If you run C-c C-c inside *REPL* window (not _editor_ window), emacs will eventually cancel the top level repl command that is looping. This will take a while if it is a tight loop, and even longer if it is producing large amounts of output. But it will eventually stop the code without having to kill emacs
 ** magit
 *** git
+**** src refspec master does not match any when pushing commits in git
+http://stackoverflow.com/questions/4181861/src-refspec-master-does-not-match-any-when-pushing-commits-in-git
+Try git show-ref to see what refs do you have. Is there refs/heads/master?
+
+use 
+git branch --list 
+to check whether there are strange branch , if exists, then delete it
+git branch -D branch_name
 **** how to get the remote url
 If referential integrity is intact:
 
