@@ -509,6 +509,8 @@ http://ianrumford.github.io/
 https://medium.com/@davidrupp/clojure-alter-var-root-and-constantly-d8c5b48fda02#.6ne8b6stx
 *** TODO good link to read
 https://skillsmatter.com
+http://www.clojurenewbieguide.com/
+https://github.com/clojure-emacs/cider
 *** promo
 https://www.booleanknot.com/blog/2015/12/21/encapsulation-and-clojure-part-1.html
 http://fn-code.blogspot.com/2015/10/my-concern-with-concerns.html
