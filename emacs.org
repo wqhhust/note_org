@@ -1140,6 +1140,33 @@ group by ppdai_level,rate) total left join
 group by ppdai_level,rate) bad on bad.ppdai_level=total.ppdai_level and bad.rate=total.rate
 order by bad_rate
 
+
+SELECT total.ppdai_level,
+       total.rate,
+       total.cnt,
+       bad.cnt,
+       total.cnt / bad.cnt
+FROM (SELECT ppdai_level,
+             rate,
+             COUNT(*) cnt
+      FROM bidding_history
+      WHERE created_time < '20160101'::TIMESTAMP
+      GROUP BY ppdai_level,
+               rate) total
+  LEFT JOIN (SELECT ppdai_level,
+                    rate,
+                    COUNT(*) cnt
+             FROM bidding_history
+             WHERE created_time < '20160101'::TIMESTAMP
+             AND   bidding_id IN (SELECT bidding_id FROM bad_user_biddings)
+             GROUP BY ppdai_level,
+                      rate) bad
+         ON total.ppdai_level = bad.ppdai_level
+        AND total.rate = bad.rate
+ORDER BY 5 DESC
+
+
+
 #+END_SRC
 *** by education
 #+BEGIN_SRC sql
