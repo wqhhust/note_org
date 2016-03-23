@@ -158,6 +158,8 @@ ORDER BY  duration DESC limit 500;
 **** from twitter
 https://github.com/jackghm/Vertica/wiki/HP-Vertica-Tips,-Tricks,-and-Best-Practices
 https://github.com/jackghm/Vertica/wiki/Optimize-Tables-Not-Queries
+**** from HP
+https://github.com/pomaster/vertica-workload-tracking-util 
 ** postgresql
 http://bluetreble.com/2015/12/mongodbs-bi-connector-postgres/
 http://theplateisbad.blogspot.com/2015/12/the-mongodb-bi-analytics-connector.html
