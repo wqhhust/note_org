@@ -1175,11 +1175,25 @@ and b.school is not null
 and school like '%军%'
 and bidding_id in (select bidding_id from bad_user_biddings)
 
+-- good education
+
 select *from universities a right join  bidding_history b on a.name = b.school  where created_time <='2016-01-01'
 and rate::int=22  
 and b.school is not null
 --and house_info ='有房' and car_info = '是'
 and star>=4 and education_method <>'网络教育'
+--and wsl_rank<=100
+and bidding_id in (select bidding_id from bad_user_biddings)
+
+
+-- level C 
+
+
+select *from universities a right join  bidding_history b on a.name = b.school  where created_time <='2016-01-01'
+and rate::int=22  and ppdai_level = 'C'
+and b.school is not null
+--and house_info ='有房' and car_info = '是'
+--and star>=4 and education_method <>'网络教育'
 --and wsl_rank<=100
 and bidding_id in (select bidding_id from bad_user_biddings)
 
