@@ -1168,6 +1168,14 @@ FROM (SELECT ppdai_level,
 ORDER BY 5 DESC
 
 
+select count(*) from universities a right join  bidding_history b on a.name = b.school  where created_time <='2016-01-01'
+and rate::int=22  
+and b.school is not null
+--and star>=4 
+and school like '%军%'
+and bidding_id in (select bidding_id from bad_user_biddings)
+
+
 
 #+END_SRC
 *** by education
@@ -1186,6 +1194,8 @@ group by education_level,education_method) total left join
 (select  education_level,education_method,count(*) cnt  from blackuser a inner join bidding_history b on a.user_name= b.user_name
 group by education_level,education_method) bad on coalesce(bad.education_level,'')=coalesce(total.education_level,'') and coalesce(bad.education_method,'')=coalesce(total.education_method,'')
 order by bad_rate
+
+
 #+END_SRC
 *** some query
 #+BEGIN_SRC sql
