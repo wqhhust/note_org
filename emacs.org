@@ -160,6 +160,8 @@ https://github.com/jackghm/Vertica/wiki/HP-Vertica-Tips,-Tricks,-and-Best-Practi
 https://github.com/jackghm/Vertica/wiki/Optimize-Tables-Not-Queries
 **** from HP
 https://github.com/pomaster/vertica-workload-tracking-util 
+** Theory
+http://slideshot.epfl.ch/play/suri_stonebraker
 ** postgresql
 http://bluetreble.com/2015/12/mongodbs-bi-connector-postgres/
 http://theplateisbad.blogspot.com/2015/12/the-mongodb-bi-analytics-connector.html
