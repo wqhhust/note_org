@@ -1084,6 +1084,9 @@ forward-socks5 / proxy_host:proxy_port .
 Replacing proxy_host with your SOCKS proxy's hostname or IP, and proxy_port with your SOCKS proxy's port. Don't forget the period at the end! Then, follow the directions above for HTTP proxies.
 ** movies
 http://www.dailymotion.com/us
+http://www.piaohua.com/
+bt天堂
+http://www.bttiantang.com/
 ** download youtube
 http://en.savefrom.net/?rmode=false
 ** p2p
