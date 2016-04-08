@@ -223,7 +223,11 @@ select * From directed_queries;
 https://github.com/jackghm/Vertica/wiki/HP-Vertica-Tips,-Tricks,-and-Best-Practices
 https://github.com/jackghm/Vertica/wiki/Optimize-Tables-Not-Queries
 **** from HP
-https://github.com/pomaster/vertica-workload-tracking-util 
+https://github.com/pomaster/vertica-workload-tracking-util
+*** plan
+**** Unc
+in the plan local verbose,
+Unc 表示 unencoded data column, 是相对于 RLE 列来说的.
 ** Theory
 http://slideshot.epfl.ch/play/suri_stonebraker
 ** postgresql
