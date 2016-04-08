@@ -210,6 +210,14 @@ order by 4 desc
 ;
 
 #+END_SRC
+*** directed query
+#+BEGIN_SRC sql
+
+CREATE DIRECTED QUERY OPTIMIZER 'daniel' 
+select ....;
+
+select * From directed_queries;
+#+END_SRC
 *** good document
 **** from twitter
 https://github.com/jackghm/Vertica/wiki/HP-Vertica-Tips,-Tricks,-and-Best-Practices
