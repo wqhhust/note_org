@@ -136,6 +136,11 @@ insert into aaa select * from locks;
 select object_name,mode,count(*) from dc_lock_attempts where session_id=CURRENT_SESSION()  group by object_name,mode;
 
 #+END_SRC
+**** SQL to check perfomrance from profile data
+#+BEGIN_SRC SQL
+
+
+#+END_SRC
 **** lock checking
 #+BEGIN_SRC sql
 
@@ -152,6 +157,57 @@ SELECT TIME,
 FROM dc_lock_releases a inner join transactions b on a.transaction_id = b.transaction_id
 WHERE object_name ilike '%Catalog'
 ORDER BY  duration DESC limit 500;
+
+#+END_SRC
+*** performance
+**** queries info
+
+#+BEGIN_SRC sql
+
+select * from query_requests where is_executing;
+
+#+END_SRC
+*** profile
+**** analysis
+#+BEGIN_SRC sql 
+
+drop table if exists daniel;
+
+create table daniel as Select * from v_monitor.execution_engine_profiles where transaction_id=54043195811153523 and statement_id=1;
+
+select "trx/stm",operator_name,path_id,
+"max execution time(sec)","max clock time (sec)",
+"max estimated rows produced","max rows produced",
+"sum rows produced",
+"sum estimated rows produced",
+"sum estimated rows produced"-"sum rows produced" as "total Rows Diff",
+--"max rows diff",
+"max memory reserved (MB)" ,
+"max memory allocated (MB)","sum memory reserved (MB)","sum memory allocated (MB)", num_thread
+from (
+select transaction_id||' / '||statement_id as "trx/stm",
+operator_name,path_id,
+max(decode(counter_name,'execution time (us)',counter_value,null))/1000000 as "max execution time(sec)",
+max(decode(counter_name,'clock time (us)',counter_value,null))/1000000 as "max clock time (sec)",
+max(decode(counter_name,'estimated rows produced',counter_value,null))as "max estimated rows produced",
+max(decode(counter_name,'rows produced',counter_value,null))as "max rows produced",
+max(decode(counter_name,'memory reserved (bytes)',counter_value/1024/1024,null))as "max memory reserved (MB)",
+max(decode(counter_name,'memory allocated (bytes)',counter_value/1024/1024,null))as "max memory allocated (MB)",
+sum(decode(counter_name,'execution time (us)',counter_value,null))/1000000 as "sum execution time(sec)",
+sum(decode(counter_name,'clock time (us)',counter_value,null))/1000000 as "sum clock time (sec)",
+sum(decode(counter_name,'estimated rows produced',counter_value,null))as "sum estimated rows produced",
+sum(decode(counter_name,'rows produced',counter_value,null))as "sum rows produced",
+sum(decode(counter_name,'memory reserved (bytes)',counter_value/1024/1024,null))as "sum memory reserved (MB)",
+sum(decode(counter_name,'memory allocated (bytes)',counter_value/1024/1024,null))as "sum memory allocated (MB)",
+sum(decode(counter_name,'clock time (us)',1,null)) num_thread
+--,max(abs(decode(counter_name,'estimated rows produced',counter_value,null) - decode(counter_name,'rows produced',counter_value,null))) "max rows diff"
+from daniel
+where
+--and counter_value/1000000 > 0 and 
+counter_name in('execution time (us)','clock time (us)','estimated rows produced','rows produced','memory reserved (bytes)','memory allocated (bytes)')
+group by transaction_id||' / '||statement_id,operator_name,path_id ) a
+order by 4 desc
+;
 
 #+END_SRC
 *** good document
@@ -1087,7 +1143,7 @@ Replacing proxy_host with your SOCKS proxy's hostname or IP, and proxy_port with
 ** movies
 http://www.dailymotion.com/us
 http://www.piaohua.com/
-bt天堂
+bt 天堂
 http://www.bttiantang.com/
 ** download youtube
 http://en.savefrom.net/?rmode=false
