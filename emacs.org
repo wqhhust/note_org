@@ -96,6 +96,7 @@ function of enable_service()
 #+BEGIN_SRC sql
 select * from query_profiles where is_executing;
 select * from resource_acquisitions  where is_executing;
+select * from error_messages order by event_timestamp desc;
 #+END_SRC
 *** partitions
 **** partition switch
@@ -228,6 +229,28 @@ https://github.com/pomaster/vertica-workload-tracking-util
 **** Unc
 in the plan local verbose,
 Unc 表示 unencoded data column, 是相对于 RLE 列来说的.
+*** resource pool
+**** plannedconcurrency & query_budget_kb
+http://vertica-forums.com/viewtopic.php?t=1441&start=7
+http://vertica-forums.com/viewtopic.php?f=44&t=1441&sid=152b9965d87731282e8a309c2eebe139&start=14
+
+You can set the QUEUETIMEOUT of the resource pool to be longer if you would like the loads to wait for longer before timing out.
+
+When you increase PLANNEDCONCURRENCY, you decrease the QUERY_BUDGET_KB that shows in RESOURCE_POOL_STATUS. The "query budget" is the amount of memory that a query will "target" using but it's not necessarily the amount that the query will use:
+
+- simple queries without an ORDER BY or where the ORDER BY matches a projection's ORDER BY will use very little memory - they don't need to sort for example
+
+- queries with "externalizing operators" - that is, operators that can spill to disk - sort, group by, hash join - will start with a default buffer size for all operators and will then split the remaining memory among the externalizing operators up to the "query budget" 
+
+- if the minimum buffer size for all operators exceeds the "query budget", then the query will use more than the "query budget".
+
+Because simple queries use less memory, you can actually run more queries concurrently than PLANNEDCONCURRENCY. That's where MAXCONCURRENCY can be used to put an actual limit on the number of concurrent queries.
+
+In the case of your COPY statements, it sounds like they are all using the "query budget". 
+
+Be aware that when you make PLANNEDCONCURRENCY higher, and thus the "query budget" smaller, you are forcing the sorts for COPY to get less memory, and they will have to spill more to disk, so they will be slower. 
+
+As already stated, Vertica wants 2GB of memory per core, and you're running with less than that. 16GB is really on the low end for a vertica cluster.
 ** Theory
 http://slideshot.epfl.ch/play/suri_stonebraker
 ** postgresql
