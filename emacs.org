@@ -96,6 +96,7 @@ function of enable_service()
 #+BEGIN_SRC sql
 select * from query_profiles where is_executing;
 select * from resource_acquisitions  where is_executing;
+select * from system_resource_usage order by end_time desc limit 30; 
 select * from error_messages order by event_timestamp desc;
 #+END_SRC
 *** partitions
