@@ -95,11 +95,26 @@ function of enable_service()
 **** some sqls
 #+BEGIN_SRC sql
 select * from query_profiles where is_executing;
+
+select transaction_id,time - grant_time held_time from dc_lock_releases where object_name ilike '%global%' and mode ilike 'X' order by 2 desc; 
+
+select * from dc_requests_issued where transaction_id = 63050395011493021; 
+
 select * from resource_queues; 
+
 select * from resource_acquisitions  where is_executing;
+
 select * from system_resource_usage order by end_time desc limit 30; 
+
 select * from vs_tuple_mover_operations; 
+
+select list_services('TM'); 
+
 select * from error_messages order by event_timestamp desc;
+
+select time,transaction_id,node_name,time-grant_Time as duration, object_name,mode from dc_lock_releases 
+    where object_name ilike '%Catalog' order by duration desc limit 50;
+
 select node_name,operator_name,path_id,localplan_id,counter_name,max(counter_value) 
 from dc_execution_engine_profiles where transaction_id=<> and statement_id= <> 
 and (counter_name ilike '%(us)%' or 
@@ -133,6 +148,23 @@ select * from storage_containers where projection_name like '%daniel%' and node_
 SELECT SWAP_PARTITIONS_BETWEEN_TABLES ( 't2_daniel', 1, 2, 't1_daniel');
 
 SELECT MERGE_PARTITIONS('t2_daniel', 1, 1);
+
+#+END_SRC
+*** global catalog
+**** global catalog size
+
+#+BEGIN_SRC sql
+SELECT node_name,
+       MAX(ts) AS ts,
+       MAX(catalog_size_in_MB) AS catlog_size_in_MB
+FROM (SELECT node_name,
+             trunc((dc_allocation_pool_statistics_by_second."time")::TIMESTAMP,'SS'::VARCHAR(2)) AS ts,
+             SUM((dc_allocation_pool_statistics_by_second.total_memory_max_value - dc_allocation_pool_statistics_by_second.free_memory_min_value)) /(1024*1024) AS catalog_size_in_MB
+      FROM dc_allocation_pool_statistics_by_second
+      GROUP BY 1,
+               trunc((dc_allocation_pool_statistics_by_second."time")::TIMESTAMP,'SS'::VARCHAR(2))) foo
+GROUP BY 1
+ORDER BY 1
 
 #+END_SRC
 *** locks
@@ -184,6 +216,9 @@ ORDER BY  duration DESC limit 500;
 select * from query_requests where is_executing;
 
 #+END_SRC
+**** tools
+***** vioperf
+https://my.vertica.com/docs/7.1.x/HTML/Content/Authoring/InstallationGuide/scripts/vioperf.htm
 *** profile
 **** analysis
 #+BEGIN_SRC sql 
