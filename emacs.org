@@ -95,10 +95,25 @@ function of enable_service()
 **** some sqls
 #+BEGIN_SRC sql
 select * from query_profiles where is_executing;
+select * from resource_queues; 
 select * from resource_acquisitions  where is_executing;
 select * from system_resource_usage order by end_time desc limit 30; 
+select * from vs_tuple_mover_operations; 
 select * from error_messages order by event_timestamp desc;
+select node_name,operator_name,path_id,localplan_id,counter_name,max(counter_value) 
+from dc_execution_engine_profiles where transaction_id=<> and statement_id= <> 
+and (counter_name ilike '%(us)%' or 
+counter_name ilike '%time%') and node_name ilike '%node0001%' group by 1,2,3,4,5 order by 3,4; 
+
+select node_name,execution_step,(completion_time-time) as time_taken 
+from dc_query_executions where transaction_id='<>' and statement_id= <> order by 1,2 desc; 
 #+END_SRC
+**** some tips
++ Did you check if any specific session is running from long time ? 
++ Any Tuple mover operations are running for long ? 
++ Any resource starvation? Means anything queuing for resources? 
++ At OS level, are there any high CPU/memory/IO utilizations seen in TOP,SAR,VMSTAT outputs for each node. 
++ What is the status shown in system_resource_usage for all the resources nodewise? 
 *** partitions
 **** partition switch
 #+BEGIN_SRC sql 
