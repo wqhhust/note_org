@@ -100,6 +100,8 @@ select transaction_id,time - grant_time held_time from dc_lock_releases where ob
 
 select * from dc_requests_issued where transaction_id = 63050395011493021; 
 
+select request, pool_name, now(), start_timestamp from resource_queues a inner join  query_requests  b on a.transaction_id=b.transaction_id and a.statement_id=b.statement_id limit 10000;
+
 select * from resource_queues; 
 
 select * from resource_acquisitions  where is_executing;
