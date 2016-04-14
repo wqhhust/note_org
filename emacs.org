@@ -108,6 +108,8 @@ SELECT * FROM QUERY_PROFILES;
 
 select * from RESOURCE_REJECTION_DETAILS order by REJECTED_TIMESTAMP desc
 
+select * from dc_requests_retried
+
 select * from resource_queues; 
 
 select * from resource_acquisitions  where is_executing;
