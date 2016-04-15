@@ -383,6 +383,34 @@ powershell -ExecutionPolicy ByPass -File script.ps1
 this is less useful. Better to use the above one
 Set-ExecutionPolicy RemoteSigned
 ** clojure
+*** boot
+**** manually download boot
+if manually download the boot.jar, then just put it under the correct folder, then boot will find them under these folds, if can't find it will then try to download it automatically
+
+oracle@SomeHost ~/.boot $ cat boot.properties 
+BOOT_CLOJURE_NAME=org.clojure/clojure
+BOOT_VERSION=2.5.5
+BOOT_CLOJURE_VERSION=1.8.0
+#BOOT_JVM_OPTIONS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8087 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=8087"
+
+oracle@SomeHost ~/.boot/cache/bin $ tree
+.
+├── 2.4.2
+│   ├── boot1133127694768844380.jar
+│   └── boot6675944551114486971.jar
+├── 2.5.2
+│   ├── boot212976671301937065.jar
+│   ├── boot2495592243726006254.jar
+│   ├── boot2774136939659078183.jar
+│   ├── boot3704565577884391836.jar
+│   ├── boot4249403466279405105.jar
+│   ├── boot4451132883056568743.jar
+│   ├── boot7949930609941258502.jar
+│   └── boot8606978147581365130.jar
+└── 2.5.5
+    └── boot.jar
+
+
 *** stacktrace
 https://github.com/mmcgrana/clj-stacktrace
 If you use Leiningen, you can install clj-stacktrace on a user-wide basis. Just add the following to ~/.lein/profiles.clj:
