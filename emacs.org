@@ -123,6 +123,17 @@ select list_services('TM');
 
 select request, pool_name, now(), start_timestamp from resource_queues a inner join  query_requests  b on a.transaction_id=b.transaction_id and a.statement_id=b.statement_id limit 10000;
 
+SELECT transaction_id,
+       pool_name,
+       memory_inuse_kb,
+       queue_entry_timestamp,
+       acquisition_timestamp,
+       release_timestamp,
+       datediff(ms,queue_entry_timestamp,acquisition_timestamp) as queue_time,
+       datediff(ms,acquisition_timestamp,release_timestamp) as execution_time,
+       duration_ms
+FROM resource_acquisitions order by 9 desc limit 10
+
 
 select * from error_messages order by event_timestamp desc;
 
