@@ -120,6 +120,10 @@ select * from vs_tuple_mover_operations;
 
 select list_services('TM'); 
 
+
+select request, pool_name, now(), start_timestamp from resource_queues a inner join  query_requests  b on a.transaction_id=b.transaction_id and a.statement_id=b.statement_id limit 10000;
+
+
 select * from error_messages order by event_timestamp desc;
 
 select time,transaction_id,node_name,time-grant_Time as duration, object_name,mode from dc_lock_releases 
