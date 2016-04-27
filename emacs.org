@@ -1467,8 +1467,18 @@ select a.*,b.* from my_blacklist  a inner join bidding_history b on a.bidding_id
 #+END_SRC
 * mobile
 ** android
+*** to list real devices under ubuntu
+http://misha.beshkin.lv/ddms-insufficient-permissions-for-device/
+https://github.com/M0Rf30/android-udev-rules
 *** start a simulator
-+ from android studio --> tools  --> android -->  SDK Manager to install SDK, and from ADV manager to install some intel x64 image 
++ from android studio --> tools  --> android -->  SDK Manager to install SDK, and from ADV manager to install some intel x64 image
+*** start the debug
+1: connect andriod device to PC with debug enable
+2: in the project root folder run
+   oracle@SomeHost /data/node-v4.4.3/bin/future-app $ npm start
+3: deplay the app
+react-native run-android
+
 * work
 ** TODO cr to read
 FUS-12048 --- *important*
