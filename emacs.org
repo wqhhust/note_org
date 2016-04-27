@@ -1465,6 +1465,10 @@ select a.*,b.* from my_blacklist  a inner join bidding_history b on a.bidding_id
             :bidding? true :start-webdriver? true :local? false}
 
 #+END_SRC
+* mobile
+** android
+*** start a simulator
++ from android studio --> tools  --> android -->  SDK Manager to install SDK, and from ADV manager to install some intel x64 image 
 * work
 ** TODO cr to read
 FUS-12048 --- *important*
