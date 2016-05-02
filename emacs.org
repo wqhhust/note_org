@@ -1512,11 +1512,6 @@ solution: use store exclusive list?
 ant -DsiloID= A_AHOLD_ALERT_DANIEL create-retailer-schema -Dremote.cp.db.host=ENGP3QA3 
 ant -DsiloID= A_HUB_DANIEL deploy-silo -Dremote.cp.db.host=ENGP3QA3 
 * youyou
-13 - 5 = 8: 2015/12/6
-10 days: 2015/12/10
-
-10 + 4 -5 =9: 2015/12/14
-9 + 13 - 6  =16 : 2015/12/27
 ** good books
 i 图说民间儿童游戏
 时代广场的蟋蟀
@@ -1528,6 +1523,13 @@ i 图说民间儿童游戏
 影响中国的名人童年故事
 十年后的礼物
 百年百部中国儿童文学经典 共四册
+*** christian book
+http://www.heatherhaupt.com/2014/11/26/christian-book-series-for-boys/
+http://www.amazon.com/s/?_encoding=UTF8&camp=1789&creative=390957&field-keywords=imagination%20station&linkCode=ur2&sprefix=imagination%20%2Caps&tag=cultiva-20&url=search-alias%3Daps&linkId=JASB5DDR6I37EJ3Z
+http://www.amazon.com/gp/product/0802469949/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0802469949&linkCode=as2&tag=cultiva-20&linkId=5O7PGTDLGYIUBXQR
+http://www.amazon.com/gp/product/184550318X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=184550318X&linkCode=as2&tag=cultiva-20&linkId=FSSHOF7A2BDCMVXK
+http://www.christianbook.com/the-chronicles-narnia-volume-slipcased-hardcover/c-s-lewis/9780060244880/pd/77406?event=AFF&amp;p=1169378
+http://www.amazon.com/gp/product/1581346913/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1581346913&linkCode=as2&tag=cultiva-20&linkId=U3L4DHUIST4TBG4I
 ** 电影
 http://tv.sohu.com/20150304/n409319726.shtml?ptag=vsogou
 * bible
