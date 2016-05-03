@@ -1487,35 +1487,6 @@ react-native run-android
 * work
 ** TODO cr to read
 FUS-12048 --- *important*
-** alert extraction
-
-measures
-spStrDD: sp.SPCurrDD, sum
-spOnHand: sp.SPCurrRetailOnHand,sum
-spvalid: sp.SPCurrValidStoreItemComb,max
-sptraited:sp.SPCurrTraitedStoreItemComb,max
---spWeeksOnHand: (case when spStrDD =0 then 0 else floor(spOnHand/spStrDD) end), max
-posMaxTotalAdjQty: fn_max_over_time, totaladjqty,100, max *time rage is based on SP table instead of POS table, also need to add function of fn_max*
-posDistinctOnHand: fn_distinct_count, HistOnHandQty, 28
-fourWeeksSalesRate: fun_sum_over_time, posqty, 28, *need to exclude store id for temp_site_store_tdlinx*
-salesRate: fourWeeksSalesRate/4
-<2015-12-21 Mon 00:17>
-conditions:
-spstrdd >0 and spOnHand and spvalid=1 and sptraited=1 and posMaxTotalAdjQty>=15 and posDistinctOnHand <=2 and fourWeeksSalesRate =0
--- and spWeeksOnHand>10
-and (case when spStrDD =0 then 0 else floor(spOnHand/spStrDD) end) > 10
-and salesRate = 0
-and groupings_index = 1
-*** issues
-**** period range: not based on the current table, but instead based on another table (SP)
-solution: add another configuration about which table the period_key is based on<2015-12-20 Sun>.
-**** for ntil on salesrate at item_group/store_type level, need to use a query id, but need to support time range.
-**** need to filter based on RSI_TEMP_ASMID_STOREID (#temp_site_store_tdlinx)
-solution: use store exclusive list?
-**** period_key, the period_key of the alert is based on the max initial day of OSM table.
-** deploy
-ant -DsiloID= A_AHOLD_ALERT_DANIEL create-retailer-schema -Dremote.cp.db.host=ENGP3QA3 
-ant -DsiloID= A_HUB_DANIEL deploy-silo -Dremote.cp.db.host=ENGP3QA3 
 * youyou
 ** good books
 i 图说民间儿童游戏
