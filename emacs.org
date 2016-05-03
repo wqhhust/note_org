@@ -424,7 +424,12 @@ oracle@SomeHost ~/.boot/cache/bin $ tree
 │   └── boot8606978147581365130.jar
 └── 2.5.5
     └── boot.jar
+*** hiccup
+https://clojurebridge.github.io/community-docs/docs/web-applications/hiccup/
 
+https://github.com/yokolet/hiccup-samples
+
+http://www.tuicool.com/articles/muQfy2
 
 *** stacktrace
 https://github.com/mmcgrana/clj-stacktrace
