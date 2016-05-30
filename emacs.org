@@ -1488,6 +1488,13 @@ react-native run-android
 ** TODO cr to read
 FUS-12048 --- *important*
 * youyou
+** good books on jd
+孩子们必读的诺贝尔经典
+http://blog.sina.com.cn/s/blog_6bde428f01017v0j.html
+http://item.jd.com/10967365.html
+http://item.jd.com/11563995.html
+
+ 
 ** good books
 i 图说民间儿童游戏
 时代广场的蟋蟀
