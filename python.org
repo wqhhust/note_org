@@ -1,0 +1,4 @@
+
+* lxml (html parse)
+** some useful links
+http://stackoverflow.com/questions/22082275/using-python-how-can-i-get-the-text-of-an-xml-element-when-a-sibling-elements?rq=1
