@@ -1,4 +1,12 @@
 
+* functional
+http://stackoverflow.com/questions/1550134/how-to-assign-a-variable-in-if-and-then-return-it-python
 * lxml (html parse)
 ** some useful links
 http://stackoverflow.com/questions/22082275/using-python-how-can-i-get-the-text-of-an-xml-element-when-a-sibling-elements?rq=1
+http://stackoverflow.com/questions/31009455/lxml-etree-find-closest-element-before?rq=1
+
+** get parent of a node
+element.getparent()
+** my questions on stackoverflow
+http://stackoverflow.com/questions/39832587/python-lxml-how-to-get-text-from-a-element-which-has-a-child-element
