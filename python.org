@@ -1,6 +1,7 @@
 
 * functional
 http://stackoverflow.com/questions/1550134/how-to-assign-a-variable-in-if-and-then-return-it-python
+http://stackoverflow.com/questions/14105500/compressing-x-if-x-else-y-statement-in-python
 * lxml (html parse)
 ** some useful links
 http://stackoverflow.com/questions/22082275/using-python-how-can-i-get-the-text-of-an-xml-element-when-a-sibling-elements?rq=1
@@ -10,3 +11,5 @@ http://stackoverflow.com/questions/31009455/lxml-etree-find-closest-element-befo
 element.getparent()
 ** my questions on stackoverflow
 http://stackoverflow.com/questions/39832587/python-lxml-how-to-get-text-from-a-element-which-has-a-child-element
+* rabbitmq
+http://stackoverflow.com/questions/12426927/pika-rabbitmq-setting-basic-qos-to-prefetch-1-still-appears-to-consume-all-me
