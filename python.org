@@ -22,5 +22,15 @@ keys = ['a', 'b', 'c']
 values = [1, 2, 3]
 dictionary = dict(zip(keys, values))
 #+END_SRC
+*** combine multiple maps
+http://stackoverflow.com/questions/38987/how-to-merge-two-python-dictionaries-in-a-single-expression
+
+#+BEGIN_SRC python
+def merge_dicts(*dict_args):
+    result = {}
+    for dictionary in dict_args:
+        result.update(dictionary)
+    return result
+#+END_SRC
 * rabbitmq
 http://stackoverflow.com/questions/12426927/pika-rabbitmq-setting-basic-qos-to-prefetch-1-still-appears-to-consume-all-me
