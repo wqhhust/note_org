@@ -24,7 +24,7 @@ dictionary = dict(zip(keys, values))
 #+END_SRC
 *** combine multiple maps
 http://stackoverflow.com/questions/38987/how-to-merge-two-python-dictionaries-in-a-single-expression
-
+http://treyhunner.com/2016/02/how-to-merge-dictionaries-in-python/
 #+BEGIN_SRC python
 def merge_dicts(*dict_args):
     result = {}
