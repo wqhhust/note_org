@@ -14,7 +14,7 @@ http://stackoverflow.com/questions/12426927/pika-rabbitmq-setting-basic-qos-to-p
 ** my questions on stackoverflow
 http://stackoverflow.com/questions/39832587/python-lxml-how-to-get-text-from-a-element-which-has-a-child-element
 * data structure
-** create map
+** map
 *** create a map using 2 lists
 http://stackoverflow.com/questions/209840/map-two-lists-into-a-dictionary-in-python
 #+BEGIN_SRC python
@@ -31,6 +31,12 @@ def merge_dicts(*dict_args):
     for dictionary in dict_args:
         result.update(dictionary)
     return result
+#+END_SRC
+*** remove keys whose value is empty
+http://stackoverflow.com/questions/12118695/efficient-way-to-remove-keys-with-empty-values-from-a-dict
+#+BEGIN_SRC python
+a={1:3,3:5,5:None}
+dict((k, v) for k, v in a.iteritems() if v)
 #+END_SRC
 * rabbitmq
 http://stackoverflow.com/questions/12426927/pika-rabbitmq-setting-basic-qos-to-prefetch-1-still-appears-to-consume-all-me
