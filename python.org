@@ -10,7 +10,7 @@ http://stackoverflow.com/questions/31009455/lxml-etree-find-closest-element-befo
 ** get parent of a node
 element.getparent()
 ** get an element whose class name is regular expression
-http://stackoverflow.com/questions/12426927/pika-rabbitmq-setting-basic-qos-to-prefetch-1-still-appears-to-consume-all-me
+http://stackoverflow.com/questions/8226490/finding-html-element-with-class-using-lxml
 ** my questions on stackoverflow
 http://stackoverflow.com/questions/39832587/python-lxml-how-to-get-text-from-a-element-which-has-a-child-element
 * data structure
