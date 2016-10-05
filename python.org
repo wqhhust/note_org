@@ -34,3 +34,11 @@ def merge_dicts(*dict_args):
 #+END_SRC
 * rabbitmq
 http://stackoverflow.com/questions/12426927/pika-rabbitmq-setting-basic-qos-to-prefetch-1-still-appears-to-consume-all-me
+* database
+** insert a row to a table using a map data structure
+http://stackoverflow.com/questions/9336270/using-a-python-dict-for-a-sql-insert-statement
+#+BEGIN_SRC sql
+placeholder = ", ".join(["%s"] * len(dict))
+stmt = "insert into `{table}` ({columns}) values ({values});".format(table=table_name, columns=",".join(dict.keys()), values=placeholder)
+cur.execute(stmt, list(dict.values()))
+#+END_SRC
