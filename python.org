@@ -48,3 +48,30 @@ placeholder = ", ".join(["%s"] * len(dict))
 stmt = "insert into `{table}` ({columns}) values ({values});".format(table=table_name, columns=",".join(dict.keys()), values=placeholder)
 cur.execute(stmt, list(dict.values()))
 #+END_SRC
+* common pitful
+** loop inside a list
+http://stackoverflow.com/questions/39941393/python-loop-a-list-of-list-and-assign-value-inside-the-loop
+#+BEGIN_SRC python :results output
+alist1 = [[1,2],[3,4],[5,6]]
+for item in alist1:
+    item=1
+print(alist1)
+
+
+alist2 = [[1,2],[3,4],[5,6]]
+for item in alist2:
+    item=item.append(10)
+print(alist2)
+
+
+alist3 = [[1,2],[3,4],[5,6]]
+for item in alist3:
+    item.append(10)
+print(alist3)
+
+#+END_SRC
+
+#+RESULTS:
+: [[1, 2], [3, 4], [5, 6]]
+: [[1, 2, 10], [3, 4, 10], [5, 6, 10]]
+: [[1, 2, 10], [3, 4, 10], [5, 6, 10]]
