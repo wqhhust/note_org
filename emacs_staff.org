@@ -1,4 +1,10 @@
 
+* ipython notebook
+need to install jupyter instead of ipython notebook
+
+pip3 install jupyter
+maybe also need to run
+pip3 install notebook (note sure)
 * emacs started from shell can't access remote server
 check whether there is proxy set. If we set proxy in shell profile, then every connection to the remote server will use that proxy. one workaround is to set the no_proxy value
 #+BEGIN_SRC bash
