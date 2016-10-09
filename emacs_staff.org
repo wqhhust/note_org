@@ -1,0 +1,6 @@
+
+* emacs started from shell can't access remote server
+check whether there is proxy set. If we set proxy in shell profile, then every connection to the remote server will use that proxy. one workaround is to set the no_proxy value
+#+BEGIN_SRC bash
+export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,.github.com"
+#+END_SRC
