@@ -5,6 +5,11 @@ need to install jupyter instead of ipython notebook
 pip3 install jupyter
 maybe also need to run
 pip3 install notebook (note sure)
+
+
+And then before use the package inside emacs, need to start notebook using the following command:
+
+ipython notebook (shouldn't use jupyter command here)
 * emacs started from shell can't access remote server
 check whether there is proxy set. If we set proxy in shell profile, then every connection to the remote server will use that proxy. one workaround is to set the no_proxy value
 #+BEGIN_SRC bash
