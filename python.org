@@ -19,6 +19,35 @@ http://stackoverflow.com/questions/8226490/finding-html-element-with-class-using
 ** my questions on stackoverflow
 http://stackoverflow.com/questions/39832587/python-lxml-how-to-get-text-from-a-element-which-has-a-child-element
 * data structure
+** list comprehension
+*** list comprehension with nested loop
+http://stackoverflow.com/documentation/python/5265/list-comprehensions#t=201610090335497609891
+#+BEGIN_SRC example
+
+[ expression for target1 in iterable1 [if condition1]
+             for target2 in iterable2 [if condition2]...
+             for targetN in iterableN [if conditionN] ]
+
+#+END_SRC
+
+#+BEGIN_SRC python
+data = [[1, 2], [3, 4], [5, 6]]
+output = []
+for each_list in data:
+    for element in each_list:
+        output.append(element)
+print(output)
+# Out: [1, 2, 3, 4, 5, 6]
+#+END_SRC
+equals to
+#+BEGIN_SRC python
+
+data = [[1, 2], [3, 4], [5, 6]]
+output = [element for each_list in data for element in each_list]
+print(output)
+# Out: [1, 2, 3, 4, 5, 6]
+
+#+END_SRC
 ** map
 *** create a map using 2 lists
 http://stackoverflow.com/questions/209840/map-two-lists-into-a-dictionary-in-python
