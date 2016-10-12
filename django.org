@@ -1,0 +1,10 @@
+
+* admin
+** open a console (Repl)
+#+BEGIN_SRC shell
+python manage.py shell
+#+END_SRC
+** startup the server
+#+BEGIN_SRC shell
+python manage.py runserver 0.0.0.0:5555
+#+END_SRC
