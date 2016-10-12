@@ -1,4 +1,13 @@
 
+* python env
+
+** location of site-packages
+http://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory
+
+#+BEGIN_SRC python
+import site
+site.getsitepackages()
+#+END_SRC
 * emacs as IDE
 
 ** can not start inferior python process
@@ -46,6 +55,37 @@ data = [[1, 2], [3, 4], [5, 6]]
 output = [element for each_list in data for element in each_list]
 print(output)
 # Out: [1, 2, 3, 4, 5, 6]
+
+#+END_SRC
+*** nsted list comprehensions
+http://stackoverflow.com/documentation/python/5265/list-comprehensions#t=201610090335497609891
+#+BEGIN_SRC example
+
+ Nested List Comprehensions, unlike List Comprehensions with Nested Loops, are List
+ Comprehensions within a list comprehension. The initial expression can be any arbitrary
+ expression, including another list comprehension.
+
+
+#+END_SRC
+
+#+BEGIN_SRC python
+
+#List Comprehension with nested loop
+[x + y for x in [1, 2, 3] for y in [3, 4, 5]]
+#Out: [4, 5, 6, 5, 6, 7, 6, 7, 8]
+
+#Nested List Comprehension
+[[x + y for x in [1, 2, 3]] for y in [3, 4, 5]]
+#Out: [[4, 5, 6], [5, 6, 7], [6, 7, 8]]
+
+#The Nested List one is same as
+
+for y in [3, 4, 5]:
+    temp = []
+    for x in [1, 2, 3]:
+        temp.append(x + y)
+    l.append(temp)
+
 
 #+END_SRC
 ** map
