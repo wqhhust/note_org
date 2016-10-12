@@ -3,3 +3,23 @@
 
 ** iTerms
 https://www.iterm2.com/features.html
+
+*** switch between panes
+ http://stackoverflow.com/questions/9246235/iterm2-keyboard-shortcut-split-pane-navigation
+#+BEGIN_SRC example
+Cmd+] and Cmd+[ navigates among split panes in order of use.
+#+END_SRC
+
+** startup configuration for iTerms
+https://github.com/TomAnthony/itermocil
+#+BEGIN_SRC example
+windows:
+  - name: sample-two-panes
+    root: ~/Code/sample/www
+    layout: even-horizontal
+    panes:
+      - ls -l
+      - ptipython
+      - mycli mysql://_read:_read@10....:3306/redb
+
+#+END_SRC
