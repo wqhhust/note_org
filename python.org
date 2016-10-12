@@ -149,3 +149,8 @@ print(alist3)
 : [[1, 2], [3, 4], [5, 6]]
 : [[1, 2, 10], [3, 4, 10], [5, 6, 10]]
 : [[1, 2, 10], [3, 4, 10], [5, 6, 10]]
+* syntax
+** __init__.py
+*** meanings of __all__
+http://stackoverflow.com/questions/44834/can-someone-explain-all-in-python
+check the file of django.db.__iinit__.py 

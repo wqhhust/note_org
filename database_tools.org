@@ -1,0 +1,16 @@
+* postgresql client
+http://pgcli.com/
+
+#+BEGIN_SRC example
+
+pip install pgcli
+
+#+END_SRC
+* mysql client
+http://mycli.net/
+#+BEGIN_SRC example
+
+pip install mycli
+
+#+END_SRC
+* oracle client
