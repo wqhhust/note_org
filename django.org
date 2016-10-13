@@ -11,6 +11,33 @@ python manage.py runserver 0.0.0.0:5555
 #+END_SRC
 * tips
 http://hirelofty.com/blog/6-tips-you-should-use-when-kicking-django-project/
+* import in django shell
+* confliction models
+
+When import some model from django shell, it throws the following error
+#+BEGIN_SRC example
+>>> from dba.models import TestInfo as aaa
+RuntimeError: Conflicting 'info' models in application 'dba': <class 'info.dba.models.TestInfo'> and <class 'dba.models.TestInfo'>.
+#+END_SRC
+
+The reason is that info is the top directory for django, so we need to put it also in the class hierarchy. 
+The right code should be
+#+BEGIN_SRC python
+from info.dba.models import TestInfo as aaa
+#+END_SRC
+
+Since the file directory is:
+
+#+BEGIN_SRC example
+$ ls -l
+total 8
+drwxrwxr-x   31 test  110014533  1054 Oct 13 15:58 info
+-rw-rw-r--    1 test  110014533   248 Oct 12 16:15 manage.py
+drwxrwxr-x    8 test  110014533   272 Oct 11 21:17 media
+drwxrwxr-x  142 test  110014533  4828 Oct 11 21:45 template
+#+END_SRC
+And the dba folder is under the fold of info, so it's info/dba, and the root directory should be the directory containing manager.py
+
 * models
 ** create tables on database based on models
 say dba is a module under django project, and then only sync the model under dba to database
