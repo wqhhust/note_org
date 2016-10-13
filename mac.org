@@ -21,5 +21,12 @@ windows:
       - ls -l
       - ptipython
       - mycli mysql://_read:_read@10....:3306/redb
+      - python manage.py runserver 10.249.66.124:5555
+
+#+END_SRC
+
+Then run the following code in iTerms
+#+BEGIN_SRC example
+itermocil sample
 
 #+END_SRC
