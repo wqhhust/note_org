@@ -30,3 +30,11 @@ Then run the following code in iTerms
 itermocil sample
 
 #+END_SRC
+
+* key mapping
+
+** native (buildin) keyboard
+#+BEGIN_SRC example
+ Home:  fn + left arrow
+ End :  fn + right arrow
+#+END_SRC
