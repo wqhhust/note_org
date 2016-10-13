@@ -3,11 +3,14 @@
 ** open a console (Repl)
 #+BEGIN_SRC shell
 python manage.py shell
+python manage.py shell -i bpython
 #+END_SRC
 ** startup the server
 #+BEGIN_SRC shell
 python manage.py runserver 0.0.0.0:5555
 #+END_SRC
+* tips
+http://hirelofty.com/blog/6-tips-you-should-use-when-kicking-django-project/
 * models
 ** create tables on database based on models
 say dba is a module under django project, and then only sync the model under dba to database
