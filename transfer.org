@@ -1,0 +1,1 @@
+HTTPConnectionPool Max retries exceeded with url class http.client.BadStatusLine
