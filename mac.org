@@ -38,3 +38,6 @@ itermocil sample
  Home:  fn + left arrow
  End :  fn + right arrow
 #+END_SRC
+
+** common used shutcut
+command + TAB: to switch between windows

@@ -45,3 +45,9 @@ say dba is a module under django project, and then only sync the model under dba
 python manage.py makemigrations dba
 python manage.py migrate dba
 #+END_SRC
+** get rows from database as model objects
+
+#+BEGIN_SRC python
+from info.dba.models import Schedule
+a=Schedule.objects.all()
+#+END_SRC
