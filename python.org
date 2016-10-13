@@ -1,4 +1,18 @@
 
+* python env
+
+** location of site-packages
+http://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory
+
+#+BEGIN_SRC python
+import site
+site.getsitepackages()
+#+END_SRC
+* emacs as IDE
+
+** can not start inferior python process
+https://github.com/syl20bnr/spacemacs/pull/7070/commits/4c142ac4beb12ce7bcebbe26889de4dd1b500dc1
+https://github.com/syl20bnr/spacemacs/pull/7070
 * functional
 http://stackoverflow.com/questions/1550134/how-to-assign-a-variable-in-if-and-then-return-it-python
 http://stackoverflow.com/questions/14105500/compressing-x-if-x-else-y-statement-in-python
@@ -14,6 +28,66 @@ http://stackoverflow.com/questions/8226490/finding-html-element-with-class-using
 ** my questions on stackoverflow
 http://stackoverflow.com/questions/39832587/python-lxml-how-to-get-text-from-a-element-which-has-a-child-element
 * data structure
+** list comprehension
+*** list comprehension with nested loop
+http://stackoverflow.com/documentation/python/5265/list-comprehensions#t=201610090335497609891
+#+BEGIN_SRC example
+
+[ expression for target1 in iterable1 [if condition1]
+             for target2 in iterable2 [if condition2]...
+             for targetN in iterableN [if conditionN] ]
+
+#+END_SRC
+
+#+BEGIN_SRC python
+data = [[1, 2], [3, 4], [5, 6]]
+output = []
+for each_list in data:
+    for element in each_list:
+        output.append(element)
+print(output)
+# Out: [1, 2, 3, 4, 5, 6]
+#+END_SRC
+equals to
+#+BEGIN_SRC python
+
+data = [[1, 2], [3, 4], [5, 6]]
+output = [element for each_list in data for element in each_list]
+print(output)
+# Out: [1, 2, 3, 4, 5, 6]
+
+#+END_SRC
+*** nsted list comprehensions
+http://stackoverflow.com/documentation/python/5265/list-comprehensions#t=201610090335497609891
+#+BEGIN_SRC example
+
+ Nested List Comprehensions, unlike List Comprehensions with Nested Loops, are List
+ Comprehensions within a list comprehension. The initial expression can be any arbitrary
+ expression, including another list comprehension.
+
+
+#+END_SRC
+
+#+BEGIN_SRC python
+
+#List Comprehension with nested loop
+[x + y for x in [1, 2, 3] for y in [3, 4, 5]]
+#Out: [4, 5, 6, 5, 6, 7, 6, 7, 8]
+
+#Nested List Comprehension
+[[x + y for x in [1, 2, 3]] for y in [3, 4, 5]]
+#Out: [[4, 5, 6], [5, 6, 7], [6, 7, 8]]
+
+#The Nested List one is same as
+
+for y in [3, 4, 5]:
+    temp = []
+    for x in [1, 2, 3]:
+        temp.append(x + y)
+    l.append(temp)
+
+
+#+END_SRC
 ** map
 *** create a map using 2 lists
 http://stackoverflow.com/questions/209840/map-two-lists-into-a-dictionary-in-python
@@ -75,3 +149,8 @@ print(alist3)
 : [[1, 2], [3, 4], [5, 6]]
 : [[1, 2, 10], [3, 4, 10], [5, 6, 10]]
 : [[1, 2, 10], [3, 4, 10], [5, 6, 10]]
+* syntax
+** __init__.py
+*** meanings of __all__
+http://stackoverflow.com/questions/44834/can-someone-explain-all-in-python
+check the file of django.db.__iinit__.py 

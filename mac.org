@@ -3,3 +3,41 @@
 
 ** iTerms
 https://www.iterm2.com/features.html
+
+*** switch between panes
+ http://stackoverflow.com/questions/9246235/iterm2-keyboard-shortcut-split-pane-navigation
+#+BEGIN_SRC example
+Cmd+] and Cmd+[ navigates among split panes in order of use.
+#+END_SRC
+
+** startup configuration for iTerms
+https://github.com/TomAnthony/itermocil
+#+BEGIN_SRC example
+windows:
+  - name: sample-two-panes
+    root: ~/Code/sample/www
+    layout: even-horizontal
+    panes:
+      - ls -l
+      - ptipython
+      - mycli mysql://_read:_read@10....:3306/redb
+      - python manage.py runserver 10.249.66.124:5555
+
+#+END_SRC
+
+Then run the following code in iTerms
+#+BEGIN_SRC example
+itermocil sample
+
+#+END_SRC
+
+* key mapping
+
+** native (buildin) keyboard
+#+BEGIN_SRC example
+ Home:  fn + left arrow
+ End :  fn + right arrow
+#+END_SRC
+
+** common used shutcut
+command + TAB: to switch between windows

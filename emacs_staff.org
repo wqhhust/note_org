@@ -10,6 +10,14 @@ pip3 install notebook (note sure)
 And then before use the package inside emacs, need to start notebook using the following command:
 
 ipython notebook (shouldn't use jupyter command here)
+* shell
+** read profile for shell
+ eshell can't read profile. But shell is able to read profile
+ http://stackoverflow.com/questions/16107820/how-to-make-emacs-s-shell-mode-source-my-profile-file 
+You can create a file ~/.emacs_zsh (or .emacs_bash, emacs_sh, ...) that shell-mode will use on startup. My .emacs_bash is simply:
+. ~/.profile
+Just be sure to put a newline at the end of the sourcing line or it won't get executed.
+
 * emacs started from shell can't access remote server
 check whether there is proxy set. If we set proxy in shell profile, then every connection to the remote server will use that proxy. one workaround is to set the no_proxy value
 #+BEGIN_SRC bash
