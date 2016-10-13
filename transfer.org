@@ -1,1 +1,2 @@
 HTTPConnectionPool Max retries exceeded with url class http.client.BadStatusLine
+http://123.206.203.97:15672/
