@@ -1,0 +1,1 @@
+cd ~/python/db-in-box/DBInBoxWeb ; python manage.py shell -i bpython

@@ -149,6 +149,11 @@ print(alist3)
 : [[1, 2], [3, 4], [5, 6]]
 : [[1, 2, 10], [3, 4, 10], [5, 6, 10]]
 : [[1, 2, 10], [3, 4, 10], [5, 6, 10]]
+* debug
+https://wiki.python.org/moin/DebuggingWithGdb
+http://fedoraproject.org/wiki/Features/EasierPythonDebugging
+http://python-manhole.readthedocs.io/en/latest/
+https://pypi.python.org/pypi/pudb
 * syntax
 ** __init__.py
 *** meanings of __all__

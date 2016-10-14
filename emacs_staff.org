@@ -23,3 +23,9 @@ check whether there is proxy set. If we set proxy in shell profile, then every c
 #+BEGIN_SRC bash
 export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,.github.com"
 #+END_SRC
+
+* shortcut
+** switch between alternative buffer
+SPACE + TAB
+** all possible shortcut
+use Meta + X 
