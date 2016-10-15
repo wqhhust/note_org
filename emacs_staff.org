@@ -27,5 +27,11 @@ export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,.github.com"
 * shortcut
 ** switch between alternative buffer
 SPACE + TAB
+** helm follow mode
+http://emacs.stackexchange.com/questions/27783/helm-find-projectile-file-how-to-view-the-file-content-when-choose-the-file
+Add C-z or whatever key you want for helm-execute-persistent-action to helm-map first (define-key helm-map (kbd "C-z") 'helm-execute-persistent-action)
+#+BEGIN_SRC elisp
+(define-key helm-map (kbd "C-z") 'helm-execute-persistent-action)
+#+END_SRC
 ** all possible shortcut
 use Meta + X 
