@@ -33,5 +33,12 @@ Add C-z or whatever key you want for helm-execute-persistent-action to helm-map 
 #+BEGIN_SRC elisp
 (define-key helm-map (kbd "C-z") 'helm-execute-persistent-action)
 #+END_SRC
+** magit
+** show the commit content without change window focus
+http://emacs.stackexchange.com/questions/27798/how-to-view-each-commit-in-magit-easily
+magit-diff-show-or-scroll-up
+
+in spacemacs it mapps to Shift + Space
+
 ** all possible shortcut
 use Meta + X 
