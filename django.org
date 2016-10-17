@@ -38,6 +38,8 @@ drwxrwxr-x  142 test  110014533  4828 Oct 11 21:45 template
 #+END_SRC
 And the dba folder is under the fold of info, so it's info/dba, and the root directory should be the directory containing manager.py
 
+* traceback
+http://avilpage.com/2015/05/whats-so-good-about-django-traceback/
 * models
 ** create tables on database based on models
 say dba is a module under django project, and then only sync the model under dba to database
@@ -50,4 +52,16 @@ python manage.py migrate dba
 #+BEGIN_SRC python
 from info.dba.models import Schedule
 a=Schedule.objects.all()
+#+END_SRC
+* django-extensions
+great package, better to install
+https://github.com/django-extensions/django-extensions
+start the shell using ptipython
+#+BEGIN_SRC shell
+python manage.py shell_plus --ptpython
+#+END_SRC
+
+#+BEGIN_SRC shell
+pip install Werkzeug
+python manage.py runserver_plus 0.0.0.0:8000
 #+END_SRC

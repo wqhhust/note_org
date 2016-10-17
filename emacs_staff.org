@@ -33,12 +33,133 @@ Add C-z or whatever key you want for helm-execute-persistent-action to helm-map 
 #+BEGIN_SRC elisp
 (define-key helm-map (kbd "C-z") 'helm-execute-persistent-action)
 #+END_SRC
+** scroll other window
+check the funciton like scroll window. And it will show the key bidding to those function
+M + Pageup
+M + PageDown
 ** magit
-** show the commit content without change window focus
-http://emacs.stackexchange.com/questions/27798/how-to-view-each-commit-in-magit-easily
-magit-diff-show-or-scroll-up
+*** show the commit content without change window focus
+ http://emacs.stackexchange.com/questions/27798/how-to-view-each-commit-in-magit-easily
+ magit-diff-show-or-scroll-up
 
-in spacemacs it mapps to Shift + Space
+ in spacemacs it mapps to Shift + Space
 
 ** all possible shortcut
-use Meta + X 
+use Meta + X
+** fold python
+https://github.com/syl20bnr/spacemacs/issues/5047
+in normal mode: z + a
+* magit
+http://emacs.stackexchange.com/questions/6083/magit-split-hunk-into-two-hunks?rq=1
+http://emacs.stackexchange.com/questions/17711/how-do-i-simultaneously-view-multiple-diffs-with-magit?rq=1
+* autosave after when switch window
+http://emacsredux.com/blog/2014/03/22/a-peek-at-emacs-24-dot-4-focus-hooks/
+#+BEGIN_SRC elisp
+(add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
+#+END_SRC
+* script
+** some link
+http://www.lunaryorn.com/posts/emacs-script-pitfalls.html
+* tramp
+** basic
+
+http://stackoverflow.com/questions/37728737/in-emacs-host-name-must-not-match-ssh
+#+BEGIN_SRC example
+You don't use a proper Tramp file name. Try
+
+C-x C-f /ssh:user@1.2.3.4:
+See the trailing colon.
+
+
+#+END_SRC
+
+
+in emacs inital file, add the following:
+http://emacs.stackexchange.com/questions/28061/edit-a-file-on-remote-server-using-an-existing-sessionby-clone-it
+#+BEGIN_SRC elisp
+
+  (setq tramp-use-ssh-controlmaster-options nil)
+
+#+END_SRC
+
+and in ssh configuration
+#+BEGIN_SRC example
+
+cat .ssh/config
+host *
+ControlMaster auto
+ControlPath ~/.ssh/master-%r@%h:%p
+ServerAliveInterval 60
+
+#+END_SRC
+** 2 fact authentication
+just modify the variable of password-word-equivalents
+#+BEGIN_SRC elisp
+
+(defcustom password-word-equivalents
+  '("password" "passcode" "passphrase" "pass phrase"
+    ; These are sorted according to the GNU en_US locale.
+    "암호"		; ko
+    "Tap your Key" ; add the string which promp your to input more valiation code or string
+    .....
+)
+
+#+END_SRC
+
+
+since it was used in the follow code
+#+BEGIN_SRC elisp
+
+(defcustom tramp-password-prompt-regexp
+  (format "^.*\\(%s\\).*:\^@? *"
+	  (if (boundp 'password-word-equivalents)
+	      (regexp-opt (symbol-value 'password-word-equivalents))
+	    "password\\|passphrase"))
+  "Regexp matching password-like prompts.
+The regexp should match at end of buffer.
+
+The `sudo' program appears to insert a `^@' character into the prompt."
+  :version "24.4"
+  :group 'tramp
+  :type 'regexp)
+
+#+END_SRC
+** very cool stuff
+http://gregorygrubbs.com/wordpress/emacs-power-remote-servers-and-shell-commands/
+copied before if the above link is broken
+http://note.youdao.com/noteshare?id=5c878a5df12f5217c55672775eb02cda
+** traffer file without sftp
+https://danlamanna.com/forget-scp-use-dired-dwim.html
+** multiple hops
+
+
+need to config .ssh/config on all the hops
+* sql mode
+https://truongtx.me/2014/08/23/setup-emacs-as-an-sql-database-client
+https://lists.gnu.org/archive/html/help-gnu-emacs/2010-12/msg01075.html
+https://github.com/tmtxt/.emacs.d/blob/master/config/tmtxt-sql.el
+first set a variables as:
+
+#+BEGIN_SRC elisp
+(setq sql-connection-alist
+        '((dev (sql-product 'mysql)
+               (sql-port 3306)
+               (sql-server "10.")
+               (sql-user "sapph")
+               (sql-password "s")
+               (sql-database "s"))
+          (prod (sql-product 'mysql)
+                   (sql-port 5432)
+                   (sql-server "localhost")
+                   (sql-user "user")
+                   (sql-password "password")
+                   (sql-database "db2"))))
+
+#+END_SRC
+
+
+and then call sql-connect, it will popup a list based on the variable of sql-connection-alist
+* elisp
+** take a rest every some time
+that blog also has some emacs elisp related doc gs
+http://blog.cfw.io/Emacs/emacs-timer.html

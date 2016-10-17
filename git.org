@@ -1,0 +1,10 @@
+* change commit username 
+http://stackoverflow.com/questions/750172/change-the-author-and-committer-name-and-e-mail-of-multiple-commits-in-git
+#+BEGIN_SRC bash
+git config --global user.name "you name"
+git config --global user.email you@domain.com
+git commit --amend --reset-author
+git commit --amend --reset-author --no-edit
+#+END_SRC
+
+

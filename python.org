@@ -155,7 +155,195 @@ http://fedoraproject.org/wiki/Features/EasierPythonDebugging
 http://python-manhole.readthedocs.io/en/latest/
 https://pypi.python.org/pypi/pudb
 * syntax
+** How to use *args and **kwargs in Python
+http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/
+http://www.learnpython.org/en/Multiple_Function_Arguments
+Or, How to use variable length argument lists in Python.
+
+The special syntax, *args and **kwargs in function definitions is used to pass a variable number of arguments to a function. The single asterisk form (*args) is used to pass a non-keyworded, variable-length argument list, and the double asterisk form is used to pass a keyworded, variable-length argument list. Here is an example of how to use the non-keyworded form. This example passes one formal (positional) argument, and two more variable length arguments.
+#+BEGIN_SRC example
+
+def test_var_args(farg, *args):
+    print "formal arg:", farg
+    for arg in args:
+        print "another arg:", arg
+
+test_var_args(1, "two", 3)
+Results:
+
+formal arg: 1
+another arg: two
+another arg: 3
+
+Here is an example of how to use the keyworded form. Again, one formal argument and two keyworded variable arguments are passed.
+
+def test_var_kwargs(farg, **kwargs):
+    print "formal arg:", farg
+    for key in kwargs:
+        print "another keyword arg: %s: %s" % (key, kwargs[key])
+
+test_var_kwargs(farg=1, myarg2="two", myarg3=3)
+Results:
+
+formal arg: 1
+another keyword arg: myarg2: two
+another keyword arg: myarg3: 3
+
+Using *args and **kwargs when calling a function
+
+This special syntax can be used, not only in function definitions, but also when calling a function.
+
+def test_var_args_call(arg1, arg2, arg3):
+    print "arg1:", arg1
+    print "arg2:", arg2
+    print "arg3:", arg3
+
+args = ("two", 3)
+test_var_args_call(1, *args)
+Results:
+
+arg1: 1
+arg2: two
+arg3: 3
+Here is an example using the keyworded form when calling a function:
+
+def test_var_args_call(arg1, arg2, arg3):
+    print "arg1:", arg1
+    print "arg2:", arg2
+    print "arg3:", arg3
+
+kwargs = {"arg3": 3, "arg2": "two"}
+test_var_args_call(1, **kwargs)
+Results:
+
+arg1: 1
+arg2: two
+arg3: 3
+
+#+END_SRC
 ** __init__.py
 *** meanings of __all__
 http://stackoverflow.com/questions/44834/can-someone-explain-all-in-python
-check the file of django.db.__iinit__.py 
+check the file of django.db.__iinit__.py
+* logging
+** log for exception
+ http://stackoverflow.com/a/16417709/266185
+ http://blog.tplus1.com/blog/2007/09/28/the-python-logging-module-is-much-better-than-print-statements/
+#+BEGIN_SRC python :results output
+import logging
+
+def b():
+    return 1/0
+def a():
+    b()
+try:
+    a()
+except Exception as ex:
+    logging.exception("something is wrong")
+
+#+END_SRC
+
+#+RESULTS:
+
+* timezone
+
+** get the time as PDT (day time saving)
+#+BEGIN_SRC python :results output
+ import pytz
+ from datetime import datetime
+ ptd = pytz.timezone("America/Los_Angeles")
+ a= datetime.now(ptd)
+ print a
+#+END_SRC
+
+#+RESULTS:
+: 2016-10-25 00:15:01.870243-07:00
+
+* closure
+http://www.discoversdk.com/blog/closures-in-python-3
+* questions
+** escape %
+I am using python 2.7.10
+
+#+BEGIN_SRC example
+[1:53]  
+In [6]:     sql_string = """
+  ...:     select dba_corpid_id,comments,
+  ...:            date_format(start_time,'%Y%m%d') start_period,
+  ...:            date_format(end_time,'%Y%m%d') end_period
+  ...:     from dba_oooschedule
+  ...:     where start_time >= str_to_date(%s, '%Y%m%d')
+  ...:           and end_time <= str_to_date(%s, '%Y%m%d')
+  ...:     """
+
+In [7]: sql_string % (20120101,20130101)
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-7-5cffa8ddeb2d> in <module>()
+----> 1 sql_string % (20120101,20130101)
+
+ValueError: unsupported format character 'Y' (0x59) at index 64
+#+END_SRC
+
+you have date format bits in your string which python is confusing as format characters
+and those need to be preserved so you'd have to escape the ones you want to keep like `,'%%Y%%m%%d`
+
+The first one is correct as it's correctly escaped, but the second one is wrong.
+
+#+BEGIN_SRC python :results output
+    sql_string = """
+    select test_corpid_id,comments,
+           date_format(start_time,'%%Y%%m%%d') start_period,
+           date_format(end_time,'%%Y%%m%%d') end_period
+    from test_oooschedule
+    where start_time >= str_to_date(%s, '%%Y%%m%%d')
+          and end_time <= str_to_date(%s, '%%Y%%m%%d')
+    """
+    sql_string = sql_string % (20130101, 20120101)
+    print sql_string
+#+END_SRC
+
+#+RESULTS:
+: 
+: select test_corpid_id,comments,
+:        date_format(start_time,'%Y%m%d') start_period,
+:        date_format(end_time,'%Y%m%d') end_period
+: from test_oooschedule
+: where start_time >= str_to_date(20130101, '%Y%m%d')
+:       and end_time <= str_to_date(20120101, '%Y%m%d')
+: 
+
+
+
+#+BEGIN_SRC python :results output
+    sql_string = """
+    select test_corpid_id,comments,
+           date_format(start_time,'%Y%m%d') start_period,
+           date_format(end_time,'%Y%m%d') end_period
+    from test_oooschedule
+    where start_time >= str_to_date(%s, '%Y%m%d')
+          and end_time <= str_to_date(%s, '%Y%m%d')
+    """
+    sql_string = sql_string % (20130101, 20120101)
+    print sql_string
+#+END_SRC
+
+#+RESULTS:
+
+** __name__
+__name__ is the module name
+it include the package name also. So if there are subdirectory, then the module name could be some thing like directory.file_name
+** meanings of %
+ inside of file /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/MySQLdb/cursors.py
+ It has the following code
+
+ The meaning is just to replace every %s in the query with the params(args)
+ #+BEGIN_SRC python
+ query = query % tuple([db.literal(item) for item in args])
+ #+END_SRC
+
+#+BEGIN_SRC example
+>>> a="test %s %s %s"
+>>> a % ("1","2","3")
+'test 1 2 3'
+#+END_SRC

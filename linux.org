@@ -1,0 +1,9 @@
+* change shell to bash
+in the .login file
+add the command of
+bash
+
+#+BEGIN_SRC example
+bash-3.2$ cat .login
+bash
+#+END_SRC

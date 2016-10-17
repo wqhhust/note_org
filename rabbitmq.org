@@ -1,0 +1,15 @@
+
+* create user
+#+BEGIN_SRC example
+abbitmqctl add_user daniel changeit
+rabbitmqctl set_user_tags daniel administrator
+rabbitmqctl set_permissions -p / daniel ".*" ".*" ".*"
+#+END_SRC
+
+
+#+BEGIN_SRC bash
+ sudo rabbitmqctl add_user myuser mypassword
+ sudo rabbitmqctl add_vhost myvhost
+ sudo rabbitmqctl set_user_tags myuser mytag
+ sudo rabbitmqctl set_permissions -p myvhost myuser ".*" ".*" ".*"
+#+END_SRC

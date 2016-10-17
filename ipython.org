@@ -1,0 +1,13 @@
+
+* startup file (like .profile for shell)
+http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#startup-files
+#+BEGIN_SRC example
+qiwu$ pwd
+.ipython/profile_default/startup
+
+
+qiwu$ cat 00-first.ipy
+%load_ext autoreload
+%autoreload 2
+
+#+END_SRC

@@ -1,0 +1,4 @@
+
+* shortcut
+** new url
+ Command + L to jump to the url field to input a new URLParameters

@@ -18,10 +18,10 @@ windows:
     root: ~/Code/sample/www
     layout: even-horizontal
     panes:
-      - ls -l
-      - ptipython
       - mycli mysql://_read:_read@10....:3306/redb
-      - python manage.py runserver 10.249.66.124:5555
+      - commands
+        - cd /Users/qiwu/python/db-in-box/DBInBoxWeb 
+        - python manage.py runserver 10.219.61.114:5555
 
 #+END_SRC
 
@@ -41,3 +41,12 @@ itermocil sample
 
 ** common used shutcut
 command + TAB: to switch between windows
+
+* start rabbitmq
+To have launchd start rabbitmq now and restart at login:
+#+BEGIN_SRC example
+  brew services start rabbitmq
+#+END_SRC
+* tool to map keyboard
+https://pqrs.org/osx/karabiner/
+http://apple.stackexchange.com/questions/16135/remap-home-and-end-to-beginning-and-end-of-line
