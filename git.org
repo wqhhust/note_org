@@ -8,3 +8,32 @@ git commit --amend --reset-author --no-edit
 #+END_SRC
 
 
+* combine multiple commits into one commit
+http://stackoverflow.com/questions/6934752/combining-multiple-commits-before-pushing-in-gitr
+What you want to do is referred to as "squashing" in git. There are lots of options when you're doing this (too many?) but if you just want to merge all of your unpushed commits into a single commit, do this:
+
+git rebase -i origin/master
+This will bring up your text editor (-i is for "interactive") with a file that looks like this:
+#+BEGIN_SRC exameple
+
+pick 16b5fcc Code in, tests not passing
+pick c964dea Getting closer
+pick 06cf8ee Something changed
+pick 396b4a3 Tests pass
+pick 9be7fdb Better comments
+pick 7dba9cb All done
+
+#+END_SRC
+
+Change all the pick to squash except the first one:
+
+#+BEGIN_SRC exameple
+
+pick 16b5fcc Code in, tests not passing
+squash c964dea Getting closer
+squash 06cf8ee Something changed
+squash 396b4a3 Tests pass
+squash 9be7fdb Better comments
+squash 7dba9cb All done
+Save your file and exit your editor. Then another text editor will open to let you combine the commit messages from all of the commits into one big commit message.
+#+END_SRC
