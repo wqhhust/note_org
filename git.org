@@ -28,12 +28,11 @@ pick 7dba9cb All done
 Change all the pick to squash except the first one:
 
 #+BEGIN_SRC exameple
-
 pick 16b5fcc Code in, tests not passing
 squash c964dea Getting closer
 squash 06cf8ee Something changed
 squash 396b4a3 Tests pass
 squash 9be7fdb Better comments
 squash 7dba9cb All done
-Save your file and exit your editor. Then another text editor will open to let you combine the commit messages from all of the commits into one big commit message.
 #+END_SRC
+Save your file and exit your editor. Then another text editor will open to let you combine the commit messages from all of the commits into one big commit message.

@@ -347,3 +347,5 @@ it include the package name also. So if there are subdirectory, then the module 
 >>> a % ("1","2","3")
 'test 1 2 3'
 #+END_SRC
+* coroutines
+http://www.dabeaz.com/coroutines/Coroutines.pdf
