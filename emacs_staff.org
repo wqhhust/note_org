@@ -49,6 +49,9 @@ use Meta + X
 ** fold python
 https://github.com/syl20bnr/spacemacs/issues/5047
 in normal mode: z + a
+** kill ring
+helm-show-kill-ring
+Use the SPC + r + y
 * good setting
 ** automatically copy text selected with the mouse
  http://pragmaticemacs.com/emacs/automatically-copy-text-selected-with-the-mouse/
