@@ -349,3 +349,28 @@ it include the package name also. So if there are subdirectory, then the module 
 #+END_SRC
 * coroutines
 http://www.dabeaz.com/coroutines/Coroutines.pdf
+* dynamically loading module
+
+http://stackoverflow.com/a/1057534/266185
+to load dynamically:
+#+BEGIN_SRC python
+
+from os.path import dirname, basename, isfile
+import glob
+modules = glob.glob(dirname(__file__)+"/*.py")
+__all__ = [ basename(f)[:-3] for f in modules if isfile(f) if not f.endswith('__init__.py')]
+print "modules loaded from jobs are:{}".format(__all__)
+
+#+END_SRC
+Then to call the function:
+#+BEGIN_SRC python
+
+def call_function(func_name,parameter):
+    [module_name,func_name] =func_name.split(".")
+    used_module = globals()[module_name]
+    if len(parameter)==0:
+        result = getattr(used_module,func_name)()
+    for step in result:
+        print "current step is:{}".format(step)
+
+#+END_SRC
