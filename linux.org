@@ -7,3 +7,8 @@ bash
 bash-3.2$ cat .login
 bash
 #+END_SRC
+* profile used by ssh
+http://unix.stackexchange.com/questions/46143/why-bash-unable-to-find-command-even-if-path-is-specified-properly
+** ssh hostname
+In this case it will source .profile
+** ssh hostname some_command
