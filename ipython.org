@@ -11,3 +11,9 @@ qiwu$ cat 00-first.ipy
 %autoreload 2
 
 #+END_SRC
+* autoreload a python and run function inside ipython
+autoreload is good to use in django shell, we could also use it in plain python source file. suppose the python file is utils.py under /tmp. Then cd to /tmp, and run ipython, then we could import utils inside ipython shell. after set the following 2 command, we could run any function without reload the module, e.g edit in emacs in another window, while run function in ipython termial shell
+#+BEGIN_SRC shell
+ %load_ext autoreload
+ %autoreload 2
+#+END_SRC

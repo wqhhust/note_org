@@ -112,15 +112,40 @@ http://stackoverflow.com/questions/12118695/efficient-way-to-remove-keys-with-em
 a={1:3,3:5,5:None}
 dict((k, v) for k, v in a.iteritems() if v)
 #+END_SRC
+*** get a list of value based on a list of key
+#+BEGIN_SRC python
+[mydict[x] for x in mykeys]
+#+END_SRC
 * rabbitmq
 http://stackoverflow.com/questions/12426927/pika-rabbitmq-setting-basic-qos-to-prefetch-1-still-appears-to-consume-all-me
 * database
 ** insert a row to a table using a map data structure
 http://stackoverflow.com/questions/9336270/using-a-python-dict-for-a-sql-insert-statement
 #+BEGIN_SRC sql
+placeholders = ', '.join(['%s'] * len(myDict))
+columns = ', '.join(myDict.keys())
+sql = "INSERT INTO %s ( %s ) VALUES ( %s )" % (table, columns, placeholders)
+cursor.execute(sql, myDict.values())
+
 placeholder = ", ".join(["%s"] * len(dict))
 stmt = "insert into `{table}` ({columns}) values ({values});".format(table=table_name, columns=",".join(dict.keys()), values=placeholder)
 cur.execute(stmt, list(dict.values()))
+#+END_SRC
+** catch the plain sql executed for a parameteralized sql
+http://stackoverflow.com/questions/5266430/how-to-see-the-real-sql-query-in-python-cursor-execute
+cursor._last_executed
+#+BEGIN_SRC python
+try:
+    cursor.execute(sql, (arg1, arg2))
+    connection.commit()
+except:
+    print(cursor._last_executed)
+    raise
+
+#+END_SRC
+** prepared statement
+#+BEGIN_SRC python
+cursor.execute("SELECT FROM tablename WHERE fieldname = %s", [value])
 #+END_SRC
 * common pitful
 ** loop inside a list
@@ -347,6 +372,19 @@ it include the package name also. So if there are subdirectory, then the module 
 >>> a % ("1","2","3")
 'test 1 2 3'
 #+END_SRC
+** how to run one instance of python application
+#+BEGIN_SRC python
+
+    pid_file = "/tmp/app.pid"
+    fp       = open(pid_file,'w')
+    try:
+        fcntl.lockf(fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except IOError:
+        print "The app is already running, quit the job...."
+    else:
+        main()
+
+#+END_SRC
 * coroutines
 http://www.dabeaz.com/coroutines/Coroutines.pdf
 * dynamically loading module
@@ -374,3 +412,39 @@ def call_function(func_name,parameter):
         print "current step is:{}".format(step)
 
 #+END_SRC
+* multiple thread
+** ThreadPoolExecutor.map: timeout is not for each thread but for all 
+The following code will print 2 None and then raise time out error. Even each function only sleep 1 second, but since we have only 2 threads, so when the function run the third time, it need to wait 1 second before run as there is no sufficient threads to run it immediately, and this wait 1 second plus sleep 1 second, add up to 2 second, and then error out with Timeout error.
+
+But if sleep 10 before print, then it won't throw timeout error. From the doc it said:
+https://pythonhosted.org/futures/
+#+BEGIN_SRC example
+The returned iterator raises a TimeoutError if __next__() is called and the result isn’t available after timeout seconds from the original call to map()
+#+END_SRC
+
+#+BEGIN_SRC python
+
+def my_test():
+    import time
+    from concurrent import futures
+    def f1(x):
+        time.sleep(1)
+        print "sleep"
+    te = futures.ThreadPoolExecutor(2)
+    b= te.map(f1, range(10),timeout = 2)
+    # time.sleep(10)
+    for x in b:
+        print x
+
+my_test()
+
+#+END_SRC
+* pyflakes
+use the following package, and then in emacs, we could easily check error by using CTRL+c, CTRL+v 
+#+BEGIN_SRC example
+pip install pyflakes
+#+END_SRC
+* good library
+[[http://awesome-python.com/][awesome-python]]
+** excel
+[[https://github.com/pyexcel/pyexcel][pyexcel]]

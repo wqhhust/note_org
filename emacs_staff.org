@@ -177,3 +177,19 @@ and then call sql-connect, it will popup a list based on the variable of sql-con
 ** take a rest every some time
 that blog also has some emacs elisp related doc gs
 http://blog.cfw.io/Emacs/emacs-timer.html
+** region as input to a shell commands
+http://manuel-uberti.github.io/emacs/2016/12/03/xmllint/
+#+BEGIN_SRC elisp
+(defun mu-xml-format ()
+  "Format an XML buffer with `xmllint'."
+  (interactive)
+  (shell-command-on-region (point-min) (point-max)
+                           "xmllint -format -"
+                           (current-buffer) t
+                           "*Xmllint Error Buffer*" t))
+#+END_SRC
+* emacs slow
+http://emacs.stackexchange.com/questions/12086/abnormally-large-savehist-file
+I'm starting to use Spacemacs and occasionally I get stuck with Emacs beginning to require infinite amount of CPU and memory. Inspecting my .emacs.d/.cache folder reveals that the file savehist is 1.16 GB large... Deleting this file made Emacs work again.
+
+

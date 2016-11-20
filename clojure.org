@@ -1,0 +1,9 @@
+* some video
+[[https://www.youtube.com/watch?v=cH4ZJAKZHjQ][Now what? - David Nolen]]
+[[https://www.youtube.com/watch?v=hF4ViNFclIY][Get started with ClojureScript and Reagent]]
+[[https://www.youtube.com/watch?v=gsffg5xxFQI][ClojureScript for Skeptics - Derek Slager]]
+[[https://www.youtube.com/watch?v=mty0RwkPmE8][The Next Five Years of ClojureScript - David Nolen]]
+[[https://www.youtube.com/watch?v=cDzjlx6otCU][re-frame your ClojureScript applications - Shaun Mahood]]
+[[https://www.youtube.com/watch?v=gX5tWAbbvt4][Divid Dojo 12 - ClojureScript]]
+* some artical
+[[http://www.lispcast.com/core-async-browser-motivation][core.async in Browsers]]

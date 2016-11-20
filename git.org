@@ -36,3 +36,17 @@ squash 9be7fdb Better comments
 squash 7dba9cb All done
 #+END_SRC
 Save your file and exit your editor. Then another text editor will open to let you combine the commit messages from all of the commits into one big commit message.
+
+* cherry pick
+http://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean
+Cherry picking in git means to choose a commit from one branch and apply it onto another.
+
+This is in contrast with other ways such as merge and rebase which normally applies many commits onto a another branch.
+
+Make sure you are on the branch you want apply the commit to.
+
+git checkout master
+Execute the following:
+
+git cherry-pick <commit-hash>
+Additional links:

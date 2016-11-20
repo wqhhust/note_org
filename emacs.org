@@ -2279,8 +2279,12 @@ comprehend一词既有‘包含’的意思，也有‘理解’的意思。人�
 44.“将科学局部的知识视为人类全部的知识，将科学有限的范围视为唯一的境界，将科学相对的学说视为绝对的真理，并以为在科学之外的其他学问都没有研讨的价值。以为科学可以解决人生一切问题，所以高唱‘科学万能’。这便是科学主义。” ——何天择博士在《人从那里来》一书中，对科学主义这样描述时所说！
 
 45.“不管任何环境，要守住耶稣基督救赎的真理和最大的诫命——爱人如己。”——牛顿晚年(1707年谢世
+** good bible version
+http://www.esvbible.org/
+and NIV are good 
 ** 电影
 [[http://v.youku.com/v_show/id_XODcyNDgwODA0.html#paction][耶稣传]]
+[[https://mp.weixin.qq.com/s?__biz=MzAxMTIyNTg1OQ==&mid=402063511&idx=1&sn=89b8a981a94dbb9e43a28f4b4c974cdd&mpshare=1&scene=1&srcid=0122wodrr2SpAs1DrjeR69Gw&key=fe4410a4c5efc39cb8b1432dfcef4e421ac8299f058af97d2fa7e1866299db97b5d99ddc159e096e504a65aa5c3df0b8&ascene=0&uin=MTgwMDMwNjUxNA%253D%253D&devicetype=iMac+MacBookPro11%252C5+OSX+OSX+10.11.6+build(15G1004)&version=11020012&pass_ticket=WYS9aEbRSN2eQ9HIucXEL3h1%252BUONXAGgeKB59BNqhrYwhqxlbqmWhiGS8moa1n%252BL][很多电影]]
 [[http://www.tudou.com/programs/view/TFgYtyKgsh0/][love in China]]
 * firefox
 firebug plugin addon
@@ -2419,3 +2423,15 @@ If you're running Dropbox on your server for the first time, you'll be asked to 
 cd /data/.dropbox-dist/
 oracle@SomeHost /data/.dropbox-dist $ ./dropboxd
 http://www.microsoft.com/security/portal/threat/encyclopedia/entry.aspx?name=HackTool%3aWin32%2fKeygen
+* youtube
+[[https://www.youtube.com/watch?v=8grVwcPZnuw][Simon Sinek: If You Don't Understand People, You Don't Understand Business]]
+[[https://www.youtube.com/watch?v=jDIZS4IQlQk][Simon Sinek: Love Your Work]]
+[[https://www.youtube.com/watch?v=AIkfdhGhxDc][Simon Sinek:Together is Better]]
+[[https://www.youtube.com/watch?v=bYZZQigqZQs][The Three Core Coaching Skills]]
+* coaching
+[[http://ideas.time.com/2013/03/18/four-ways-to-give-good-feedback/][Four Ways to Give Good Feedback]]
+* 感恩
+** 越越在床头玩耍，由于床头的栏杆不牢固，在受力的情况下会转动，越越当时在栏杆转动时，直接从栏杆上翻过来，脑袋朝地栽倒在地。当时她大哭，我也吓坏了，因为曾有报道说有人从1米的地方脑袋朝地坠落，直接就没命了。查看时还好，前脑勺有红肿，腰部受伤，估计是腰部挂在栏杆上，也保护了脑袋，免得着力太大。
+* to do
+* TODO 
+[[https://www.amazon.cn/%25E5%2590%25AF%25E7%25A4%25BA%25E7%259A%2584%25E5%2593%25B2%25E5%25AD%25A6-%25E8%25B5%25AB%25E5%25B0%2594%25E6%259B%25BC%25C2%25B7%25E5%25B7%25B4%25E6%2596%2587%25E5%2585%258B/dp/B00ICFNDFO/ref=sr_1_1?ie=UTF8&qid=1481722382&sr=8-1&keywords=Herman+Bavinck][启示的哲学]]

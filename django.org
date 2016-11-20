@@ -65,3 +65,20 @@ python manage.py shell_plus --ptpython
 pip install Werkzeug
 python manage.py runserver_plus 0.0.0.0:8000
 #+END_SRC
+* migration
+** clean up the schema for an app
+https://realpython.com/blog/python/digging-deeper-into-migrations/
+If you want to “undo” all the migrations for a particular app, you can migrate to a special migration called zero.
+
+For example if you type:
+
+#+BEGIN_SRC shell
+./manage.py migrate historical_data zero
+#+END_SRC
+
+It will undo/reverse all the migrations for the historical_data app. In addition to using zero; you can also use any arbitrary migration, and if that migration is in the past then the database will be rolled back to the state of that migration, or rolled forward if the migration hasn’t yet ran. Pretty powerful stuff!
+** get the sql for a migration file created by makemigrations
+The last parameter is the migration name, which is the string uniquely identify a py file under migrations folder under that app. The following example will create sql for a py file whose file name is starting as "002", if there are 2 files starting with that string, then it will error out
+#+BEGIN_SRC shell
+python manage.py sqlmigrate orajob 002
+#+END_SRC
