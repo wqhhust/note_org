@@ -1,0 +1,6 @@
+
+* functional java library
+[[http://www.javaslang.io/][javaslang]]
+
+* immutables
+[[https://github.com/immutables/immutables][immutables]]

@@ -1,0 +1,12 @@
+
+* how to change/view the app-db atom
+#+BEGIN_SRC example
+
+cljs.user=> @re-frame.db/app-db
+{:todos {2 {:id 2, :title "sad", :done false}, 4 {:id 4, :title "a", :done false}, 6 {:id 6, :title "asdf", :done false}, 8 {:id 8, :title "sadf", :done false}}, :showing :all}
+cljs.user=>
+
+#+END_SRC
+
+* tutorial
+[[http://www.multunus.com/blog/2016/02/noobs-walkthrough-re-frame-app/][A Noob’s Walkthrough of a re-frame Application]]

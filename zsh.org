@@ -1,0 +1,44 @@
+
+* installation
+  
+** on mac
+[[http://sourabhbajaj.com/mac-setup/iTerm/zsh.html][Mac OS X Setup Guide]]
+* good artical
+[[https://www.undefinednull.com/2015/07/31/iterm-tips-and-zsh-plugins-for-better-development-environment/][iTerm Tips and Zsh Plugins for Better Development Environment]]
+[[https://www.smashingmagazine.com/2015/07/become-command-line-power-user-oh-my-zsh-z/][Become A Command-Line Power User With Oh-My-ZSH And Z]]
+[[http://code.joejag.com/2014/why-zsh.html][My favourite Zsh features]]
+
+* plugins
+** how to configure plugins
+ ZSH Plugins Link
+ ZSH allows you to extend built-in functionality by adding plugins, and it actually ships with a bunch of fantastic ones. To enable a plugin, open your .zshrc file and scroll down until you see the spot where active plugins are defined. To add a new one, just type the name between the parentheses, making sure to include a space between each name.
+ plugins=(git cloudapp node npm bower brew osx extract z)
+ Once you’ve added a plugin, you’ll need to either run source ~/.zshrc or open a new tab.
+
+* good tips
+** Edit that long command in Vim
+You can manipulate long commands in Bash and Zsh by using shortcuts like <CTRL>+K to delete characters. But, yet sometimes you want the power of a more powerful editor for manipulating commands.
+
+Whenever you find yourself in this position hit <CTRL>+X <CTRL>+E to drop the current command into your $EDITOR.
+
+** Killer tab completion
+
+I usually kill commands after inspecting them using ps or if I’m confident with pkill, Zsh give you another option.
+
+Hit tab and it will give you a keyboard navigable list of commands that start with the letters you typed after kill
+
+** Clever history
+
+You may be familiar with using <CTRL>+R for performing a recursive search to find a previous command you typed in. This is a great way to reuse commands in Bash and Zsh.
+
+Zsh goes one better. You can type part of a command and press <UP>
+
+It finds the last command we typed starting with ‘ls’. We could continue pressing up to cycle if we wanted.
+** The Z plugin
+One of my all time favourite plugin. The Z plugin remembers your navigation history in the terminal, and auto completes it for you next time. For example, after enabling the z plugin, if I do this:
+cd  ~/Dropbox/code_playground/LookAround
+The z plugin remembers this navigation and the next time I just need to type the following and press TAB
+** The H plugin
+The H plugin lists all your previous command history right there. Sometimes it is easy to see all of them and select the desired one. Enable the h plugin by adding it to the plugin section of .zshrc.
+Then, type h in the command prompt and enter.
+

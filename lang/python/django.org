@@ -1,4 +1,10 @@
 
+* misc
+** what version of django is installed
+ #+BEGIN_SRC python
+ python -c "import django; print(django.get_version())"
+ #+END_SRC
+
 * admin
 ** open a console (Repl)
 #+BEGIN_SRC shell
@@ -81,4 +87,36 @@ It will undo/reverse all the migrations for the historical_data app. In addition
 The last parameter is the migration name, which is the string uniquely identify a py file under migrations folder under that app. The following example will create sql for a py file whose file name is starting as "002", if there are 2 files starting with that string, then it will error out
 #+BEGIN_SRC shell
 python manage.py sqlmigrate orajob 002
+#+END_SRC
+* write customized management command
+https://docs.djangoproject.com/en/1.10/howto/custom-management-commands/
+simple code to accep command line parameter for a customized command
+#+BEGIN_SRC python
+
+from django.core.management.base import BaseCommand, CommandError
+
+class Command(BaseCommand):
+    help = 'Closes the specified poll for voting'
+
+    def add_arguments(self, parser):
+        parser.add_argument('poll_id', nargs='+', type=int)
+
+    def handle(self, *args, **options):
+        for poll_id in options['poll_id']:
+            print poll_id
+
+#+END_SRC
+* models
+** defined customized default value
+
+#+BEGIN_SRC python
+
+def default_date():
+    d = timezone.now().date() + timedelta(days = 1)
+    t = datetime.combine(d, datetime.min.time())
+    return t
+
+class YouModel(models.Model):
+    start_time = models.DateTimeField(blank=True, null=True, default=default_date)
+
 #+END_SRC

@@ -1,0 +1,9 @@
+
+* post data
+[[http://stackoverflow.com/questions/7172784/how-to-post-json-data-with-curl-from-terminal-commandline-to-test-spring-rest][How to POST JSON data with Curl]]
+#+BEGIN_SRC shell
+curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password":"xyz"}' http://localhost:3000/api/login
+#+END_SRC
+ 
+
+curl -H "Content-Type: application/json" -X POST -d '{"id":"1","status":"completed"}' http://10.249.66.124:5555/orajob/api/update_step_log_status/

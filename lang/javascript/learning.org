@@ -1,0 +1,7 @@
+
+[[https://www.freecodecamp.com/map#nested-collapseBasicJavaScript][online learning of javascript]]
+* resources
+[[https://medium.com/javascript-scene/10-priceless-resources-for-javascript-learners-bbf2f7d7f84e#.ldhxsvovl][10 Priceless Resources for JavaScript Learners]]
+[[https://medium.com/javascript-scene/how-to-learn-es6-47d9a1ac2620#.t3mk5sajk][How to Learn ES6]]
+[[https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95#.5ctl4thjf][10 Interview Questions Every JavaScript Developer Should Know]]
+

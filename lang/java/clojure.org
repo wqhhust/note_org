@@ -1,0 +1,368 @@
+* some video
+[[https://www.infoq.com/presentations/Simple-Made-Easy][Simple Made Easy]]
+[[https://www.youtube.com/watch?v=cH4ZJAKZHjQ][Now what? - David Nolen]]
+[[https://www.youtube.com/watch?v=hF4ViNFclIY][Get started with ClojureScript and Reagent]]
+[[https://www.youtube.com/watch?v=gsffg5xxFQI][ClojureScript for Skeptics - Derek Slager]]
+[[https://www.youtube.com/watch?v=mty0RwkPmE8][The Next Five Years of ClojureScript - David Nolen]]
+[[https://www.youtube.com/watch?v=cDzjlx6otCU][re-frame your ClojureScript applications - Shaun Mahood]]
+[[https://www.youtube.com/watch?v=gX5tWAbbvt4][Divid Dojo 12 - ClojureScript]]
+* some artical
+[[http://www.lispcast.com/core-async-browser-motivation][core.async in Browsers]]
+* promotion
+[[http://labs.ig.com/static-typing-promise][The broken promise of static typing]]
+[[http://stackoverflow.com/questions/12253200/how-is-lisps-read-eval-print-loop-different-than-pythons][How is Lisp's read-eval-print loop different than Python's]]
+[[http://stackoverflow.com/questions/5671214/is-lisp-the-only-language-with-repl][Is Lisp the only language with REPL?]]
+http://deliberate-software.com/safety-rank-part-2/
+[[http://www.multunus.com/blog/2016/11/clojure-matters/][Why Clojure]]
+https://www.booleanknot.com/blog/2015/12/21/encapsulation-and-clojure-part-1.html
+http://fn-code.blogspot.com/2015/10/my-concern-with-concerns.html
+http://deliberate-software.com/safety-rank-part-2/
+http://telegra.ph/Why-Clojure-is-better-than-C-PythonRuby-and-java-and-why-should-you-care-12-20
+* repl
+  [[https://skillsmatter.com/skillscasts/8063-using-repl-driven-development][Using REPL Driven Development]]
+* connect to a java application
+[[https://github.com/djpowell/liverepl][liverepl]]
+* boot
+** manually download boot
+if manually download the boot.jar, then just put it under the correct folder, then boot will find them under these folds, if can't find it will then try to download it automatically
+
+oracle@SomeHost ~/.boot $ cat boot.properties 
+BOOT_CLOJURE_NAME=org.clojure/clojure
+BOOT_VERSION=2.5.5
+BOOT_CLOJURE_VERSION=1.8.0
+#BOOT_JVM_OPTIONS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8087 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=8087"
+
+oracle@SomeHost ~/.boot/cache/bin $ tree
+.
+├── 2.4.2
+│   ├── boot1133127694768844380.jar
+│   └── boot6675944551114486971.jar
+├── 2.5.2
+│   ├── boot212976671301937065.jar
+│   ├── boot2495592243726006254.jar
+│   ├── boot2774136939659078183.jar
+│   ├── boot3704565577884391836.jar
+│   ├── boot4249403466279405105.jar
+│   ├── boot4451132883056568743.jar
+│   ├── boot7949930609941258502.jar
+│   └── boot8606978147581365130.jar
+└── 2.5.5
+    └── boot.jar
+* hiccup
+https://clojurebridge.github.io/community-docs/docs/web-applications/hiccup/
+
+https://github.com/yokolet/hiccup-samples
+
+http://www.tuicool.com/articles/muQfy2
+
+* stacktrace
+https://github.com/mmcgrana/clj-stacktrace
+If you use Leiningen, you can install clj-stacktrace on a user-wide basis. Just add the following to ~/.lein/profiles.clj:
+
+#+BEGIN_SRC clojure
+{:user {:dependencies [[clj-stacktrace "0.2.8"]]
+        :injections [(let [orig (ns-resolve (doto 'clojure.stacktrace require)
+                                            'print-cause-trace)
+                           new (ns-resolve (doto 'clj-stacktrace.repl require)
+                                           'pst)]
+                       (alter-var-root orig (constantly (deref new))))]}}
+#+END_SRC
+
+* nREPL
+** use nREPL inside legacy java
+http://dev.theladders.com/2013/04/getting-some-clojure-nrepl-in-a-spring-app/
+http://blog.avisi.nl/2015/05/18/how-to-inspect-a-legacy-java-application-with-the-clojure-repl/
+#+BEGIN_SRC java
+package nl.avisi.jira;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+import com.atlassian.jira.component.ComponentAccessor;
+
+import clojure.java.api.Clojure;
+import clojure.lang.IFn;
+
+public class MyBean implements InitializingBean, DisposableBean {
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+      IFn plus = Clojure.var("clojure.core", "+");
+      Object object = plus.invoke(1, 2);
+      LOGGER.debug("plus invoked, result was: " + object);
+
+      IFn require = Clojure.var("clojure.core", "require");
+      require.invoke(Clojure.read("clojure.tools.nrepl.server"));
+      
+      IFn server = Clojure.var("clojure.tools.nrepl.server", "start-server");
+      server.invoke();
+    }
+
+}
+#+END_SRC
+Our code does not specify a port, so you need to find out what port the repl is using (use netstat -a | grep LISTEN or the likes). When you know the port, connect to the repl with leiningen:
+
+○ → LEIN_REPL_PORT=33475 lein repl :connect                                                                                                                                                                                             
+Connecting to nREPL at 127.0.0.1:33475
+REPL-y 0.3.5, nREPL 0.2.10
+Clojure 1.6.0
+Java HotSpot(TM) 64-Bit Server VM 1.7.0_60-b19
+    Docs: (doc function-name-here)
+          (find-doc "part-of-name-here")
+  Source: (source function-name-here)
+ Javadoc: (javadoc java-object-or-class-here)
+    Exit: Control+D or (exit) or (quit)
+ Results: Stored in vars *1, *2, *3, an exception in *e
+
+user=>
+** use nREPL inside clojure app
+** socket REPL in clojure 1.8
+You can change the lein repl version to 1.8.0 via
+          https://github.com/technomancy/leiningen/blob/master/doc/PROFILES.md#replacing-default-repl-dependencies
+          and then run something like `JVM_OPTS='-Dclojure.server.repl={:port 5555 :accept clojure.core.server/repl}' lein repl`
+* IO
+read: slurp,  write: spit
+user=> (spit "blubber.txt" "test")
+nil
+user=> (slurp "blubber.txt")
+"test"
+
+* jdbc
+** insert/update timestamp
+http://stackoverflow.com/questions/9305541/clojure-jdbc-postgresql-i-am-trying-to-update-a-timestamp-value-in-postgresql-f
+
+Use [clj-time "0.3.6"] as the dependency specifier in your project.clj if you decide to use clj-time.
+#+BEGIN_SRC clojure
+(require '[clj-time [format :as timef] [coerce :as timec]])
+
+(->> "Thu Feb 09 10:38:01 +0000 2012"
+     (timef/parse (timef/formatter "EEE MMM dd HH:mm:ss Z yyyy"))
+     timec/to-timestamp)
+#+END_SRC
+or
+#+BEGIN_SRC clojure
+(java.sql.Timestamp/valueOf "2004-10-19 10:23:54")
+#+END_SRC
+
+You'll need to pass in a java.sql.Timestamp instance. To parse your string into one using clj-time, a Joda-Time-wrapping library for Clojure, you'd do something along the following lines:
+
+(require '[clj-time [format :as timef] [coerce :as timec]])
+(->> "Thu Feb 09 10:38:01 +0000 2012"
+     (timef/parse (timef/formatter "EEE MMM dd HH:mm:ss Z yyyy"))
+     timec/to-timestamp)
+The returned value can then be passed to PostgreSQL via JDBC.
+
+In case you're obtaining the date in some other string format and converting it to this one, you could skip the conversion and provide an appropriate formatter for the original representation. There are quite a few available by default in the clj-time.format/formatters map, say (clj-time.format/show-formatters) at the REPL to see a list with examples. Also, clj-time.coerce/from-string tries all default formatters in sequence returning the value of the first succeeding parse (nil if there is none). If you're obtaining the date as a java.util.Date or a long, see from-date and from-long in the same namespace.
+
+
+Alternatively, you could use some other way of parsing your timestamp string into a java.sql.Timestamp; Timestamp itself can parse a different string representation:
+
+(java.sql.Timestamp/valueOf "2004-10-19 10:23:54")
+clj-time is the most sane way of dealing with date and time in Clojure, though, so it's likely to be worth your while.
+* java object
+** how to get a field from a java object
+for example: the following is an Element whole webelement field is nil, then how to check whether an object whose name id td hsa webelement as nil?
+#clj_webdriver.element.Element{:webelement nil}
+use the following: just use the keyword to get the field of that object.
+(nil? (:webelement td))
+* parse int, float
+Float/parseFloat
+Integer/parseInt
+* destruct
+http://blog.brunobonacci.com/2014/11/16/clojure-complete-guide-to-destructuring/
+** map destruct                                                    :destruct:
+(defn find-team-member[ {:keys [min max]} ] 
+	(println min max))
+* dynamic scoping
+http://clojure.org/vars
+https://blog.rjmetrics.com/2012/01/11/lexical-vs-dynamic-scope-in-clojure/
+http://blog.josephwilk.net/clojure/isolating-external-dependencies-in-clojure.html
+http://squirrel.pl/blog/2012/09/13/careful-with-def-in-clojure/
+https://www.reddit.com/r/Clojure/comments/zty5f/careful_with_def_in_clojure/c67uovl
+http://stackoverflow.com/questions/940712/redefining-a-letd-variable-in-clojure-loop
+** def 
+http://stackoverflow.com/questions/16447621/difference-between-using-def-to-update-a-var-and-alter-var-root
+* tranduce
+http://stackoverflow.com/questions/34238843/transduce-why-this-transduce-doesnt-print-anything
+Composition of the transformer runs right-to-left but builds a transformation stack that is applied left-to-right (filtering happens before mapping in this example).
+the following code return empty, since it first run take-while and then run map
+
+#+BEGIN_SRC clojure
+(transduce (comp (take-while true?)
+                     (map (fn[x] (println x) true))
+                     )
+               conj
+               []
+               (map inc (range 4)))
+#+END_SRC
+ 
+* good tips
+** how to get multiple value out for a map
+#+BEGIN_SRC clojure
+(map {:a 1 :b 2 :c 3} [:a :c])
+#+END_SRC
+** how to convert [1 2 3 [4 5]] to [1 2 3 4 5]
+2 solutions, and flatten could be use for a vector anywhere in the list, instead of only in the end of the list.
+#+BEGIN_SRC clojure
+  (apply list* [1 2 3 [4 5]])
+  (flatten [1 2 3 [4 5]])
+#+END_SRC
+or flatten
+** how to call (j/execute! db ["sql" a-vector]
+(j/execute! db (concat ["sql"] a-vector))
+** get YYYYMMDD for a period
+#+BEGIN_SRC clojure
+(:require [clj-time.core :as time]
+          [clj-time.format :as f])
+(f/unparse (f/formatter "yyyyMMdd") (time/now))
+(f/unparse (f/formatter "yyyyMMdd") (time/plus (time/now) (time/days 1)))
+#+END_SRC
+** select an element from a class
+{:xpath "//table[@class='someclass']"}
+** select an element contains some text
+//*[contains(text(),'ABC')]
+http://stackoverflow.com/questions/3655549/xpath-containstext-some-string-doesnt-work-when-used-with-node-with-more
+** how to pick up one element from an element map
+http://stackoverflow.com/questions/35774358/clojure-how-to-pick-up-one-item-with-the-most-high-value-from-a-map
+#+BEGIN_SRC clojure
+
+(defn pickup-account [accounts ppdai-e-level?]
+  (let [valid-accounts (into {} (filter (fn[x] (if ppdai-e-level? (-> x val :E-level-enabled?) true)) accounts))]
+    (if (seq valid-accounts)
+      (into {} [(apply max-key (comp :amount val) valid-accounts)])
+      nil)))
+
+
+(pickup-account {:user1 {:amount 1000 :E-level-enabled? false} :user2 {:amount 50 :E-level-enabled? true} :user3 {:amount 500 :E-level-enabled? true}} true)
+(pickup-account {:user1 {:amount 1000 :E-level-enabled? false} :user2 {:amount 50 :E-level-enabled? true} :user3 {:amount 500 :E-level-enabled? true}} false)
+
+
+#+END_SRC
+** select an element for a class and with certain text
+//span[contains(@class, 'myclass') and text() = 'qwerty']
+//span[contains(@class, 'myclass') and normalize-space(text()) = 'qwerty']
+http://stackoverflow.com/questions/16466083/html-xpath-searching-by-class-and-text
+** select an element after an elemnt containing some text
+the last p means select the p node after the p node containing 历史统计
+//p[contains(text(),'历史统计')]/following-sibling::p
+** select an element based on the child element
+(find-element {:xpath "//i[@class='xueli']/parent::*"})
+** how to update an element in a vector
+(update-in [1 2 3] [1] inc)
+(assoc [1 2 3] 1 5)
+http://stackoverflow.com/questions/12628286/simple-way-to-replace-nth-element-in-a-vector-in-clojure
+** get sub vector from a vector
+
+
+
+if the index of the subvec is continous,  then just use the function of subvec
+#+BEGIN_SRC clojure
+(let [a [11 22 33 44]
+      b [1 3]]
+  (mapv a b))
+#+END_SRC
+** how to split vector bases on index:  [1 2 3 5 6 7] into [1 3 6] [2 5 7]
+#+BEGIN_SRC clojure
+(apply map list (partition-all 2 [1 2 3 5 6 7]))
+#+END_SRC
+* threading first/last                                            :threading:
+** good artical
+http://ianrumford.github.io/blog/2014/10/24/some-syntactic-sugar-for-clojure-threading-macros/
+http://blog.jayfields.com/2012/09/clojure-refactoring-from-thread-last-to.html
+http://www.spacjer.com/blog/2015/11/09/lesser-known-clojure-variants-of-threading-macro/
+* core.async
+
+** starting point
+http://www.braveclojure.com/core-async/
+http://elbenshira.com/blog/using-core-async-for-producer-consumer-workflows/
+** blogs
+http://clojure.com/blog/2013/06/28/clojure-core-async-channels.html
+http://martintrojer.github.io/clojure/2013/07/07/coreasync-and-blocking-io/
+http://hueypetersen.com/posts/2013/07/10/code-read-of-core-async-timeouts/
+http://stuartsierra.com/2013/12/08/parallel-processing-with-core-async
+http://www.laliluna.com/articles/2014/04/28/clojure-async-kindergarden-party.html
+** good site
+http://martintrojer.github.io/tags.html#core.async-ref
+** deep understanding
+*** how to understand alt!                                              :alt:
+http://stackoverflow.com/questions/34856230/how-to-understand-alt-in-clojure-core-async
+#+BEGIN_SRC clojure
+(require '[clojure.core.async :as a :refer [>! go chan alt!]])
+
+(let [c1 (chan)
+      c2 (chan)]
+  (go
+    (alt!
+      [c1 c2] ([val ch] (println "Read" val "from" ch))))
+  (go (>! c2 "that"))
+
+  (go (>! c1 "this"))
+  (go
+    (alt!
+      [c1 c2] ([val ch] (println "Read" val "from" ch)))))
+#+END_SRC
+result is
+;; repl output
+;; #<ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@2db05690>
+;; Read that from #<ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@7523ce7e>
+;; Read this from #<ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@6a81559c>
+* good blogs
+http://ianrumford.github.io/
+* my questions
+** def
+*question*:
+ I defined a var like (def firefox_brower some_specificiation_for_firefox)
+ and used core.aysnc, and then I found the code of (def firef...) run twice,
+ since I saw two firefox stared up since core.async could kick off multiple threads, so will (def ...)
+         run for each thread?
+ If I run lein repl, then I only saw one firefox.
+ but if run lein run, it will startup 2 firefox. But the main function
+         doesn't call any code to startup firefox, only some code for
+         core.async
+*answer*
+<justin_smith>  generally you shouldn't ever have side effects at the
+               top level - for example that def would start up firefox while
+               building an uberjar or running your tests (probably not things
+               you want)  [01:49]
+<justin_smith>  a common way to deal with this are to use an atom or
+               delay or promise that will hold the firefox-browser value, then
+               an init function (called in your -main) that actually starts up
+               firefox and connects your handle to the container  [01:52]
+** get current thread information
+(get-thread-bindings)
+* some function
+** constantly
+https://medium.com/@davidrupp/clojure-alter-var-root-and-constantly-d8c5b48fda02#.6ne8b6stx
+* TODO good link to read
+ [[https://github.com/matthiasn/Clojure-Resources][Clojure-Resources]]
+https://skillsmatter.com
+http://www.clojurenewbieguide.com/
+https://github.com/clojure-emacs/cider
+* web scraping                                          :scrape;scraping: :webdriver:
+http://stackoverflow.com/questions/22168883/whats-the-best-way-of-scraping-data-from-a-website/22180602#22180602
+** good examples/projects 
+https://github.com/dfuenzalida/lazada-scrape
+https://github.com/davidsantiago/hickory
+** set page loading time out for webdriver
+http://stackoverflow.com/questions/34790720/setting-of-pageload-timeout-for-clojure-webdriver
+    (.. (:webdriver driver) manage timeouts (pageLoadTimeout 25 TimeUnit/SECONDS))
+** force not use proxy in firefox
+#+BEGIN_SRC clojure
+(doto (ff/new-profile (str "/home/oracle/.mozilla/firefox/" directory))
+                  (ff/set-preferences {:network.proxy.type 0})
+                  )
+#+END_SRC
+** proxy list 
+http://proxylist.hidemyass.com/search-1309936#listable
+https://www.us-proxy.org/
+http://free-proxy-list..net/
+https://incloak.com/proxy-list/?maxtime=2100&anon=234
+http://www.ultraproxies.com/
+https://www.bestvpn.com/blog/8363/use-i2p-idiots-starting-guide/
+https://www.reddit.com/r/i2p/comments/3du46g/what_is_i2p/ct8spjv
+https://hidester.com/proxylist/    *very good, could export all proxies as excel*
+http://freeproxylists.net/
+
+http://freeproxylists.net/?c=&pt=&pr=&a%5B%5D=1&a%5B%5D=2&u=90

@@ -1,0 +1,2 @@
+* installation
+[[https://secure.phabricator.com/book/phabricator/article/installation_guide/][Installation Guide]]

@@ -1,0 +1,9 @@
+
+* some link
+  [[https://github.com/stoeffel/awesome-fp-js][Awesome FP JS]]
+  [[http://fr.umio.us/why-ramda/][Why Ramda?]]
+  [[https://hughfdjackson.com/javascript/why-curry-helps/][Why Curry Helps]]
+
+* tutorial
+[[https://www.gitbook.com/book/drboolean/mostly-adequate-guide/details][mostly-adequate-guide]]
+

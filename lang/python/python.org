@@ -1,4 +1,4 @@
-
+* TODO [[https://github.com/vinta/awesome-python#admin-panels][awesome-python]]
 * python env
 
 ** location of site-packages
@@ -14,8 +14,14 @@ site.getsitepackages()
 https://github.com/syl20bnr/spacemacs/pull/7070/commits/4c142ac4beb12ce7bcebbe26889de4dd1b500dc1
 https://github.com/syl20bnr/spacemacs/pull/7070
 * functional
+  
 http://stackoverflow.com/questions/1550134/how-to-assign-a-variable-in-if-and-then-return-it-python
 http://stackoverflow.com/questions/14105500/compressing-x-if-x-else-y-statement-in-python
+** good library
+[[https://toolz.readthedocs.io/en/latest/api.html][toolz]]
+[[http://funcy.readthedocs.io/en/stable/][funcy]]
+[[http://pyrsistent.readthedocs.io/en/latest/intro.html][Pyrsistent]]
+[[https://github.com/tobgu/pyrthon/][pyrthon]]
 * lxml (html parse)
 ** some useful links
 http://stackoverflow.com/questions/22082275/using-python-how-can-i-get-the-text-of-an-xml-element-when-a-sibling-elements?rq=1
@@ -31,54 +37,54 @@ http://stackoverflow.com/questions/39832587/python-lxml-how-to-get-text-from-a-e
 ** list comprehension
 *** list comprehension with nested loop
 http://stackoverflow.com/documentation/python/5265/list-comprehensions#t=201610090335497609891
-#+BEGIN_SRC example
+#+begin_src example
 
 [ expression for target1 in iterable1 [if condition1]
              for target2 in iterable2 [if condition2]...
-             for targetN in iterableN [if conditionN] ]
+             for targetn in iterablen [if conditionn] ]
 
-#+END_SRC
+#+end_src
 
-#+BEGIN_SRC python
+#+begin_src python
 data = [[1, 2], [3, 4], [5, 6]]
 output = []
 for each_list in data:
     for element in each_list:
         output.append(element)
 print(output)
-# Out: [1, 2, 3, 4, 5, 6]
-#+END_SRC
+# out: [1, 2, 3, 4, 5, 6]
+#+end_src
 equals to
-#+BEGIN_SRC python
+#+begin_src python
 
 data = [[1, 2], [3, 4], [5, 6]]
 output = [element for each_list in data for element in each_list]
 print(output)
-# Out: [1, 2, 3, 4, 5, 6]
+# out: [1, 2, 3, 4, 5, 6]
 
-#+END_SRC
+#+end_src
 *** nsted list comprehensions
 http://stackoverflow.com/documentation/python/5265/list-comprehensions#t=201610090335497609891
-#+BEGIN_SRC example
+#+begin_src example
 
- Nested List Comprehensions, unlike List Comprehensions with Nested Loops, are List
- Comprehensions within a list comprehension. The initial expression can be any arbitrary
+ nested list comprehensions, unlike list comprehensions with nested loops, are list
+ comprehensions within a list comprehension. the initial expression can be any arbitrary
  expression, including another list comprehension.
 
 
-#+END_SRC
+#+end_src
 
-#+BEGIN_SRC python
+#+begin_src python
 
-#List Comprehension with nested loop
+#list comprehension with nested loop
 [x + y for x in [1, 2, 3] for y in [3, 4, 5]]
-#Out: [4, 5, 6, 5, 6, 7, 6, 7, 8]
+#out: [4, 5, 6, 5, 6, 7, 6, 7, 8]
 
-#Nested List Comprehension
+#nested list comprehension
 [[x + y for x in [1, 2, 3]] for y in [3, 4, 5]]
-#Out: [[4, 5, 6], [5, 6, 7], [6, 7, 8]]
+#out: [[4, 5, 6], [5, 6, 7], [6, 7, 8]]
 
-#The Nested List one is same as
+#the nested list one is same as
 
 for y in [3, 4, 5]:
     temp = []
@@ -87,54 +93,62 @@ for y in [3, 4, 5]:
     l.append(temp)
 
 
-#+END_SRC
+#+end_src
 ** map
 *** create a map using 2 lists
 http://stackoverflow.com/questions/209840/map-two-lists-into-a-dictionary-in-python
-#+BEGIN_SRC python
+#+begin_src python
 keys = ['a', 'b', 'c']
 values = [1, 2, 3]
 dictionary = dict(zip(keys, values))
-#+END_SRC
+#+end_src
 *** combine multiple maps
 http://stackoverflow.com/questions/38987/how-to-merge-two-python-dictionaries-in-a-single-expression
 http://treyhunner.com/2016/02/how-to-merge-dictionaries-in-python/
-#+BEGIN_SRC python
+#+begin_src python
 def merge_dicts(*dict_args):
     result = {}
     for dictionary in dict_args:
         result.update(dictionary)
     return result
-#+END_SRC
+#+end_src
 *** remove keys whose value is empty
 http://stackoverflow.com/questions/12118695/efficient-way-to-remove-keys-with-empty-values-from-a-dict
-#+BEGIN_SRC python
-a={1:3,3:5,5:None}
+#+begin_src python
+a={1:3,3:5,5:none}
 dict((k, v) for k, v in a.iteritems() if v)
-#+END_SRC
+#+end_src
 *** get a list of value based on a list of key
-#+BEGIN_SRC python
+#+begin_src python
 [mydict[x] for x in mykeys]
-#+END_SRC
+#+end_src
+** multiple lists
+*** get a nested list based on multiple lists
+#+begin_src python
+a=[1,2,3]
+b=[4,5,6]
+[[k,v] for k,v in zip(a,b)]
+
+#+end_src
 * rabbitmq
 http://stackoverflow.com/questions/12426927/pika-rabbitmq-setting-basic-qos-to-prefetch-1-still-appears-to-consume-all-me
-* database
+https://pypi.python.org/pypi/memory_profiler* database
 ** insert a row to a table using a map data structure
 http://stackoverflow.com/questions/9336270/using-a-python-dict-for-a-sql-insert-statement
-#+BEGIN_SRC sql
-placeholders = ', '.join(['%s'] * len(myDict))
-columns = ', '.join(myDict.keys())
-sql = "INSERT INTO %s ( %s ) VALUES ( %s )" % (table, columns, placeholders)
-cursor.execute(sql, myDict.values())
+#+begin_src sql
+placeholders = ', '.join(['%s'] * len(mydict))
+columns = ', '.join(mydict.keys())
+sql = "insert into %s ( %s ) values ( %s )" % (table, columns, placeholders)
+cursor.execute(sql, mydict.values())
 
 placeholder = ", ".join(["%s"] * len(dict))
 stmt = "insert into `{table}` ({columns}) values ({values});".format(table=table_name, columns=",".join(dict.keys()), values=placeholder)
 cur.execute(stmt, list(dict.values()))
-#+END_SRC
+#+end_src
 ** catch the plain sql executed for a parameteralized sql
 http://stackoverflow.com/questions/5266430/how-to-see-the-real-sql-query-in-python-cursor-execute
 cursor._last_executed
-#+BEGIN_SRC python
+#+begin_src python
 try:
     cursor.execute(sql, (arg1, arg2))
     connection.commit()
@@ -142,15 +156,20 @@ except:
     print(cursor._last_executed)
     raise
 
-#+END_SRC
+#+end_src
+** get the id for the last insert with an autocreated column
+[[http://stackoverflow.com/questions/2548493/how-do-i-get-the-id-after-insert-into-mysql-database-with-python][how do i get the “id” after insert into mysql database with python?]]
+   #+begin_src python
+cursor.lastrowid
+   #+end_src
 ** prepared statement
-#+BEGIN_SRC python
-cursor.execute("SELECT FROM tablename WHERE fieldname = %s", [value])
-#+END_SRC
+#+begin_src python
+cursor.execute("select from tablename where fieldname = %s", [value])
+#+end_src
 * common pitful
 ** loop inside a list
 http://stackoverflow.com/questions/39941393/python-loop-a-list-of-list-and-assign-value-inside-the-loop
-#+BEGIN_SRC python :results output
+#+begin_src python :results output
 alist1 = [[1,2],[3,4],[5,6]]
 for item in alist1:
     item=1
@@ -168,25 +187,25 @@ for item in alist3:
     item.append(10)
 print(alist3)
 
-#+END_SRC
+#+end_src
 
-#+RESULTS:
+#+results:
 : [[1, 2], [3, 4], [5, 6]]
 : [[1, 2, 10], [3, 4, 10], [5, 6, 10]]
 : [[1, 2, 10], [3, 4, 10], [5, 6, 10]]
 * debug
-https://wiki.python.org/moin/DebuggingWithGdb
-http://fedoraproject.org/wiki/Features/EasierPythonDebugging
+https://wiki.python.org/moin/debuggingwithgdb
+http://fedoraproject.org/wiki/features/easierpythondebugging
 http://python-manhole.readthedocs.io/en/latest/
 https://pypi.python.org/pypi/pudb
 * syntax
-** How to use *args and **kwargs in Python
+** how to use *args and **kwargs in python
 http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/
-http://www.learnpython.org/en/Multiple_Function_Arguments
-Or, How to use variable length argument lists in Python.
+http://www.learnpython.org/en/multiple_function_arguments
+or, how to use variable length argument lists in python.
 
-The special syntax, *args and **kwargs in function definitions is used to pass a variable number of arguments to a function. The single asterisk form (*args) is used to pass a non-keyworded, variable-length argument list, and the double asterisk form is used to pass a keyworded, variable-length argument list. Here is an example of how to use the non-keyworded form. This example passes one formal (positional) argument, and two more variable length arguments.
-#+BEGIN_SRC example
+the special syntax, *args and **kwargs in function definitions is used to pass a variable number of arguments to a function. the single asterisk form (*args) is used to pass a non-keyworded, variable-length argument list, and the double asterisk form is used to pass a keyworded, variable-length argument list. here is an example of how to use the non-keyworded form. this example passes one formal (positional) argument, and two more variable length arguments.
+#+begin_src example
 
 def test_var_args(farg, *args):
     print "formal arg:", farg
@@ -194,13 +213,13 @@ def test_var_args(farg, *args):
         print "another arg:", arg
 
 test_var_args(1, "two", 3)
-Results:
+results:
 
 formal arg: 1
 another arg: two
 another arg: 3
 
-Here is an example of how to use the keyworded form. Again, one formal argument and two keyworded variable arguments are passed.
+here is an example of how to use the keyworded form. again, one formal argument and two keyworded variable arguments are passed.
 
 def test_var_kwargs(farg, **kwargs):
     print "formal arg:", farg
@@ -208,15 +227,15 @@ def test_var_kwargs(farg, **kwargs):
         print "another keyword arg: %s: %s" % (key, kwargs[key])
 
 test_var_kwargs(farg=1, myarg2="two", myarg3=3)
-Results:
+results:
 
 formal arg: 1
 another keyword arg: myarg2: two
 another keyword arg: myarg3: 3
 
-Using *args and **kwargs when calling a function
+using *args and **kwargs when calling a function
 
-This special syntax can be used, not only in function definitions, but also when calling a function.
+this special syntax can be used, not only in function definitions, but also when calling a function.
 
 def test_var_args_call(arg1, arg2, arg3):
     print "arg1:", arg1
@@ -225,12 +244,12 @@ def test_var_args_call(arg1, arg2, arg3):
 
 args = ("two", 3)
 test_var_args_call(1, *args)
-Results:
+results:
 
 arg1: 1
 arg2: two
 arg3: 3
-Here is an example using the keyworded form when calling a function:
+here is an example using the keyworded form when calling a function:
 
 def test_var_args_call(arg1, arg2, arg3):
     print "arg1:", arg1
@@ -239,13 +258,13 @@ def test_var_args_call(arg1, arg2, arg3):
 
 kwargs = {"arg3": 3, "arg2": "two"}
 test_var_args_call(1, **kwargs)
-Results:
+results:
 
 arg1: 1
 arg2: two
 arg3: 3
 
-#+END_SRC
+#+end_src
 ** __init__.py
 *** meanings of __all__
 http://stackoverflow.com/questions/44834/can-someone-explain-all-in-python
@@ -254,7 +273,7 @@ check the file of django.db.__iinit__.py
 ** log for exception
  http://stackoverflow.com/a/16417709/266185
  http://blog.tplus1.com/blog/2007/09/28/the-python-logging-module-is-much-better-than-print-statements/
-#+BEGIN_SRC python :results output
+#+begin_src python :results output
 import logging
 
 def b():
@@ -263,135 +282,135 @@ def a():
     b()
 try:
     a()
-except Exception as ex:
+except exception as ex:
     logging.exception("something is wrong")
 
-#+END_SRC
+#+end_src
 
-#+RESULTS:
+#+results:
 
 * timezone
 
-** get the time as PDT (day time saving)
-#+BEGIN_SRC python :results output
+** get the time as pdt (day time saving)
+#+begin_src python :results output
  import pytz
  from datetime import datetime
- ptd = pytz.timezone("America/Los_Angeles")
+ ptd = pytz.timezone("america/los_angeles")
  a= datetime.now(ptd)
  print a
-#+END_SRC
+#+end_src
 
-#+RESULTS:
+#+results:
 : 2016-10-25 00:15:01.870243-07:00
 
 * closure
 http://www.discoversdk.com/blog/closures-in-python-3
 * questions
 ** escape %
-I am using python 2.7.10
+i am using python 2.7.10
 
-#+BEGIN_SRC example
+#+begin_src example
 [1:53]  
-In [6]:     sql_string = """
+in [6]:     sql_string = """
   ...:     select dba_corpid_id,comments,
-  ...:            date_format(start_time,'%Y%m%d') start_period,
-  ...:            date_format(end_time,'%Y%m%d') end_period
+  ...:            date_format(start_time,'%y%m%d') start_period,
+  ...:            date_format(end_time,'%y%m%d') end_period
   ...:     from dba_oooschedule
-  ...:     where start_time >= str_to_date(%s, '%Y%m%d')
-  ...:           and end_time <= str_to_date(%s, '%Y%m%d')
+  ...:     where start_time >= str_to_date(%s, '%y%m%d')
+  ...:           and end_time <= str_to_date(%s, '%y%m%d')
   ...:     """
 
-In [7]: sql_string % (20120101,20130101)
+in [7]: sql_string % (20120101,20130101)
 ---------------------------------------------------------------------------
-ValueError                                Traceback (most recent call last)
+valueerror                                traceback (most recent call last)
 <ipython-input-7-5cffa8ddeb2d> in <module>()
 ----> 1 sql_string % (20120101,20130101)
 
-ValueError: unsupported format character 'Y' (0x59) at index 64
-#+END_SRC
+valueerror: unsupported format character 'y' (0x59) at index 64
+#+end_src
 
 you have date format bits in your string which python is confusing as format characters
-and those need to be preserved so you'd have to escape the ones you want to keep like `,'%%Y%%m%%d`
+and those need to be preserved so you'd have to escape the ones you want to keep like `,'%%y%%m%%d`
 
-The first one is correct as it's correctly escaped, but the second one is wrong.
+the first one is correct as it's correctly escaped, but the second one is wrong.
 
-#+BEGIN_SRC python :results output
+#+begin_src python :results output
     sql_string = """
     select test_corpid_id,comments,
-           date_format(start_time,'%%Y%%m%%d') start_period,
-           date_format(end_time,'%%Y%%m%%d') end_period
+           date_format(start_time,'%%y%%m%%d') start_period,
+           date_format(end_time,'%%y%%m%%d') end_period
     from test_oooschedule
-    where start_time >= str_to_date(%s, '%%Y%%m%%d')
-          and end_time <= str_to_date(%s, '%%Y%%m%%d')
+    where start_time >= str_to_date(%s, '%%y%%m%%d')
+          and end_time <= str_to_date(%s, '%%y%%m%%d')
     """
     sql_string = sql_string % (20130101, 20120101)
     print sql_string
-#+END_SRC
+#+end_src
 
-#+RESULTS:
+#+results:
 : 
 : select test_corpid_id,comments,
-:        date_format(start_time,'%Y%m%d') start_period,
-:        date_format(end_time,'%Y%m%d') end_period
+:        date_format(start_time,'%y%m%d') start_period,
+:        date_format(end_time,'%y%m%d') end_period
 : from test_oooschedule
-: where start_time >= str_to_date(20130101, '%Y%m%d')
-:       and end_time <= str_to_date(20120101, '%Y%m%d')
+: where start_time >= str_to_date(20130101, '%y%m%d')
+:       and end_time <= str_to_date(20120101, '%y%m%d')
 : 
 
 
 
-#+BEGIN_SRC python :results output
+#+begin_src python :results output
     sql_string = """
     select test_corpid_id,comments,
-           date_format(start_time,'%Y%m%d') start_period,
-           date_format(end_time,'%Y%m%d') end_period
+           date_format(start_time,'%y%m%d') start_period,
+           date_format(end_time,'%y%m%d') end_period
     from test_oooschedule
-    where start_time >= str_to_date(%s, '%Y%m%d')
-          and end_time <= str_to_date(%s, '%Y%m%d')
+    where start_time >= str_to_date(%s, '%y%m%d')
+          and end_time <= str_to_date(%s, '%y%m%d')
     """
     sql_string = sql_string % (20130101, 20120101)
     print sql_string
-#+END_SRC
+#+end_src
 
-#+RESULTS:
+#+results:
 
 ** __name__
 __name__ is the module name
-it include the package name also. So if there are subdirectory, then the module name could be some thing like directory.file_name
+it include the package name also. so if there are subdirectory, then the module name could be some thing like directory.file_name
 ** meanings of %
- inside of file /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/MySQLdb/cursors.py
- It has the following code
+ inside of file /library/frameworks/python.framework/versions/2.7/lib/python2.7/site-packages/mysqldb/cursors.py
+ it has the following code
 
- The meaning is just to replace every %s in the query with the params(args)
- #+BEGIN_SRC python
+ the meaning is just to replace every %s in the query with the params(args)
+ #+begin_src python
  query = query % tuple([db.literal(item) for item in args])
- #+END_SRC
+ #+end_src
 
-#+BEGIN_SRC example
+#+begin_src example
 >>> a="test %s %s %s"
 >>> a % ("1","2","3")
 'test 1 2 3'
-#+END_SRC
+#+end_src
 ** how to run one instance of python application
-#+BEGIN_SRC python
+#+begin_src python
 
     pid_file = "/tmp/app.pid"
     fp       = open(pid_file,'w')
     try:
-        fcntl.lockf(fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except IOError:
-        print "The app is already running, quit the job...."
+        fcntl.lockf(fp, fcntl.lock_ex | fcntl.lock_nb)
+    except ioerror:
+        print "the app is already running, quit the job...."
     else:
         main()
 
-#+END_SRC
+#+end_src
 * coroutines
-http://www.dabeaz.com/coroutines/Coroutines.pdf
+http://www.dabeaz.com/coroutines/coroutines.pdf
 * dynamically loading module
 
 http://stackoverflow.com/a/1057534/266185
 to load dynamically:
-#+BEGIN_SRC python
+#+begin_src python
 
 from os.path import dirname, basename, isfile
 import glob
@@ -399,9 +418,9 @@ modules = glob.glob(dirname(__file__)+"/*.py")
 __all__ = [ basename(f)[:-3] for f in modules if isfile(f) if not f.endswith('__init__.py')]
 print "modules loaded from jobs are:{}".format(__all__)
 
-#+END_SRC
-Then to call the function:
-#+BEGIN_SRC python
+#+end_src
+then to call the function:
+#+begin_src python
 
 def call_function(func_name,parameter):
     [module_name,func_name] =func_name.split(".")
@@ -411,7 +430,7 @@ def call_function(func_name,parameter):
     for step in result:
         print "current step is:{}".format(step)
 
-#+END_SRC
+#+end_src
 * multiple thread
 ** ThreadPoolExecutor.map: timeout is not for each thread but for all 
 The following code will print 2 None and then raise time out error. Even each function only sleep 1 second, but since we have only 2 threads, so when the function run the third time, it need to wait 1 second before run as there is no sufficient threads to run it immediately, and this wait 1 second plus sleep 1 second, add up to 2 second, and then error out with Timeout error.
@@ -439,6 +458,8 @@ def my_test():
 my_test()
 
 #+END_SRC
+** good tutorial
+[[https://pymotw.com/2/threading/][threading – Manage concurrent threads]]
 * pyflakes
 use the following package, and then in emacs, we could easily check error by using CTRL+c, CTRL+v 
 #+BEGIN_SRC example
@@ -448,3 +469,89 @@ pip install pyflakes
 [[http://awesome-python.com/][awesome-python]]
 ** excel
 [[https://github.com/pyexcel/pyexcel][pyexcel]]
+* profile
+** memory profile 
+[[https://pypi.python.org/pypi/memory_profiler][memory_profiler]]
+pip install -U memory_profiler
+pip install psutil
+
+#+BEGIN_SRC python
+In [1]: %load_ext memory_profiler
+   ...:
+
+In [2]: %memit range(100)
+peak memory: 35.48 MiB, increment: 3.08 MiB
+
+In [3]:
+
+#+END_SRC
+** program measure the memory of cursor
+#+BEGIN_SRC python
+import MySQLdb
+from datetime import datetime
+from memory_profiler import profile
+import sys
+
+MySQLdb.Connect()
+
+db = MySQLdb.connect(host="localhost", user="test",
+                        passwd="test", db="test")
+
+@profile(precision=4)
+def my_func():
+    a = [1] * (10 ** 6)
+    b = [2] * (2 * 10 ** 7)
+    del b
+    c = [1] * (10 **4)
+    d = [x+1 for x in c]
+    e = [x+1 for x in c]
+    f = [db.cursor() for x in c]
+    g = [db.cursor() for x in c]
+    h = [db.cursor() for x in c if x<10]
+    h1= [db.cursor() for x in range(10)]
+    [x.close() for x in f]
+    [x.close() for x in g]
+    for x in h1:
+        print id(x)
+        print sys.getsizeof(x)
+    m = db.cursor()
+    return a
+
+my_func()
+
+#+END_SRC
+* timeout
+** good timeout decorator
+[[https://pypi.python.org/pypi/timeout-decorator/0.3.2][timeout-decorator]]
+* subprocess
+** How to get the exit code for a subshell
+#+BEGIN_SRC python
+
+        try:
+            subprocess.check_output(cmd, shell=True).wait()
+            exit_code = 0
+        except CalledProcessError as e:
+            logger.exception(e)
+            exit_code = e.returncode
+
+#+END_SRC
+
+exception subprocess.CalledProcessError
+Exception raised when a process run by check_call() or check_output() returns a non-zero exit status.
+
+returncode
+Exit status of the child process.
+
+cmd
+Command that was used to spawn the child process.
+
+output
+Output of the child process if this exception is raised by check_output(). Otherwise, None.
+* ssl/https
+** https failed caused by SNI (Subject Name Indication) extension to TLS is not available on this platform.
+Use verify=False parameter in requests library
+#+BEGIN_SRC python
+response  = requests.post(url, data=data_json, headers=headers, verify=False)
+#+END_SRC
+** meaning of verify = false
+If don't verify, meaning client already trust the server. But sometimes the server is not deserve trust, under such condition we'd better to verify the ssl certification. But inside the company network, the server is also trustable, and could just let the verify as false

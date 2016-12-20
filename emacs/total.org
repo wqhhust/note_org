@@ -397,353 +397,6 @@ http://www.programcreek.com/2012/11/top-100-java-developers-blogs/
 powershell -ExecutionPolicy ByPass -File script.ps1
 this is less useful. Better to use the above one
 Set-ExecutionPolicy RemoteSigned
-** clojure
-*** boot
-**** manually download boot
-if manually download the boot.jar, then just put it under the correct folder, then boot will find them under these folds, if can't find it will then try to download it automatically
-
-oracle@SomeHost ~/.boot $ cat boot.properties 
-BOOT_CLOJURE_NAME=org.clojure/clojure
-BOOT_VERSION=2.5.5
-BOOT_CLOJURE_VERSION=1.8.0
-#BOOT_JVM_OPTIONS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8087 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=8087"
-
-oracle@SomeHost ~/.boot/cache/bin $ tree
-.
-├── 2.4.2
-│   ├── boot1133127694768844380.jar
-│   └── boot6675944551114486971.jar
-├── 2.5.2
-│   ├── boot212976671301937065.jar
-│   ├── boot2495592243726006254.jar
-│   ├── boot2774136939659078183.jar
-│   ├── boot3704565577884391836.jar
-│   ├── boot4249403466279405105.jar
-│   ├── boot4451132883056568743.jar
-│   ├── boot7949930609941258502.jar
-│   └── boot8606978147581365130.jar
-└── 2.5.5
-    └── boot.jar
-*** hiccup
-https://clojurebridge.github.io/community-docs/docs/web-applications/hiccup/
-
-https://github.com/yokolet/hiccup-samples
-
-http://www.tuicool.com/articles/muQfy2
-
-*** stacktrace
-https://github.com/mmcgrana/clj-stacktrace
-If you use Leiningen, you can install clj-stacktrace on a user-wide basis. Just add the following to ~/.lein/profiles.clj:
-
-#+BEGIN_SRC clojure
-{:user {:dependencies [[clj-stacktrace "0.2.8"]]
-        :injections [(let [orig (ns-resolve (doto 'clojure.stacktrace require)
-                                            'print-cause-trace)
-                           new (ns-resolve (doto 'clj-stacktrace.repl require)
-                                           'pst)]
-                       (alter-var-root orig (constantly (deref new))))]}}
-#+END_SRC
-
-*** nREPL
-**** use nREPL inside legacy java
-http://dev.theladders.com/2013/04/getting-some-clojure-nrepl-in-a-spring-app/
-http://blog.avisi.nl/2015/05/18/how-to-inspect-a-legacy-java-application-with-the-clojure-repl/
-#+BEGIN_SRC java
-package nl.avisi.jira;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
-
-import com.atlassian.jira.component.ComponentAccessor;
-
-import clojure.java.api.Clojure;
-import clojure.lang.IFn;
-
-public class MyBean implements InitializingBean, DisposableBean {
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-      IFn plus = Clojure.var("clojure.core", "+");
-      Object object = plus.invoke(1, 2);
-      LOGGER.debug("plus invoked, result was: " + object);
-
-      IFn require = Clojure.var("clojure.core", "require");
-      require.invoke(Clojure.read("clojure.tools.nrepl.server"));
-      
-      IFn server = Clojure.var("clojure.tools.nrepl.server", "start-server");
-      server.invoke();
-    }
-
-}
-#+END_SRC
-Our code does not specify a port, so you need to find out what port the repl is using (use netstat -a | grep LISTEN or the likes). When you know the port, connect to the repl with leiningen:
-
-○ → LEIN_REPL_PORT=33475 lein repl :connect                                                                                                                                                                                             
-Connecting to nREPL at 127.0.0.1:33475
-REPL-y 0.3.5, nREPL 0.2.10
-Clojure 1.6.0
-Java HotSpot(TM) 64-Bit Server VM 1.7.0_60-b19
-    Docs: (doc function-name-here)
-          (find-doc "part-of-name-here")
-  Source: (source function-name-here)
- Javadoc: (javadoc java-object-or-class-here)
-    Exit: Control+D or (exit) or (quit)
- Results: Stored in vars *1, *2, *3, an exception in *e
-
-user=>
-**** use nREPL inside clojure app
-**** socket REPL in clojure 1.8
- You can change the lein repl version to 1.8.0 via
-           https://github.com/technomancy/leiningen/blob/master/doc/PROFILES.md#replacing-default-repl-dependencies
-           and then run something like `JVM_OPTS='-Dclojure.server.repl={:port 5555 :accept clojure.core.server/repl}' lein repl`
-*** IO
-read: slurp,  write: spit
-user=> (spit "blubber.txt" "test")
-nil
-user=> (slurp "blubber.txt")
-"test"
-
-*** jdbc
-**** insert/update timestamp
-http://stackoverflow.com/questions/9305541/clojure-jdbc-postgresql-i-am-trying-to-update-a-timestamp-value-in-postgresql-f
-
-Use [clj-time "0.3.6"] as the dependency specifier in your project.clj if you decide to use clj-time.
-#+BEGIN_SRC clojure
-(require '[clj-time [format :as timef] [coerce :as timec]])
-
-(->> "Thu Feb 09 10:38:01 +0000 2012"
-     (timef/parse (timef/formatter "EEE MMM dd HH:mm:ss Z yyyy"))
-     timec/to-timestamp)
-#+END_SRC
-or
-#+BEGIN_SRC clojure
-(java.sql.Timestamp/valueOf "2004-10-19 10:23:54")
-#+END_SRC
-
-You'll need to pass in a java.sql.Timestamp instance. To parse your string into one using clj-time, a Joda-Time-wrapping library for Clojure, you'd do something along the following lines:
-
-(require '[clj-time [format :as timef] [coerce :as timec]])
-(->> "Thu Feb 09 10:38:01 +0000 2012"
-     (timef/parse (timef/formatter "EEE MMM dd HH:mm:ss Z yyyy"))
-     timec/to-timestamp)
-The returned value can then be passed to PostgreSQL via JDBC.
-
-In case you're obtaining the date in some other string format and converting it to this one, you could skip the conversion and provide an appropriate formatter for the original representation. There are quite a few available by default in the clj-time.format/formatters map, say (clj-time.format/show-formatters) at the REPL to see a list with examples. Also, clj-time.coerce/from-string tries all default formatters in sequence returning the value of the first succeeding parse (nil if there is none). If you're obtaining the date as a java.util.Date or a long, see from-date and from-long in the same namespace.
-
-
-Alternatively, you could use some other way of parsing your timestamp string into a java.sql.Timestamp; Timestamp itself can parse a different string representation:
-
-(java.sql.Timestamp/valueOf "2004-10-19 10:23:54")
-clj-time is the most sane way of dealing with date and time in Clojure, though, so it's likely to be worth your while.
-*** java object
-**** how to get a field from a java object
-for example: the following is an Element whole webelement field is nil, then how to check whether an object whose name id td hsa webelement as nil?
-#clj_webdriver.element.Element{:webelement nil}
-use the following: just use the keyword to get the field of that object.
-(nil? (:webelement td))
-*** parse int, float
-Float/parseFloat
-Integer/parseInt
-*** destruct
-http://blog.brunobonacci.com/2014/11/16/clojure-complete-guide-to-destructuring/
-**** map destruct                                               :destruct:
-(defn find-team-member[ {:keys [min max]} ] 
-	(println min max))
-*** dynamic scoping
-http://clojure.org/vars
-https://blog.rjmetrics.com/2012/01/11/lexical-vs-dynamic-scope-in-clojure/
-http://blog.josephwilk.net/clojure/isolating-external-dependencies-in-clojure.html
-http://squirrel.pl/blog/2012/09/13/careful-with-def-in-clojure/
-https://www.reddit.com/r/Clojure/comments/zty5f/careful_with_def_in_clojure/c67uovl
-http://stackoverflow.com/questions/940712/redefining-a-letd-variable-in-clojure-loop
-**** def 
- http://stackoverflow.com/questions/16447621/difference-between-using-def-to-update-a-var-and-alter-var-root
-*** tranduce
-http://stackoverflow.com/questions/34238843/transduce-why-this-transduce-doesnt-print-anything
-Composition of the transformer runs right-to-left but builds a transformation stack that is applied left-to-right (filtering happens before mapping in this example).
-the following code return empty, since it first run take-while and then run map
-
-#+BEGIN_SRC clojure
-(transduce (comp (take-while true?)
-                     (map (fn[x] (println x) true))
-                     )
-               conj
-               []
-               (map inc (range 4)))
-#+END_SRC
- 
-*** good tips
-**** how to get multiple value out for a map
-#+BEGIN_SRC clojure
-(map {:a 1 :b 2 :c 3} [:a :c])
-#+END_SRC
-**** how to convert [1 2 3 [4 5]] to [1 2 3 4 5]
-2 solutions, and flatten could be use for a vector anywhere in the list, instead of only in the end of the list.
-#+BEGIN_SRC clojure
-  (apply list* [1 2 3 [4 5]])
-  (flatten [1 2 3 [4 5]])
-#+END_SRC
-or flatten
-**** how to call (j/execute! db ["sql" a-vector]
-(j/execute! db (concat ["sql"] a-vector))
-**** get YYYYMMDD for a period
-#+BEGIN_SRC clojure
-(:require [clj-time.core :as time]
-          [clj-time.format :as f])
-(f/unparse (f/formatter "yyyyMMdd") (time/now))
-(f/unparse (f/formatter "yyyyMMdd") (time/plus (time/now) (time/days 1)))
-#+END_SRC
-**** select an element from a class
-{:xpath "//table[@class='someclass']"}
-**** select an element contains some text
-//*[contains(text(),'ABC')]
-http://stackoverflow.com/questions/3655549/xpath-containstext-some-string-doesnt-work-when-used-with-node-with-more
-**** how to pick up one element from an element map
-http://stackoverflow.com/questions/35774358/clojure-how-to-pick-up-one-item-with-the-most-high-value-from-a-map
-#+BEGIN_SRC clojure
-
-(defn pickup-account [accounts ppdai-e-level?]
-  (let [valid-accounts (into {} (filter (fn[x] (if ppdai-e-level? (-> x val :E-level-enabled?) true)) accounts))]
-    (if (seq valid-accounts)
-      (into {} [(apply max-key (comp :amount val) valid-accounts)])
-      nil)))
-
-
-(pickup-account {:user1 {:amount 1000 :E-level-enabled? false} :user2 {:amount 50 :E-level-enabled? true} :user3 {:amount 500 :E-level-enabled? true}} true)
-(pickup-account {:user1 {:amount 1000 :E-level-enabled? false} :user2 {:amount 50 :E-level-enabled? true} :user3 {:amount 500 :E-level-enabled? true}} false)
-
-
-#+END_SRC
-**** select an element for a class and with certain text
-//span[contains(@class, 'myclass') and text() = 'qwerty']
-//span[contains(@class, 'myclass') and normalize-space(text()) = 'qwerty']
-http://stackoverflow.com/questions/16466083/html-xpath-searching-by-class-and-text
-**** select an element after an elemnt containing some text
-the last p means select the p node after the p node containing 历史统计
-//p[contains(text(),'历史统计')]/following-sibling::p
-**** select an element based on the child element
-(find-element {:xpath "//i[@class='xueli']/parent::*"})
-**** how to update an element in a vector
-(update-in [1 2 3] [1] inc)
-(assoc [1 2 3] 1 5)
-http://stackoverflow.com/questions/12628286/simple-way-to-replace-nth-element-in-a-vector-in-clojure
-**** get sub vector from a vector
-
-
-
-if the index of the subvec is continous,  then just use the function of subvec
-#+BEGIN_SRC clojure
-(let [a [11 22 33 44]
-      b [1 3]]
-  (mapv a b))
-#+END_SRC
-**** how to split vector bases on index:  [1 2 3 5 6 7] into [1 3 6] [2 5 7]
-#+BEGIN_SRC clojure
-(apply map list (partition-all 2 [1 2 3 5 6 7]))
-#+END_SRC
-*** threading first/last                                          :threading:
-**** good artical
-http://ianrumford.github.io/blog/2014/10/24/some-syntactic-sugar-for-clojure-threading-macros/
-http://blog.jayfields.com/2012/09/clojure-refactoring-from-thread-last-to.html
-http://www.spacjer.com/blog/2015/11/09/lesser-known-clojure-variants-of-threading-macro/
-*** core.async
-
-**** starting point
-http://www.braveclojure.com/core-async/
-http://elbenshira.com/blog/using-core-async-for-producer-consumer-workflows/
-**** blogs
-http://clojure.com/blog/2013/06/28/clojure-core-async-channels.html
-http://martintrojer.github.io/clojure/2013/07/07/coreasync-and-blocking-io/
-http://hueypetersen.com/posts/2013/07/10/code-read-of-core-async-timeouts/
-http://stuartsierra.com/2013/12/08/parallel-processing-with-core-async
-http://www.laliluna.com/articles/2014/04/28/clojure-async-kindergarden-party.html
-**** good site
-http://martintrojer.github.io/tags.html#core.async-ref
-**** deep understanding
-***** how to understand alt!                                        :alt:
-http://stackoverflow.com/questions/34856230/how-to-understand-alt-in-clojure-core-async
-#+BEGIN_SRC clojure
-(require '[clojure.core.async :as a :refer [>! go chan alt!]])
-
-(let [c1 (chan)
-      c2 (chan)]
-  (go
-    (alt!
-      [c1 c2] ([val ch] (println "Read" val "from" ch))))
-  (go (>! c2 "that"))
-
-  (go (>! c1 "this"))
-  (go
-    (alt!
-      [c1 c2] ([val ch] (println "Read" val "from" ch)))))
-#+END_SRC
-result is
-;; repl output
-;; #<ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@2db05690>
-;; Read that from #<ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@7523ce7e>
-;; Read this from #<ManyToManyChannel clojure.core.async.impl.channels.ManyToManyChannel@6a81559c>
-*** good blogs
-http://ianrumford.github.io/
-*** my questions
-**** def
-*question*:
- I defined a var like (def firefox_brower some_specificiation_for_firefox)
- and used core.aysnc, and then I found the code of (def firef...) run twice,
- since I saw two firefox stared up since core.async could kick off multiple threads, so will (def ...)
-         run for each thread?
- If I run lein repl, then I only saw one firefox.
- but if run lein run, it will startup 2 firefox. But the main function
-         doesn't call any code to startup firefox, only some code for
-         core.async
-*answer*
-<justin_smith>  generally you shouldn't ever have side effects at the
-               top level - for example that def would start up firefox while
-               building an uberjar or running your tests (probably not things
-               you want)  [01:49]
-<justin_smith>  a common way to deal with this are to use an atom or
-               delay or promise that will hold the firefox-browser value, then
-               an init function (called in your -main) that actually starts up
-               firefox and connects your handle to the container  [01:52]
-**** get current thread information
-(get-thread-bindings)
-*** some function
-**** constantly
-https://medium.com/@davidrupp/clojure-alter-var-root-and-constantly-d8c5b48fda02#.6ne8b6stx
-*** TODO good link to read
-https://skillsmatter.com
-http://www.clojurenewbieguide.com/
-https://github.com/clojure-emacs/cider
-*** promo
-https://www.booleanknot.com/blog/2015/12/21/encapsulation-and-clojure-part-1.html
-http://fn-code.blogspot.com/2015/10/my-concern-with-concerns.html
-*** web scraping                                          :scrape;scraping: :webdriver:
-http://stackoverflow.com/questions/22168883/whats-the-best-way-of-scraping-data-from-a-website/22180602#22180602
-**** good examples/projects 
-https://github.com/dfuenzalida/lazada-scrape
-https://github.com/davidsantiago/hickory
-**** set page loading time out for webdriver
-http://stackoverflow.com/questions/34790720/setting-of-pageload-timeout-for-clojure-webdriver
-    (.. (:webdriver driver) manage timeouts (pageLoadTimeout 25 TimeUnit/SECONDS))
-**** force not use proxy in firefox
-#+BEGIN_SRC clojure
-(doto (ff/new-profile (str "/home/oracle/.mozilla/firefox/" directory))
-                  (ff/set-preferences {:network.proxy.type 0})
-                  )
-#+END_SRC
-**** proxy list 
-http://proxylist.hidemyass.com/search-1309936#listable
-https://www.us-proxy.org/
-http://free-proxy-list..net/
-https://incloak.com/proxy-list/?maxtime=2100&anon=234
-http://www.ultraproxies.com/
-https://www.bestvpn.com/blog/8363/use-i2p-idiots-starting-guide/
-https://www.reddit.com/r/i2p/comments/3du46g/what_is_i2p/ct8spjv
-https://hidester.com/proxylist/    *very good, could export all proxies as excel*
-http://freeproxylists.net/
-
-http://freeproxylists.net/?c=&pt=&pr=&a%5B%5D=1&a%5B%5D=2&u=90
 ** misc
 *** 图片识别 验证码
 http://www.chaojiying.com/
@@ -763,6 +416,515 @@ https://engineering.fundingcircle.com/blog/2016/01/11/tdd-in-clojure/
 ** TODO oneline course
 http://www.slideshare.net/
 http://bigdatauniversity.com/
+* emacs
+** paredit
+http://overtone.github.io/emacs-live/doc-clojure-paredit.html
+http://pub.gajendra.net/src/paredit-refcard.pdf
+http://danmidwood.com/content/2014/11/21/animated-paredit.html
+** backup
+http://emacs.stackexchange.com/questions/20318/how-to-backup-bookmark-for-spacemacs
+
+Spacemacs saves the bookmarks in ~/.emacs.d/.cache/bookmarks, and the recent files lise in ~/.emacs.d/.cache/recentf. You can copy these two files somewhere outside of ~/.emacs.d, and copy them back in after re-installing.
+
+In fact, there might be more files in ~/.emacs.d/.cache that you'd like to save. I suggest backing up the entire ~/.emacs.d/.cache and restoring what you miss after re-installation.
+
+For completeness, I'll mention that the locations of these two files are controlled by the variables bookmark-default-file and recentf-save-file.
+** org mode
+*** Export
+
+**** html setting
+
+***** control superscripts
+Add the following at the beginning of your file.
+#+OPTIONS: ^:nil
+^:
+Toggle TeX-like syntax for sub- and superscripts. If you write "^:{}", ‘a_{b}’ will be interpreted, but the simple ‘a_b’ will be left as it is (org-export-with-sub-superscripts). 
+***** outline level
+ #+OPTIONS: H:5
+The above means html will export 5 level outline. And the default is 3 level outline.
+
+The outline structure of the document as described in Document Structure, forms the basis for defining sections of the exported document. However, since the outline structure is also used for (for example) lists of tasks, only the first three outline levels will be used as headings. Deeper levels will become itemized lists. You can change the location of this switch globally by setting the variableorg-export-headline-levels, or on a per-file basis with a line
+
+*** PlantUML (draw digram) 
+workable setting on windows
+#+BEGIN_SRC elisp
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . nil)
+     (plantuml . t)
+     (python . t)))
+  (setq org-plantuml-jar-path
+        (expand-file-name "D:\\Daniel\\lib\\plantuml.jar"))
+
+#+END_SRC
+
+Setup
+With the latest version of Org-mode setup consists of adding plantuml to `org-babel-load-languages' with code like the following or through the customization interface.
+Then download the jar file save it somewhere on your system, set `org-plantuml-jar-path' to point to this file.
+#+BEGIN_SRC elisp
+
+;; active Org-babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(;; other Babel languages
+   (plantuml . t)))
+(setq org-plantuml-jar-path
+      (expand-file-name "~/src/org/contrib/scripts/plantuml.jar"))
+
+#+END_SRC
+Usage
+see http://plantuml.sourceforge.net/ for a variety of example usages, the following code block is an example of usage from within an Org-mode file.
+#+begin_src plantuml :file tryout.png
+  Alice -> Bob: synchronous call
+  Alice ->> Bob: asynchronous call
+#+end_src
+#+results:file:tryout.png
+*** to-do
+
+*** edit source code
+ C-c ' 
+*** Table
+
+**** How to move to end of cell
+In org-mode, table cells are called *fields*. C-h a org field outputs a list of commands related to org tables fields.
+The function org-forward-sentence is bound to M-e. When inside a table, it will jump to the end of the current field.
+http://emacs.stackexchange.com/questions/18362/how-to-move-to-the-end-of-current-cell
+** cider
+*** kill a process inside emacs cider
+If you run C-c C-c inside *REPL* window (not _editor_ window), emacs will eventually cancel the top level repl command that is looping. This will take a while if it is a tight loop, and even longer if it is producing large amounts of output. But it will eventually stop the code without having to kill emacs
+** magit
+*** git
+**** src refspec master does not match any when pushing commits in git
+http://stackoverflow.com/questions/4181861/src-refspec-master-does-not-match-any-when-pushing-commits-in-git
+Try git show-ref to see what refs do you have. Is there refs/heads/master?
+
+use 
+git branch --list 
+to check whether there are strange branch , if exists, then delete it
+git branch -D branch_name
+**** how to get the remote url
+If referential integrity is intact:
+
+git remote show origin
+
+If referential integrity has been broken:
+
+git config --get remote.origin.url
+**** stash                                                         :stash:
+| z   | Create new stash                    | Stashes are listed in the status buffer.                 |
+| Z   | Create new stash and maintain state | Leaves current changes in working tree and staging area. |
+| RET | View stash                          |                                                          |
+| a   | Apply stash                         |                                                          |
+| A   | Pop stash                           |                                                          |
+| k   | Drop stash                          |                                                          |
+**** git concept
+http://marklodato.github.io/visual-git-guide/index-en.html
+http://eagain.net/articles/git-for-computer-scientists/
+***** different between reset and checkout
+http://stackoverflow.com/questions/3639342/whats-the-difference-between-git-reset-and-git-checkout
+HEAD is not the latest revision, it's the current revision. Usually, it's the latest revision of the current branch, but it doesn't have to be.
+HEAD really just means "what is my repo currently pointing at". Thanks svick for the heads up on this one (no pun intended) 
+In the event that the commit HEAD refers to is not the tip of any branch, this is called a "detached head".
+HEAD is actually a special type of reference that points to another reference. It may point to master or it may not (it will point to whichever branch is currently checked out). If you know you want to be committing to the master branch then push to this.
+A head is simply a reference to a commit object. Each head has a name (branch name or tag name, etc). By default, there is a head in every repository called master. A repository can contain any number of heads. At any given time, one head is selected as the “current head.” This head is aliased to HEAD, always in capitals".
+
+Note this difference: a “head” (lowercase) refers to any one of the named heads in the repository; “HEAD” (uppercase) refers exclusively to the currently active head. This distinction is used frequently in Git documentation.
+
+master is a name commonly given to the main branch, but it could be called anything else (or there could be no main branch).
+master is a reference to the end of a branch. By convention (and by default) this is usually the main integration branch, but it doesn't have to be.
+
+origin is a name commonly given to the main remote. remote is another repository that you can pull from and push to. Usually it's on some server, like github.
+**** git command
+***** revert to a specific file from a specific commit
+this command will show all the commit history on a file
+git log relative/path/to/a/file
+
+then check out the file from that commit
+git checkout 188ce04ddc3b5bd2e25ae1faa1e826d3bca05c92  relative/path/to/a/file
+
+***** get the commit history for a sepecific developer
+git log --author=daniel
+**** about push
+#+BEGIN_SRC shell
+git config --global push.default simple
+#+END_SRC
+
+the default push action is based on the variable of push.default in configuration file
+push.default
+Defines the action git push should take if no refspec is explicitly given. Different values are well-suited for specific workflows; for instance, in a purely central workflow (i.e. the fetch source is equal to the push destination), upstream is probably what you want. Possible values are:
+
+nothing - do not push anything (error out) unless a refspec is explicitly given. This is primarily meant for people who want to avoid mistakes by always being explicit.
+
+current - push the current branch to update a branch with the same name on the receiving end. Works in both central and non-central workflows.
+
+upstream - push the current branch back to the branch whose changes are usually integrated into the current branch (which is called @{upstream}). This mode only makes sense if you are pushing to the same repository you would normally pull from (i.e. central workflow).
+
+simple - in centralized workflow, work like upstream with an added safety to refuse to push if the upstream branch’s name is different from the local one.
+
+When pushing to a remote that is different from the remote you normally pull from, work as current. This is the safest option and is suited for beginners.
+
+This mode has become the default in Git 2.0.
+
+matching - push all branches having the same name on both ends. This makes the repository you are pushing to remember the set of branches that will be pushed out (e.g. if you always push maint and master there and no other branches, the repository you push to will have these two branches, and your local maint and master will be pushed there).
+
+To use this mode effectively, you have to make sure all the branches you would push out are ready to be pushed out before running git push, as the whole point of this mode is to allow you to push all of the branches in one go. If you usually finish work on only one branch and push out the result, while other branches are unfinished, this mode is not for you. Also this mode is not suitable for pushing into a shared central repository, as other people may add new branches there, or update the tip of existing branches outside your control.
+
+This used to be the default, but not since Git 2.0 (simple is the new default).
+**** branch
+***** delete a branch
+git push origin --delete branch-name-7428
+***** push a branch
+when push a branch, shouldn't put the "origin" if not use src:dest format, since it will automatically add origin
+git push feature/branch-name
+***** push.default
+***** push to muliptle branches
+git push origin branchA branchB.
+**** remote
+git show-ref master
+***** show remote information
+git remote show origin
+*** key biddings
+good link http://magit.vc/manual/magit-refcard.pdf
+Having decided that Magit is the bee’s knees you’ll probably want to know the keyboard shortcuts.  Here are the most common ones:
+C-c g Start magit (M-x magit-status)
+s   Stage file
+S   Stage all files
+u   Unstage file
+c   Commit staged files. C-c C-c after writing commit message or C-c C-k to abort. C-c C-a sdlkfjlkdfj
+b b   To switch to a branch
+b m   Rename branch
+b d   Delete branch
+b v   List branches (can checkout from resultant screen using RET)
+P P   Git push
+f f   Git fetch
+F F   Git pull
+TAB   Shows diff of file in the list or expand collapse section. Stage and unstage actually work on bits of the diff as well.
+i   Ignore file (adds to .gitignore)
+k   Delete. Deletes untracked file and stashes (on section header it deletes all untracked files). If you’re positioned in a diff for an uncommited file you can also delete just the hunk.  (discard a file)
+l l   Show history
+l L   Show history in verbose format
+t t   Make lightweight tag
+t a   Make annotated tag
+x   Revert commit history to entered revision
+z z   Create a stash
+a a
+A   Apply the stash and pop it off the stash list
+z s   Creates a snapshot (the stash gets created but the working tree is not deleted.
+w   Show how other branches related to the current one
+m m   Start merging. In the event of conflicts resolve changes using e then stage with s.
+R   Starts a rebase R c will continue a rebase. Stage resolved conflicts before continuing.
+*** evil-magit
+https://github.com/justbur/evil-magit
+or press "?" in the magit buffer, it will show all help, such as "x" means discard a change
+*** good magit command
+
+
+**** check out file from different branch
+run the following function, it will prompt for the branch and file to be checked out
+magit-checkout-file
+
+**** show change in a commit in the log history
+in the log history, use "d"+"d" to see the history for a commit under the cursor.
+
+**** show log history for a specific dev in magit
+in the magit buffer, press "L", then it will show lots of options, and then press "=a" to input the dev name, press enter again to show all the logs for that author
+*** kill/delete/remove a commit
+to remove the most recent commit
+git reset --hard HEAD~1
+http://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git
+
+*** get the commit history commits for the current file
+in spacemacs, SPC + g + L will show the commit for the current file in the buffer, and then in the commit historical window, press Enter to get the information for each commit, then in the detailed window for that commit, press TAB to get the change details for the modified files
+*** run git command inside magit
+in the magit window, press "!"
+*** copy commit hash value
+C-w	Copy sha1 of current commit into kill ring
+*** good package
+peep-dired
+https://github.com/asok/peep-dired
+*** view the commit history for the file in the current buffer
+the following command could see all the detailed commit information including author.
+C-X v l
+or just use git timemachine to view different commit
+** erc/irc
+*** how to post multiple line
+past the code in below link, and then past the url in irc
+http://paste.lisp.org/new
+** vi (evil)
+*** key bidding
+Vim Commands Cheat Sheet
+
+How to Exit
+
+:q[uit]	Quit Vim. This fails when changes have been made.
+:q[uit]!	Quit without writing.
+:cq[uit]	Quit always, without writing.
+:wq	Write the current file and exit.
+:wq!	Write the current file and exit always.
+:wq {file}	Write to {file}. Exit if not editing the last
+:wq! {file}	Write to {file} and exit always.
+:[range]wq[!]	[file] Same as above, but only write the lines in [range].
+ZZ	Write current file, if modified, and exit.
+ZQ	Quit current file and exit (same as ":q!").
+Editing a File
+
+:e[dit]	Edit the current file. This is useful to re-edit the current file, when it has been changed outside of Vim.
+:e[dit]!	Edit the current file always. Discard any changes to the current buffer. This is useful if you want to start all over again.
+:e[dit] {file}	Edit {file}.
+:e[dit]! {file}	Edit {file} always. Discard any changes to the current buffer.
+gf	Edit the file whose name is under or after the cursor. Mnemonic: "goto file".
+Inserting Text
+
+a	Append text after the cursor [count] times.
+A	Append text at the end of the line [count] times.
+i	Insert text before the cursor [count] times.
+I	Insert text before the first non-blank in the line [count] times.
+gI	Insert text in column 1 [count] times.
+o	Begin a new line below the cursor and insert text, repeat [count] times.
+O	Begin a new line above the cursor and insert text, repeat [count] times.
+Inserting a file
+
+:r[ead] [name]	Insert the file [name] below the cursor.
+:r[ead] !{cmd}	Execute {cmd} and insert its standard output below the cursor.
+Deleting Text
+
+<Del> or
+x	Delete [count] characters under and after the cursor
+X	Delete [count] characters before the cursor
+d{motion}	Delete text that {motion} moves over
+dd	Delete [count] lines
+D	Delete the characters under the cursor until the end of the line
+{Visual}x or
+{Visual}d	Delete the highlighted text (for {Visual} see Selecting Text).
+{Visual}CTRL-H or
+{Visual}	When in Select mode: Delete the highlighted text
+{Visual}X or
+{Visual}D	Delete the highlighted lines
+:[range]d[elete]	Delete [range] lines (default: current line)
+:[range]d[elete] {count}	Delete {count} lines, starting with [range]
+Changing (or Replacing) Text
+
+r{char}	replace the character under the cursor with {char}.
+R	Enter Insert mode, replacing characters rather than inserting
+~	Switch case of the character under the cursor and move the cursor to the right. If a [count] is given, do that many characters.
+~{motion}	switch case of {motion} text.
+{Visual}~	Switch case of highlighted text
+Substituting
+
+:[range]s[ubstitute]/{pattern}/{string}/[c][e][g][p][r][i][I] [count]	For each line in [range] replace a match of {pattern} with {string}.
+:[range]s[ubstitute] [c][e][g][r][i][I] [count] :[range]&[c][e][g][r][i][I] [count]	Repeat last :substitute with same search pattern and substitute string, but without the same flags. You may add extra flags
+The arguments that you can use for the substitute commands:
+[c]  Confirm each substitution.  Vim positions the cursor on the matching
+  string.  You can type:
+      'y'      to substitute this match
+      'n'      to skip this match
+         to skip this match
+      'a'      to substitute this and all remaining matches {not in Vi}
+      'q'      to quit substituting {not in Vi}
+      CTRL-E  to scroll the screen up {not in Vi}
+      CTRL-Y  to scroll the screen down {not in Vi}.
+[e]     When the search pattern fails, do not issue an error message and, in
+  particular, continue in maps as if no error occurred.  
+[g]  Replace all occurrences in the line.  Without this argument,
+  replacement occurs only for the first occurrence in each line.
+[i]  Ignore case for the pattern.  
+[I]  Don't ignore case for the pattern.  
+[p]  Print the line containing the last substitute.
+Copying and Moving Text
+
+"{a-zA-Z0-9.%#:-"}	Use register {a-zA-Z0-9.%#:-"} for next delete, yank or put (use uppercase character to append with delete and yank) ({.%#:} only work with put).
+:reg[isters]	Display the contents of all numbered and named registers.
+:reg[isters] {arg}	Display the contents of the numbered and named registers that are mentioned in {arg}.
+:di[splay] [arg]	Same as :registers.
+["x]y{motion}	Yank {motion} text [into register x].
+["x]yy	Yank [count] lines [into register x]
+["x]Y	yank [count] lines [into register x] (synonym for yy).
+{Visual}["x]y	Yank the highlighted text [into register x] (for {Visual} see Selecting Text).
+{Visual}["x]Y	Yank the highlighted lines [into register x]
+:[range]y[ank] [x]	Yank [range] lines [into register x].
+:[range]y[ank] [x] {count}	Yank {count} lines, starting with last line number in [range] (default: current line), [into register x].
+["x]p	Put the text [from register x] after the cursor [count] times.
+["x]P	Put the text [from register x] before the cursor [count] times.
+["x]gp	Just like "p", but leave the cursor just after the new text.
+["x]gP	Just like "P", but leave the cursor just after the new text.
+:[line]pu[t] [x]	Put the text [from register x] after [line] (default current line).
+:[line]pu[t]! [x]	Put the text [from register x] before [line] (default current line).
+Undo/Redo/Repeat
+
+u	Undo [count] changes.
+:u[ndo]	Undo one change.
+CTRL-R	Redo [count] changes which were undone.
+:red[o]	Redo one change which was undone.
+U	Undo all latest changes on one line. {Vi: while not moved off of it}
+.	Repeat last change, with count replaced with [count].
+Moving Around
+
+Basic motion commands:
+
+        k              
+      h   l      
+        j             
+h or
+[count] characters to the left (exclusive).
+l or
+or
+[count] characters to the right (exclusive).
+k or
+or
+CTRL-P	[count] lines upward
+j or
+or
+CTRL-J or
+or
+CTRL-N	[count] lines downward (linewise).
+0	To the first character of the line (exclusive).
+<Home>	To the first character of the line (exclusive).
+^	To the first non-blank character of the line
+$ or
+<End>	To the end of the line and [count - 1] lines downward
+g0 or
+g<Home>	When lines wrap ('wrap on): To the first character of the screen line (exclusive). Differs from "0" when a line is wider than the screen. When lines don't wrap ('wrap' off): To the leftmost character of the current line that is on the screen. Differs from "0" when the first character of the line is not on the screen.
+g^	When lines wrap ('wrap' on): To the first non-blank character of the screen line (exclusive). Differs from "^" when a line is wider than the screen. When lines don't wrap ('wrap' off): To the leftmost non-blank character of the current line that is on the screen. Differs from "^" when the first non-blank character of the line is not on the screen.
+g$ or
+g<End&gr;	When lines wrap ('wrap' on): To the last character of the screen line and [count - 1] screen lines downward (inclusive). Differs from "$" when a line is wider than the screen. When lines don't wrap ('wrap' off): To the rightmost character of the current line that is visible on the screen. Differs from "$" when the last character of the line is not on the screen or when a count is used.
+f{char}	To [count]'th occurrence of {char} to the right. The cursor is placed on {char} (inclusive).
+F{char}	To the [count]'th occurrence of {char} to the left. The cursor is placed on {char} (inclusive).
+t{char}	Till before [count]'th occurrence of {char} to the right. The cursor is placed on the character left of {char} (inclusive).
+T{char}	Till after [count]'th occurrence of {char} to the left. The cursor is placed on the character right of {char} (inclusive).
+;	Repeat latest f, t, F or T [count] times.
+,	Repeat latest f, t, F or T in opposite direction [count] times.
+- <minus>	[count] lines upward, on the first non-blank character (linewise).
++ or
+CTRL-M or
+<CR>	[count] lines downward, on the first non-blank character (linewise).
+_ <underscore>	[count] - 1 lines downward, on the first non-blank character (linewise).
+<C-End> or
+G	Goto line [count], default last line, on the first non-blank character.
+<C-Home> or
+gg	Goto line [count], default first line, on the first non-blank character.
+<S-Right> or
+w	[count] words forward
+<C-Right> or
+W	[count] WORDS forward
+e	Forward to the end of word [count]
+E	Forward to the end of WORD [count]
+<S-Left> or
+b	[count] words backward
+<C-Left> or
+B	[count] WORDS backward
+ge	Backward to the end of word [count]
+gE	Backward to the end of WORD [count]
+These commands move over words or WORDS.
+A word consists of a sequence of letters, digits and underscores, or a sequence of other non-blank characters, separated with white space (spaces, tabs, ). This can be changed with the 'iskeyword' option.
+A WORD consists of a sequence of non-blank characters, separated with white space. An empty line is also considered to be a word and a WORD.
+(	[count] sentences backward
+)	[count] sentences forward
+{	[count] paragraphs backward
+}	[count] paragraphs forward
+]]	[count] sections forward or to the next '{' in the first column. When used after an operator, then the '}' in the first column.
+][	[count] sections forward or to the next '}' in the first column
+[[	[count] sections backward or to the previous '{' in the first column
+[]	[count] sections backward or to the previous '}' in the first column
+Marks
+
+m{a-zA-Z}	Set mark {a-zA-Z} at cursor position (does not move the cursor, this is not a motion command).
+m' or
+m`	Set the previous context mark. This can be jumped to with the "''" or "``" command (does not move the cursor, this is not a motion command).
+:[range]ma[rk] {a-zA-Z}	Set mark {a-zA-Z} at last line number in [range], column 0. Default is cursor line.
+:[range]k{a-zA-Z}	Same as :mark, but the space before the mark name can be omitted.
+'{a-z}	To the first non-blank character on the line with mark {a-z} (linewise).
+'{A-Z0-9}	To the first non-blank character on the line with mark {A-Z0-9} in the correct file
+`{a-z}	To the mark {a-z}
+`{A-Z0-9}	To the mark {A-Z0-9} in the correct file
+:marks	List all the current marks (not a motion command).
+:marks {arg}	List the marks that are mentioned in {arg} (not a motion command). For example:
+Searching
+
+/{pattern}[/]	Search forward for the [count]'th occurrence of {pattern}
+/{pattern}/{offset}	Search forward for the [count]'th occurrence of {pattern} and go {offset} lines up or down.
+/<CR>	Search forward for the [count]'th latest used pattern
+//{offset}<CR>	Search forward for the [count]'th latest used pattern with new. If {offset} is empty no offset is used.
+?{pattern}[?]<CR>	Search backward for the [count]'th previous occurrence of {pattern}
+?{pattern}?{offset}<CR>	Search backward for the [count]'th previous occurrence of {pattern} and go {offset} lines up or down
+?<CR>	Search backward for the [count]'th latest used pattern
+??{offset}<CR>	Search backward for the [count]'th latest used pattern with new {offset}. If {offset} is empty no offset is used.
+n	Repeat the latest "/" or "?" [count] times.
+N	Repeat the latest "/" or "?" [count] times in opposite direction.
+Selecting Text (Visual Mode)
+
+To select text, enter visual mode with one of the commands below, and use motion commands to highlight the text you are interested in. Then, use some command on the text.
+The operators that can be used are:
+  ~  switch case
+  d  delete
+  c  change
+  y  yank
+  >  shift right 
+  <  shift left 
+  !  filter through external command 
+  =  filter through 'equalprg' option command 
+  gq  format lines to 'textwidth' length 
+v	start Visual mode per character.
+V	start Visual mode linewise.
+<Esc>	exit Visual mode without making any changes
+How to Suspend
+
+CTRL-Z	Suspend Vim, like ":stop". Works in Normal and in Visual mode. In Insert and Command-line mode, the CTRL-Z is inserted as a normal character.
+:sus[pend][!] or
+:st[op][!]	Suspend Vim. If the '!' is not given and 'autowrite' is set, every buffer with changes and a file name is written out. If the '!' is given or 'autowrite' is not set, changed buffers are not written, don't forget to bring Vim back to the foreground later!
+** profile
+*** key biddings                                          :key:map:bidding:
+in spacemacs, it will also pop some menu for pick up when there are mulitple choice for the same starting key.
+;; Example of single key sequence
+(defun comment-sexp ()
+  "Comment out the sexp at point."
+  (interactive)
+  (save-excursion
+    (mark-sexp)
+    (paredit-comment-dwim)))
+
+(global-set-key [f5] 'comment-sexp)
+(global-set-key (kbd "<f7>") nil) ; good idea to put nil to the starting key
+(global-set-key (kbd "<f7> <f7>") 'hs-toggle-hiding)
+(global-set-key (kbd "<f8>") 'spacemacs/new-empty-buffer)
+*** inside function of dotspacemacs/user-config
+**** enable line number
+#+BEGIN_SRC elisp
+(global-linum-mode)
+#+END_SRC
+** good tips
+*** emacs-smeargle
+SPC + g + h + h
+M-x smeargle
+
+Highlight regions by last updated time.
+
+M-x smeargle-commits
+
+Highlight regions by age of changes.
+
+** elisp
+*** show message in mini buff
+(message "the message")
+** email
+
+*** yahoo
+Incoming Mail (IMAP) Server
+Server - imap.mail.yahoo.com
+Port - 993
+Requires SSL - Yes
+Outgoing Mail (SMTP) Server
+
+Server - smtp.mail.yahoo.com
+Port - 465 or 587
+Requires SSL - Yes
+Requires authentication - Yes<2015-12-21 Mon>
+** search/grep
+*** how to search recusively
+http://emacs.stackexchange.com/questions/7964/helm-projectile-ag-how-can-i-refine-the-grep-results-further
+** dired
+sort files in dired mode: ‘s’ to toggle between alphabetical and date order and with prefix argument, edit listing switches
+
 * misc
 ** google in China without block                            :google:goagent:
 like goagent but better than it

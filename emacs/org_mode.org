@@ -1,0 +1,67 @@
+
+* demote/promet subptree
+[[http://emacs.stackexchange.com/questions/5719/how-do-i-demote-promote-selected-subtrees][How do I demote/promote selected subtrees?]]
+Just use org-paste-subtree like so:
+
+save your new list in the kill ring (select and M-w)
+enter *** after First Sub
+call org-paste-subtree
+* Export
+
+** html setting
+
+*** control superscripts
+Add the following at the beginning of your file.
+#+OPTIONS: ^:nil
+^:
+Toggle TeX-like syntax for sub- and superscripts. If you write "^:{}", ‘a_{b}’ will be interpreted, but the simple ‘a_b’ will be left as it is (org-export-with-sub-superscripts). 
+*** outline level
+ #+OPTIONS: H:5
+The above means html will export 5 level outline. And the default is 3 level outline.
+
+The outline structure of the document as described in Document Structure, forms the basis for defining sections of the exported document. However, since the outline structure is also used for (for example) lists of tasks, only the first three outline levels will be used as headings. Deeper levels will become itemized lists. You can change the location of this switch globally by setting the variableorg-export-headline-levels, or on a per-file basis with a line
+
+* PlantUML (draw digram) 
+workable setting on windows
+#+BEGIN_SRC elisp
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . nil)
+     (plantuml . t)
+     (python . t)))
+  (setq org-plantuml-jar-path
+        (expand-file-name "D:\\Daniel\\lib\\plantuml.jar"))
+
+#+END_SRC
+
+Setup
+With the latest version of Org-mode setup consists of adding plantuml to `org-babel-load-languages' with code like the following or through the customization interface.
+Then download the jar file save it somewhere on your system, set `org-plantuml-jar-path' to point to this file.
+#+BEGIN_SRC elisp
+
+;; active Org-babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(;; other Babel languages
+   (plantuml . t)))
+(setq org-plantuml-jar-path
+      (expand-file-name "~/src/org/contrib/scripts/plantuml.jar"))
+
+#+END_SRC
+Usage
+see http://plantuml.sourceforge.net/ for a variety of example usages, the following code block is an example of usage from within an Org-mode file.
+#+begin_src plantuml :file tryout.png
+  Alice -> Bob: synchronous call
+  Alice ->> Bob: asynchronous call
+#+end_src
+#+results:file:tryout.png
+* to-do
+* edit source code
+C-c ' 
+* Table
+
+** How to move to end of cell
+In org-mode, table cells are called *fields*. C-h a org field outputs a list of commands related to org tables fields.
+The function org-forward-sentence is bound to M-e. When inside a table, it will jump to the end of the current field.
+http://emacs.stackexchange.com/questions/18362/how-to-move-to-the-end-of-current-cell

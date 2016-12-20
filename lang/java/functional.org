@@ -1,0 +1,7 @@
+
+* promo
+[[http://raganwald.com/2014/03/31/class-hierarchies-dont-do-that.html][Class Hierarchies? Don't Do That!]]
+[[http://raganwald.com/2014/12/20/why-why-functional-programming-matters-matters.html][Why Why Functional Programming Matters Matters]]
+
+* good link
+[[https://medium.com/javascript-scene/curry-or-partial-application-8150044c78b8#.7lb0fvubp][The Difference Between Partial Application and Curry]]
