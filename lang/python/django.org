@@ -47,6 +47,8 @@ And the dba folder is under the fold of info, so it's info/dba, and the root dir
 * traceback
 http://avilpage.com/2015/05/whats-so-good-about-django-traceback/
 * models
+** link to official model
+https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.fieldsets
 ** create tables on database based on models
 say dba is a module under django project, and then only sync the model under dba to database
 #+BEGIN_SRC example
@@ -58,6 +60,30 @@ python manage.py migrate dba
 #+BEGIN_SRC python
 from info.dba.models import Schedule
 a=Schedule.objects.all()
+#+END_SRC
+** defined customized default value
+
+#+BEGIN_SRC python
+
+def default_date():
+    d = timezone.now().date() + timedelta(days = 1)
+    t = datetime.combine(d, datetime.min.time())
+    return t
+
+class YouModel(models.Model):
+    start_time = models.DateTimeField(blank=True, null=True, default=default_date)
+
+#+END_SRC
+** define sorted many to many
+install sortedm2m
+pip install django-sortedm2m
+https://pypi.python.org/pypi/django-sortedm2m
+** how to use multiple line help_text
+http://stackoverflow.com/questions/2259137/how-to-add-an-html-class-to-a-django-forms-help-text
+#+BEGIN_SRC python
+from django.utils.safestring import mark_safe
+field = models.TextField(help_text=mark_safe("some<br>html"))
+
 #+END_SRC
 * django-extensions
 great package, better to install
@@ -104,19 +130,5 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         for poll_id in options['poll_id']:
             print poll_id
-
-#+END_SRC
-* models
-** defined customized default value
-
-#+BEGIN_SRC python
-
-def default_date():
-    d = timezone.now().date() + timedelta(days = 1)
-    t = datetime.combine(d, datetime.min.time())
-    return t
-
-class YouModel(models.Model):
-    start_time = models.DateTimeField(blank=True, null=True, default=default_date)
 
 #+END_SRC

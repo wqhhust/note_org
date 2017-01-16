@@ -1,4 +1,7 @@
 
 * 词语
+#+BEGIN_SRC sample
 契机
+掀起(xanqi)
+#+END_SRC
 

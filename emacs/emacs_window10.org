@@ -1,0 +1,1 @@
+need to set variable HOME, otherwise magit might not work correctly

@@ -18,3 +18,33 @@
 少求爱，但求全心付出爱。
 
 #+END_SRC
+* 伟大的圣徒
+** [[http://baike.baidu.com/link?url=maU9T7CpinhXciIdeQ43AZM9LVVclhLQNkBs-jlkicCdE4HK2UBHk4MrMtXon_tLEo1FQRkcCtnCEfXynmzg6d9zLOWgdFqkFWFS1NzQ38FlmKO6wS5VuRYVQRNFKYrtcyg-EZuJTnvzrPrcNkQGsK][特蕾莎修女]]
+https://en.wikipedia.org/wiki/Mother_Teresa
+#+BEGIN_SRC sample
+
+人们经常是不讲道理的、没有逻辑的和以自我为中心的
+不管怎样，你要原谅他们
+即使你是友善的，人们可能还是会说你自私和动机不良
+不管怎样，你还是要友善
+当你功成名就，你会有一些虚假的朋友和一些真实的敌人
+不管怎样，你还是要取得成功
+即使你是诚实的和率直的，人们可能还是会欺骗你
+不管怎样，你还是要诚实和率直
+你多年来营造的东西，有人在一夜之间把它摧毁
+不管怎样，你还是要去营造
+如果你找到了平静和幸福，他们可能会嫉妒你
+不管怎样，你还是要快乐
+你今天做的善事，人们往往明天就会忘记
+不管怎样，你还是要做善事
+即使把你最好的东西给了这个世界，也许这些东西永远都不够
+不管怎样，把你最好的东西给这个世界
+你看，说到底，它是你和上天之间的事
+而绝不是你和他人之间的事
+
+#+END_SRC
+
+#+BEGIN_SRC sample
+特蕾莎修女一生中曾18次被提名为年度最受尊敬人物（Gallup's most admired man and woman poll）中的十大最受尊敬女性之一，并在20世纪80-90年代间数次当选。1999年，特蕾莎修女被美国人民投票选为二十世纪最受尊敬人物榜单之首（Gallup's List of Most Widely Admired People of the 20th Century）。排在她后面的是马丁路德金与美国前总统肯尼迪。在此次广泛囊括各年龄层（除婴孩外）的调查投票中，她以压倒性的优势成为全美人民心目中的伟人
+
+#+END_SRC
