@@ -1,7 +1,10 @@
 
+* best bible commentaries
+http://www.challies.com/best-commentaries-on-each-book-of-the-bible
+
 * 赞美诗
-** [[http://www.tudou.com/programs/view/AZTt3oFyU5g/][使我作你和平之子]]
-#+BEGIN_SRC sample 
+** [[http://www.tudou.com/programs/view/aztt3ofyu5g/][使我作你和平之子]]
+#+begin_src sample 
 使我作你和平之子，在憎恨之处播下你的爱， 
 在伤痕之处播下你宽恕，在怀疑之处播下信心。 
 
@@ -17,9 +20,9 @@
 少求被了解，但求了解人；
 少求爱，但求全心付出爱。
 
-#+END_SRC
+#+end_src
 * 伟大的圣徒
-** [[http://baike.baidu.com/link?url=maU9T7CpinhXciIdeQ43AZM9LVVclhLQNkBs-jlkicCdE4HK2UBHk4MrMtXon_tLEo1FQRkcCtnCEfXynmzg6d9zLOWgdFqkFWFS1NzQ38FlmKO6wS5VuRYVQRNFKYrtcyg-EZuJTnvzrPrcNkQGsK][特蕾莎修女]]
+** [[http://baike.baidu.com/link?url=mau9t7cpinhxciideq43azm9lvvclhlqnkbs-jlkiccde4hk2ubhk4mrmtxon_tleo1fqrkcctncefxynmzg6d9zlowgdfqkfwfs1nzq38flmko6ws5vuryvqrnfkyrtcyg-ezujtnvzrprcnkqgsk][特蕾莎修女]]
 https://en.wikipedia.org/wiki/Mother_Teresa
 #+BEGIN_SRC sample
 
