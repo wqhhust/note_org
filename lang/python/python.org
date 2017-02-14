@@ -122,6 +122,12 @@ dict((k, v) for k, v in a.iteritems() if v)
 #+begin_src python
 [mydict[x] for x in mykeys]
 #+end_src
+*** get some key/value pairs from a map
+
+#+BEGIN_SRC python
+a= {1: 1, 2: 2, 3: 3}
+{ x:a[x] for x in a if x in (1,2)}
+#+END_SRC
 ** multiple lists
 *** get a nested list based on multiple lists
 #+begin_src python
