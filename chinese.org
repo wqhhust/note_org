@@ -16,5 +16,6 @@
 威吓(weihe)
 糊涂(hutu)
 崇拜(chongbai)
+神祇(shenqi)
 #+END_SRC
 
